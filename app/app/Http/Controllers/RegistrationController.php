@@ -23,7 +23,7 @@ class RegistrationController extends Controller
     public function createEdmonds(Request $request){
 
         // 新規postを作成
-        $edmondspost=new EdmondsPost();
+        $edmondspost = new EdmondsPost();
         $inputs=[];
 
         // バリデーションルール
@@ -79,7 +79,16 @@ class RegistrationController extends Controller
         $seattlepost->create($inputs);
                 
         return redirect('/seattle/post');
-        
     }
 
+    public function softdeleteEdmondsForm(Request $request){
+
+        // $softdeletespend = Spending::find($spending);
+
+        $spending->del_flg = 1;
+
+        $spending->save();
+
+        return redirect('/');
+    }
 }

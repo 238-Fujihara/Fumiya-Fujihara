@@ -55,12 +55,26 @@
     </div>
 
 </header>
+<h1>Seattle</h1>
   <div class="seattlepost">
     <a class="seattlepost" href="{{ route('create.seattle') }}">
     <button type='button'>新規投稿⊕</button>
+    </a></div>
+    <form action="{{ url('/edmonds.post') }}" method="GET">
+            <input type="date" name="from" placeholder="from_date" value="">
+                <span class="mx-3 text-grey">~</span>
+            <input type="date" name="until" placeholder="until_date" value=""><br>
+            <button type="submit">検索</button>
+    </form>
+
+    <div class="seattlepictures">
+    @foreach($seaposts as $seapost)
+    <a href="{{ route('seapics.detail') }}">
+        <img src="{{ asset($seapost->image) }}">
     </a>
-    </div>
-    <img src="{{ asset('/public/storage/images') }}">
+    @endforeach                 
+
+</div>
 
 
 

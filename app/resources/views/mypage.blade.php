@@ -27,7 +27,7 @@
 </head>
 <body>
 <header class="global-header">
-    <a href ="{{ ('/') }}"><h1>Seattlish</h1></a>
+    <a href ="{{ ('/') }}" class="title"><h1>Seattlish</h1></a>
     </div>
     <div class="login-register">
             @if(Auth::check())
@@ -54,18 +54,39 @@
             @endif
     </div>
 </header>
+        <h1>My Page</h1>
         <div class="userinformation">
           <div class='icon'> 
             <img src="{{ asset('img\screen shot\IMG_0142.jpg') }}">
             <div class= 'username'>{{ Auth::user()->name }}</div>
           </div>
+          <div class="menu">
             <div class="newpost">
-                <button type='button' class='newpostbutton'>新規投稿⊕</button>
+                <a href="{{ route('create.edmonds') }}">
+                    <button type='button' class='newpostbutton'>新規投稿⊕</button>
+                </a>
+            </div>
             <div class="edit">
                 <a href="{{ route('profile.edit') }}">
                     <button type='button' class='useredit'>編集</button>
                 </a>
             </div>
+            </div>
+        </div>
+        <div class="regionname">
+            <a href="{{ route('edmonds.post') }}">
+                <button type="submit" name="myedposts">Edmonds</button>
+            </a>
+            <a href="{{ route('seattle.post') }}">
+                <button type="submit" name="myseaposts">Seattle</button>
+            </a>
+        </div>
+        <div class="myposts">
+            @foreach($edposts as $edpost)
+                <a href="{{ route('edpics.detail') }}">
+                    <img src="{{ asset('/storage/images') }}">
+                </a>
+            @endforeach                                
         </div>
 
 </body>

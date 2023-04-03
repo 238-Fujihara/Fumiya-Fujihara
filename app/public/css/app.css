@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Nunito);@charset4 "UTF-8";
 
 /*!
  * Bootstrap v4.6.2 (https://getbootstrap.com/)
@@ -174,7 +174,9 @@ a {
   text-decoration: none;
   background-color: transparent;
 }
-
+a .title{
+  margin-left: 30px;
+}
 a:hover {
   color: #1d68a7;
   text-decoration: underline;
@@ -291,20 +293,26 @@ button,
   height: 600px;
 }
 .global-header{
+  width: 100%;
   height: 130px;
   background-color: rgb(7, 8, 27);
   display: flex;
+  margin:auto;
 }
 .login-register{
-  margin-left: 1100px;
+  margin-left: 1150px;
   margin-top: 40px;
-
 }
 .seattlepost{
   text-align: center;
 }
 .edmondspictures{
-  justify-content: space-evenly;
+  width: 80%;
+  margin:auto;
+}
+.seattlepictures{
+  width: 80%;
+  margin: auto;
 }
 .selectpictures{
   text-align: center;
@@ -321,6 +329,25 @@ button,
 .newpost{
   margin-left: 300px;
 }
+.delete{
+  margin-top: 50px;
+}
+.edit{
+  margin-left: 300px;
+}
+.edpicsdetail{
+  margin-top: 100px;
+}
+.regionname{
+  justify-content: space-evenly;
+  display: flex;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.myposts{
+  width: 80%;
+  margin:auto;
+}
 .icon img{
   border-radius: 50%;
   margin-left: 350px;
@@ -328,6 +355,10 @@ button,
 .username{
   margin-left:350px;
   margin-top: 20px;
+}
+
+.notmember{
+  margin-top: 150px;
 }
 button:not(:disabled),
 [type=button]:not(:disabled),
@@ -438,8 +469,7 @@ h6,
 h1,
 .h1 {
   font-size: 2.25rem;
-  margin-left: 30px;
-  margin-top: 40px;
+  margin-top: 30px;
 }
 
 h2,

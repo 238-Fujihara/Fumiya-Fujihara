@@ -14,13 +14,20 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+
+<script type="text/javascript">
+        $(document).ready(function(){
+            $('.slider').bxSlider({
+                auto: true,
+                pause: 5000,
+            });
+        });
 </script>
 </head>
 <header class="global-header">
-        <a href ="{{ ('/') }}"><h1>Seattlish</h1></a>
-        <div class="login-register">
-        </div>        
-        </header>
+    <a href ="{{ ('/') }}"><h1>Seattlish</h1></a>
+</header>
+<body>
 <form class="login-form" action="{{ route('login') }}" method="POST">
     @csrf
   <p class="login-text">
@@ -41,10 +48,5 @@
   <input type="password" name="password" class="login-password" required="true" placeholder="Password" />
   <input type="submit" name="Login" value="Login" class="login-submit" />
 </form>
-<a href="#" class="login-forgot-pass">forgot password?</a><br>
-<h5 class="notmember">If you are not member</h5><br>
-<a class="register" href="{{ route('register') }}">
-            <button type='submit' class='register-button'>会員登録</buton>
-            </a>
-<div class="underlay-photo"></div>
-<div class="underlay-black"></div> 
+
+</body>

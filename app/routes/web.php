@@ -37,7 +37,12 @@ Route::group(['middleware'=> 'auth'], function() {
     Route::get('/setting/deactive', 'Auth\DeactiveController@showDeactiveForm')->name('deactive.form');
     Route::post('/setting/deactive', 'Auth\DeactiveController@deactive')->name('deactive');
 
+    Route::get('mainpage',[DisplayController::class, 'userlist'])->name('userlist');
     Route::get('/mypage', [DisplayController::class, 'MyPage'])->name('my.page');
+    Route::get('/edpicsdetail', [DisplayController::class, 'EdPicsDetail'])->name('edpics.detail');
+    Route::get('/seapicsdetail', [DisplayController::class, 'SeaPicsDetail'])->name('seapics.detail');
+
+
     Route::get('/profile.edit', [DisplayController::class, 'profileedit'])->name('profile.edit');
     Route::post('/profileedit', [DisplayController::class, 'ProfileEditForm'])->name('Profile.Edit.Form');
     // Route::get('edmonds_form/{id}',[RegistrationController::class, 'createEdondsForm'])->name('edmonds.post');
@@ -51,6 +56,9 @@ Route::group(['middleware'=> 'auth'], function() {
     Route::post('/create_edmonds', [RegistrationController::class, 'createEdmonds'])->name('store.edmonds');
     Route::get('create_seattle', [RegistrationController::class, 'createSeattleForm'])->name('create.seattle');
     Route::post('/create_seattle', [RegistrationController::class, 'createSeattle'])->name('store.seattle');
+    Route::get('softdeleteedmonds_form/{id}',[RegistrationController::class, 'softdeleteEdmondsForm'])->name('softdelete.edmonds');
+    Route::post('/softdeleteedmonds_form/{id}',[RegistrationController::class,'softdeleteEdmonds']);  
+
     // Route::get('create_income', [RegistrationController::class, 'createIncomeForm'])->name('create.income');
     // Route::post('/create_income', [RegistrationController::class, 'createIncome']);
 });

@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+
 
 class SeattlePost extends Model
 {
@@ -18,5 +20,15 @@ class SeattlePost extends Model
     protected $fillable = [
     'image','title','user_id', 'date',
 ];
-
+public function getimages(){
+    $seattlePost = SeattlePost::query();
+    if(Auth::user()){
+        $seattlePost->where('user_id', Auth::id());
+    }
+    $seattlePost = $seattlePost->get();
+    foreach($seattlePost as $val){
+        $val->image= '/storage/images/' . $val->image;
+    }
+    return $seattlePost;
+}
 }

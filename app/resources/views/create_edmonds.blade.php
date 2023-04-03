@@ -53,6 +53,7 @@
                 @endif
         </div>
     </header>
+    <h1>Edmonds</h1>
     <div class="title">
         <h2 class="title">What's your favorite??</h2>
     </div>

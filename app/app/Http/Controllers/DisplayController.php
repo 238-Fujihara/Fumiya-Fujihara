@@ -7,30 +7,52 @@ use App\EdmondsPost;
 use App\SeattlePost;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 
 class DisplayController extends Controller
 {
+    public $edmondspost;
+    public $seattlepost;
+    public function __construct(EdmondsPost $edmondspost, SeattlePost $seattlepost){
+        $this->edmondspost = $edmondspost;
+        $this->seattlepost = $seattlepost;
+    }
+
+
     public function index(){
 
-        return view('mainpage'); 
-
+        return view('mainpage');
     }
 
     public function EdmondsPost(Request $request){
         
+        $edmondsposts = $this->edmondspost->getimages();
         
-        return view('edmonds');
+        // $from = $request['from'];
+        // $until = $request['until'];
+
+        return view('edmonds',[
+            'edposts' => $edmondsposts,
+        ]);
     }
 
     public function SeattlePost(Request $request){
 
-        return view('seattle');
+        $seattleposts = $this->seattlepost->getimages();
+
+        return view('seattle',[
+            'seaposts' => $seattleposts,
+        ]);
     }
 
-    public function MyPage(){
+    public function MyPage(Request $request){
 
-        return view('mypage');
+        $edmondspost = DB::table('Edmonds_Posts')->where('user_id',  Auth::id())->get();
+        
+        return view('mypage',[
+            'edposts' => $edmondspost,
+        ]);
     }
 
     public function profileedit(){
@@ -68,6 +90,31 @@ class DisplayController extends Controller
         return redirect('mypage');
 
     }
+    public function userlist(){
+
+        return view('user_list');
+    }
+
+    public function EdPicsDetail(Request $request){
+
+        // $edpicsdetail = DB::table('Edmonds_Posts')->where('id', Auth::id())->get();
+
+        $edmondsposts = $this->edmondspost->where('image')->get();
+        // $edmondsposts->get('id');
+
+
+        return view('edpicsdetail'.[
+            'edpost'=> $edmondsposts,
+        ]);
+    }
+    public function SeaPicsDetail(Request $request){
+
+        $seapicsdetail = DB::table('Seattle_Posts')->where('id', Auth::id())->get();
+
+        return view('seapicsdetail');
+    }
+
+
     
 
 

@@ -28,6 +28,7 @@
 <body>
 <header class="global-header">
     <a href ="{{ ('/') }}"><h1>Seattlish</h1></a>
+    </div>
     <div class="login-register">
             @if(Auth::check())
             <span class="may-navbar-item">{{ Auth::user()->name }}</span>
@@ -35,8 +36,6 @@
             <a href="#" id="logout" class="logout">ログアウト</a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" syle="display:none;">
                 @csrf
-                <a href="{{ route('my.page') }}">マイページ</a>
-
             </form>
             <script>
                 document.getElementById('logout').addEventListener('click', function(event){
@@ -54,29 +53,12 @@
             </a>
             @endif
     </div>
-
 </header>
-<h1>Edmonds</h1>
-    <div class="seattlepost">
-        <a class="edmondspost" href="{{ route('create.edmonds') }}">
-        <button type='button' class='edmondspostbutton'>新規投稿⊕</button>
-    </a></div>
-    <form action="{{ url('/edmonds.post') }}" method="GET">
-            <input type="date" name="from" placeholder="from_date" value="">
-                <span class="mx-3 text-grey">~</span>
-            <input type="date" name="until" placeholder="until_date" value=""><br>
-            <button type="submit">検索</button>
-    </form>
-
-<div class="edmondspictures">
-    <h4 class="date">"{{ old('date') }}"</h4>
-@foreach($edposts as $edpost)
-    <a href="{{ route('edpics.detail') }}">
+<body>
+    <div class="edpicsdetail">
         <img src="{{ asset($edpost->image) }}">
-    </a>
-@endforeach                 
-
-</div>
-
+    </div>
+    <div class="delete">
+        <button type="submit" name="delete">削除</button>
 </body>
 </html>

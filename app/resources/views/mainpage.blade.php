@@ -30,6 +30,7 @@
     <a href ="{{ ('/') }}"><h1>Seattlish</h1></a>
     </div>
     <div class="login-register">
+    <a href="{{ route('userlist') }}">管理者ページ</a><br>
             @if(Auth::check())
             <span class="may-navbar-item">{{ Auth::user()->name }}</span>
             /

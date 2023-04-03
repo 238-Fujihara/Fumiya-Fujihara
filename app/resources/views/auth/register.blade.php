@@ -16,6 +16,10 @@
 <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 </script>
 </head>
+<body>
+<header class="global-header">
+    <a href ="{{ ('/') }}"><h1>Seattlish</h1></a>
+</header>
 <form class="register-form" action="{{ route('register') }}" method="POST">
 @csrf
   <p class="register-text">
@@ -39,3 +43,4 @@
 </form>
 <div class="underlay-photo"></div>
 <div class="underlay-black"></div> 
+</body>
