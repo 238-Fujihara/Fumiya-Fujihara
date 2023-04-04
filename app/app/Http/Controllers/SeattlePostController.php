@@ -46,7 +46,10 @@ class SeattlePostController extends Controller
      */
     public function show(SeattlePost $seattlePost)
     {
-        //
+        return view('seapicsdetail',[
+            'seapost' => $seattlePost,
+        ]);
+
     }
 
     /**
@@ -80,6 +83,8 @@ class SeattlePostController extends Controller
      */
     public function destroy(SeattlePost $seattlePost)
     {
-        //
+        $seattlePost->delete();
+
+        return view('seattle');
     }
 }

@@ -55,8 +55,9 @@
     </div>
 </header>
 <body>
-    <div class="edpicsdetail">
-        <img src="{{ asset('app/public/storage/images') }}">
+    <div class="seapicsdetail">
+        <img src="{{ asset($seapost->image) }}">
+    </a>
     </div>
     <div class="delete">
         <button type="submit" name="delete">削除</button>

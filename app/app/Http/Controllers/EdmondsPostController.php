@@ -46,7 +46,11 @@ class EdmondsPostController extends Controller
      */
     public function show(EdmondsPost $edmondsPost)
     {
-        //
+        // $edmondsPost = $this->edmondsPost->getimages();
+
+        return view('edpicsdetail',[
+            'edpost' => $edmondsPost,
+        ]);
     }
 
     /**
@@ -82,6 +86,6 @@ class EdmondsPostController extends Controller
     {
         $edmondsPost->delete();
 
-        return redirect('edmonds');
-    }
+        return view('edmonds');
+}
 }

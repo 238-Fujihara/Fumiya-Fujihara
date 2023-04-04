@@ -97,21 +97,22 @@ class DisplayController extends Controller
 
     public function EdPicsDetail(Request $request){
 
-        // $edpicsdetail = DB::table('Edmonds_Posts')->where('id', Auth::id())->get();
+        $edmondsposts = $this->edmondspost->getimages();
+        
+        // $from = $request['from'];
+        // $until = $request['until'];
 
-        $edmondsposts = $this->edmondspost->where('image')->get();
-        // $edmondsposts->get('id');
-
-
-        return view('edpicsdetail'.[
-            'edpost'=> $edmondsposts,
+        return view('edpicsdetail',[
+            'edposts' => $edmondsposts,
         ]);
     }
     public function SeaPicsDetail(Request $request){
 
-        $seapicsdetail = DB::table('Seattle_Posts')->where('id', Auth::id())->get();
+        $seattleposts = $this->seattlepost->getimages();
 
-        return view('seapicsdetail');
+        return view('seapicsdetail',[
+            'seaposts' => $seattlepost,
+        ]);
     }
 
 

@@ -61,20 +61,33 @@
         <a class="edmondspost" href="{{ route('create.edmonds') }}">
         <button type='button' class='edmondspostbutton'>新規投稿⊕</button>
     </a></div>
-    <form action="{{ url('/edmonds.post') }}" method="GET">
-            <input type="date" name="from" placeholder="from_date" value="">
-                <span class="mx-3 text-grey">~</span>
-            <input type="date" name="until" placeholder="until_date" value=""><br>
-            <button type="submit">検索</button>
-    </form>
+    <div class="searching">
+        <select name="region">
+            <option name="edmonds">Edmonds</option>
+            <option namea="seattle">Seattle</option>
+        </select>
+            <div class="date">
+                <form action="{{ url('/edmonds.post') }}" method="GET">
+                    <input type="date" name="from" placeholder="from_date" value="">
+                        <span class="mx-3 text-grey">~</span>
+                    <input type="date" name="until" placeholder="until_date" value=""><br>
+            </div>
+            <input type=>
+    </div>
+
+            <div class="searchinginformation">
+                    <button type="submit">検索</button>
+            </div>
+                </form>
 
 <div class="edmondspictures">
     <h4 class="date">"{{ old('date') }}"</h4>
 @foreach($edposts as $edpost)
-    <a href="{{ route('edpics.detail') }}">
-        <img src="{{ asset($edpost->image) }}">
+
+    <a href="{{ route('edmondsPost.show', $edpost->id) }}"><img src="{{ asset($edpost->image) }}">
     </a>
 @endforeach                 
+
 
 </div>
 

@@ -57,8 +57,11 @@
 <body>
     <div class="edpicsdetail">
         <img src="{{ asset($edpost->image) }}">
+    </a>
     </div>
     <div class="delete">
+    <a href="{{ route('edmondsPost.destroy', ['edmondsPost' => $edpost->id]) }}">
         <button type="submit" name="delete">削除</button>
+    </a>
 </body>
 </html>

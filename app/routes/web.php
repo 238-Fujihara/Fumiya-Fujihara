@@ -2,6 +2,11 @@
 
 use App\Http\Controllers\DisplayController;
 use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\EdmondsPostController;
+use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\DeactiveController;
+use App\Http\Controllers\SeattlePostController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -23,24 +28,25 @@ Auth::routes();
 Route::group(['middleware'=> 'auth'], function() {
 
     Route::get('/',[DisplayController::class, 'index']);
+    
     Route::get('/setting', 'SettingController@index')->name('setting');
     Route::get('/setting/name', 'SettingController@showChangeNameForm')->name('name.form');
     Route::post('/setting/name', 'SettingController@changeName')->name('name.change');
     Route::get('/setting/email', 'SettingController@showChangeEmailForm')->name('email.form');
     Route::post('/setting/email', 'SettingController@changeEmail')->name('email.change');
-    Route::get('/password/change', 'Auth\ChangePasswordController@showChangePasswordForm')->name('password.form');
-    Route::post('/password/change', 'Auth\ChangePasswordController@changePassword')->name('password.change');
-    Route::get('/setting/password', 'Auth\ChangePasswordController@showChangePasswordForm')->name('password.form');
-    Route::post('/setting/password', 'Auth\ChangePasswordController@changePassword')->name('password.change');
-    Route::get('/deactive', 'Auth\DeactiveController@showDeactiveForm')->name('deactive.form');
-    Route::post('/deactive', 'Auth\DeactiveController@deactive')->name('deactive');
-    Route::get('/setting/deactive', 'Auth\DeactiveController@showDeactiveForm')->name('deactive.form');
-    Route::post('/setting/deactive', 'Auth\DeactiveController@deactive')->name('deactive');
+    // Route::get('/password/change', 'Auth\ChangePasswordController@showChangePasswordForm')->name('password.form');
+    // Route::post('/password/change', 'Auth\ChangePasswordController@changePassword')->name('password.change');
+    // Route::get('/setting/password', 'Auth\ChangePasswordController@showChangePasswordForm')->name('password.form');
+    // Route::post('/setting/password', 'Auth\ChangePasswordController@changePassword')->name('password.change');
+    // Route::get('/deactive', 'Auth\DeactiveController@showDeactiveForm')->name('deactive.form');
+    // Route::post('/deactive', 'Auth\DeactiveController@deactive')->name('deactive');
+    // Route::get('/setting/deactive', 'Auth\DeactiveController@showDeactiveForm')->name('deactive.form');
+    // Route::post('/setting/deactive', 'Auth\DeactiveController@deactive')->name('deactive');
 
     Route::get('mainpage',[DisplayController::class, 'userlist'])->name('userlist');
     Route::get('/mypage', [DisplayController::class, 'MyPage'])->name('my.page');
-    Route::get('/edpicsdetail', [DisplayController::class, 'EdPicsDetail'])->name('edpics.detail');
-    Route::get('/seapicsdetail', [DisplayController::class, 'SeaPicsDetail'])->name('seapics.detail');
+    Route::resource('/edmondsPost', 'EdmondsPostController');
+    Route::resource('/seapicsdetail','SeattlePostController');
 
 
     Route::get('/profile.edit', [DisplayController::class, 'profileedit'])->name('profile.edit');

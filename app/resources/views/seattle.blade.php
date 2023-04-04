@@ -60,20 +60,31 @@
     <a class="seattlepost" href="{{ route('create.seattle') }}">
     <button type='button'>新規投稿⊕</button>
     </a></div>
-    <form action="{{ url('/edmonds.post') }}" method="GET">
-            <input type="date" name="from" placeholder="from_date" value="">
-                <span class="mx-3 text-grey">~</span>
-            <input type="date" name="until" placeholder="until_date" value=""><br>
-            <button type="submit">検索</button>
-    </form>
+    <div class="searching">
+        <select name="region">
+            <option name="edmonds">Edmonds</option>
+            <option namea="seattle">Seattle</option>
+        </select>
+            <div class="date">
+                <form action="{{ url('/edmonds.post') }}" method="GET">
+                    <input type="date" name="from" placeholder="from_date" value="">
+                        <span class="mx-3 text-grey">~</span>
+                    <input type="date" name="until" placeholder="until_date" value=""><br>
+            </div>
+            <input type=>
+    </div>
+
+            <div class="searchinginformation">
+                    <button type="submit">検索</button>
+            </div>
+                </form>
 
     <div class="seattlepictures">
     @foreach($seaposts as $seapost)
-    <a href="{{ route('seapics.detail') }}">
-        <img src="{{ asset($seapost->image) }}">
-    </a>
-    @endforeach                 
 
+        <a href="{{ route('seapicsdetail.show', $seapost->id) }}"><img src="{{ asset($seapost->image) }}">
+        </a>
+    @endforeach                 
 </div>
 
 

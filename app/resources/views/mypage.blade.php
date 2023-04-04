@@ -82,12 +82,11 @@
             </a>
         </div>
         <div class="myposts">
-            @foreach($edposts as $edpost)
-                <a href="{{ route('edpics.detail') }}">
-                    <img src="{{ asset('/storage/images') }}">
-                </a>
-            @endforeach                                
-        </div>
+        @foreach($edposts as $edpost)
+            <a href="{{ route('edpicsdetail.show', $edpost->id) }}"><img src="{{ asset($edpost->image) }}">
+            </a>
+        @endforeach                 
+    </div>
 
 </body>
 </html>
