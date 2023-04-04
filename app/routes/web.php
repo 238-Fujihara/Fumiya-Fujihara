@@ -46,7 +46,7 @@ Route::group(['middleware'=> 'auth'], function() {
     Route::get('mainpage',[DisplayController::class, 'userlist'])->name('userlist');
     Route::get('/mypage', [DisplayController::class, 'MyPage'])->name('my.page');
     Route::resource('/edmondsPost', 'EdmondsPostController');
-    Route::resource('/seapicsdetail','SeattlePostController');
+    Route::resource('/seattlePost','SeattlePostController');
 
 
     Route::get('/profile.edit', [DisplayController::class, 'profileedit'])->name('profile.edit');

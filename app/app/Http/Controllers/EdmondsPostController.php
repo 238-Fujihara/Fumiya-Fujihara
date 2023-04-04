@@ -86,6 +86,6 @@ class EdmondsPostController extends Controller
     {
         $edmondsPost->delete();
 
-        return view('edmonds');
+        return redirect('edmonds');
 }
 }

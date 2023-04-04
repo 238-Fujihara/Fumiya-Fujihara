@@ -59,9 +59,18 @@
         <img src="{{ asset($edpost->image) }}">
     </a>
     </div>
+    <div class="edit">
+    <form action="{{ route('edmondsPost.destroy', ['edmondsPost' => $edpost->id]) }}" method="POST">
+        @csrf
+        @method('edit')
+            <input type="submit" value="編集" class="btn btn-danger">
+    </form>
+    </div>
     <div class="delete">
-    <a href="{{ route('edmondsPost.destroy', ['edmondsPost' => $edpost->id]) }}">
-        <button type="submit" name="delete">削除</button>
-    </a>
+    <form action="{{ route('edmondsPost.destroy', ['edmondsPost' => $edpost->id]) }}" method="POST">
+        @csrf
+        @method('delete')
+            <input type="submit" value="削除" class="btn btn-danger" onclick='return confirm("削除しますか？");'>
+    </form>
 </body>
 </html>

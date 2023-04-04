@@ -60,6 +60,17 @@
     </a>
     </div>
     <div class="delete">
-        <button type="submit" name="delete">削除</button>
+    <form action="{{ route('seattlePost.destroy', ['seattlePost' => $seapost->id]) }}" method="POST">
+        @csrf
+        @method('delete')
+            <input type="submit" value="削除" class="btn btn-danger" onclick='return confirm("削除しますか？");'>
+    </form>    
+    <form action="{{ route('seattlePost.destroy', ['seattlePost' => $seapost->id]) }}" method="POST">
+        @csrf
+        @method('delete')
+            <input type="submit" value="編集" class="btn btn-danger">
+    </form>
+
+    
 </body>
 </html>

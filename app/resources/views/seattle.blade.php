@@ -80,12 +80,12 @@
                 </form>
 
     <div class="seattlepictures">
-    @foreach($seaposts as $seapost)
-
-        <a href="{{ route('seapicsdetail.show', $seapost->id) }}"><img src="{{ asset($seapost->image) }}">
-        </a>
-    @endforeach                 
-</div>
+        @foreach($seaposts as $seapost)
+            <a href="{{ route('seattlePost.show', $seapost->id) }}"><img src="{{ asset($seapost->image) }}">
+            </a>
+        @endforeach                 
+    </div>
+    
 
 
 
