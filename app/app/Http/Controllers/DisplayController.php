@@ -26,23 +26,48 @@ class DisplayController extends Controller
     }
 
     public function EdmondsPost(Request $request){
+
+        $edmondspost = New EdmondsPost;
+
+        $edall = $edmondspost->where('date', Auth::id());
         
+        $from = $request['from'];
+        $until = $request['until'];
+
+        $fromdate = $request->input('from');
+        $untildate = $request->input('until');
+
+        if($from && $until){
+            $edall->whereBetween('date', [$from, $until]);
+        }
+
+        $edall = $edall->get();
+
         $edmondsposts = $this->edmondspost->getimages();
-        
         // $from = $request['from'];
         // $until = $request['until'];
-
         return view('edmonds',[
             'edposts' => $edmondsposts,
+            'fromdate' => $fromdate,
+            'untildate' => $untildate,
         ]);
     }
 
     public function SeattlePost(Request $request){
 
+        $from = $request['from'];
+        $until = $request['until'];
+
+        $fromdate = $request->input('from');
+        $untildate = $request->input('until');
+
         $seattleposts = $this->seattlepost->getimages();
 
         return view('seattle',[
             'seaposts' => $seattleposts,
+            'fromdate' => $fromdate,
+            'untildate' => $untildate,
+
         ]);
     }
 
@@ -94,29 +119,6 @@ class DisplayController extends Controller
 
         return view('user_list');
     }
-
-    public function EdPicsDetail(Request $request){
-
-        $edmondsposts = $this->edmondspost->getimages();
-        
-        // $from = $request['from'];
-        // $until = $request['until'];
-
-        return view('edpicsdetail',[
-            'edposts' => $edmondsposts,
-        ]);
-    }
-    public function SeaPicsDetail(Request $request){
-
-        $seattleposts = $this->seattlepost->getimages();
-
-        return view('seapicsdetail',[
-            'seaposts' => $seattlepost,
-        ]);
-    }
-
-
-    
 
 
 }

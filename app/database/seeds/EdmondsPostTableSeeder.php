@@ -20,6 +20,7 @@ class EdmondsPostTableSeeder extends Seeder
         'long'=>2,
         'created_at'=>Carbon::now(),
         'updated_at'=>Carbon::now(), 
+        'del_flg' =>0,
         ]);   
     }
 }

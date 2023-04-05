@@ -57,7 +57,6 @@
 <body>
     <div class="edpicsdetail">
         <img src="{{ asset($edpost->image) }}">
-    </a>
     </div>
     <div class="edit">
     <form action="{{ route('edmondsPost.destroy', ['edmondsPost' => $edpost->id]) }}" method="POST">

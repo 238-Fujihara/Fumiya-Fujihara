@@ -46,7 +46,8 @@ class EdmondsPostController extends Controller
      */
     public function show(EdmondsPost $edmondsPost)
     {
-        // $edmondsPost = $this->edmondsPost->getimages();
+
+        $edmondsPost->image = '/storage/images/' . $edmondsPost->image;
 
         return view('edpicsdetail',[
             'edpost' => $edmondsPost,
@@ -84,8 +85,9 @@ class EdmondsPostController extends Controller
      */
     public function destroy(EdmondsPost $edmondsPost)
     {
+        // dd($edmondsPost);
         $edmondsPost->delete();
 
-        return redirect('edmonds');
+        return redirect()->route('edmonds.post');
 }
 }

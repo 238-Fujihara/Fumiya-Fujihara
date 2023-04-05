@@ -46,6 +46,9 @@ class SeattlePostController extends Controller
      */
     public function show(SeattlePost $seattlePost)
     {
+
+        $seattlePost->image= '/storage/images/' . $seattlePost->image;
+
         return view('seapicsdetail',[
             'seapost' => $seattlePost,
         ]);
@@ -85,6 +88,6 @@ class SeattlePostController extends Controller
     {
         $seattlePost->delete();
 
-        return view('seattle');
+        return redirect()->route('seattle.post');
     }
 }

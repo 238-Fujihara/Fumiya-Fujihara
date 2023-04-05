@@ -19,7 +19,9 @@ class SeattlePostTableSeeder extends Seeder
             'lat'=>1,
             'long'=>1,
             'created_at'=>Carbon::now(),
-            'updated_at'=>Carbon::now(),    
+            'updated_at'=>Carbon::now(), 
+            'del_flg' =>1,
+
             ]);    
     }
 }
