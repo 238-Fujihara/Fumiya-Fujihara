@@ -60,33 +60,37 @@
         <div class="seattlepost">
             <a class="edmondspost" href="{{ route('create.edmonds') }}">
             <button type='button' class='edmondspostbutton'>新規投稿⊕</button>
-        </a></div>
-        <div class="searching">
-            <select name="region">
-                <option name="edmonds">Edmonds</option>
-                <option namea="seattle">Seattle</option>
-            </select>
-                <div class="date">
-                    <form action="{{ route('edmonds.post') }}" method="GET">
-                        <input type="date" name="from" placeholder="from_date" value="{{ $fromdate }}">
-                            <span class="mx-3 text-grey">~</span>
-                        <input type="date" name="until" placeholder="until_date" value="{{ $untildate }}"><br>
-                </div>
-                <input type=>
+            </a>
         </div>
-
-                <div class="searchinginformation">
-                        <button type="submit">検索</button>
+            <div class="searching">
+                <div class="date">
+                <form action="{{ route('edmonds.post') }}" method="GET">
+                    @csrf
+                    <input type="date" name="from" placeholder="from_date" value="{{ $fromdate }}">
+                        <span class="mx-3 text-grey">~</span>
+                    <input type="date" name="until" placeholder="until_date" value="{{ $untildate }}"><br>
                 </div>
-                    </form>
-
+                    <div>
+                    <input type="text" name="keyword" placeholder="キーワード検索" value = "">
+                    </div>
+            </div>
+                    <div class="searchinginformation">
+                        <button type="submit">検索</button>
+                    </div>
+                </form>
     <div class="edmondspictures">
         <div class="edpostdetail">
-            <h4></h4>
-            @foreach($edposts as $edpost)
-                <a href="{{ route('edmondsPost.show', $edpost->id) }}"><img src="{{ asset($edpost->image) }}">
-                </a>
-            @endforeach               
+            <div class="picture">
+            <tr>
+                @foreach($edposts as $edpost)
+                    <div class="date">
+                        <h3>"{{ $edpost['title'] }}"</h3>
+                        <h4>[{{ $edpost['date'] }}]</h4>
+                        <a href="{{ route('edmondsPost.show', $edpost->id) }}"><img src="{{ asset($edpost->image) }}"></a>
+                    </div>
+                @endforeach
+            </tr>
+            </div>              
             <h4></h4>
         </div> 
     </div>

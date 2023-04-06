@@ -29,45 +29,64 @@ class DisplayController extends Controller
 
         $edmondspost = New EdmondsPost;
 
-        $edall = $edmondspost->where('date', Auth::id());
-        
+        $edall = $edmondspost->where('del_flg', 0)->where('user_id', Auth::id());
+
+
         $from = $request['from'];
         $until = $request['until'];
 
         $fromdate = $request->input('from');
         $untildate = $request->input('until');
 
+        $edall = $this->edmondspost->getimages();
+
         if($from && $until){
-            $edall->whereBetween('date', [$from, $until]);
+            $edall = $edall->whereBetween('date', [$from, $until]);
         }
 
-        $edall = $edall->get();
 
-        $edmondsposts = $this->edmondspost->getimages();
-        // $from = $request['from'];
-        // $until = $request['until'];
+        // dd($edall);
+
+        // $keyword = $request->input('keyword');
+
+        // $query = EdmondsPost::query();
+        // if(!empty('$keyword')){
+        //     $query->where('title' , "%($keyword)%");
+        // }
+
+        // $theedmondspost = $query->get();
+        
         return view('edmonds',[
-            'edposts' => $edmondsposts,
+            'edposts' => $edall,
             'fromdate' => $fromdate,
             'untildate' => $untildate,
+            // compact('theedmondspost', 'keyword')
         ]);
     }
 
     public function SeattlePost(Request $request){
 
+        $seattlepost = New SeattlePost;
+
+        $seaall = $seattlepost->where('del_flg', 0)->where('user_id', Auth::id());
+
         $from = $request['from'];
         $until = $request['until'];
 
         $fromdate = $request->input('from');
         $untildate = $request->input('until');
 
-        $seattleposts = $this->seattlepost->getimages();
+        $seaall = $this->seattlepost->getimages();
+
+        if($from && $until){
+            $seaall = $seaall->whereBetween('date', [$from, $until]);
+        }
+
 
         return view('seattle',[
-            'seaposts' => $seattleposts,
+            'seaposts' => $seaall,
             'fromdate' => $fromdate,
             'untildate' => $untildate,
-
         ]);
     }
 

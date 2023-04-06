@@ -60,9 +60,9 @@
     <form action="{{ route('store.edmonds') }}" method='POST' enctype="multipart/form-data">
         @csrf
     <div class="selectpictures">
-        <input type='text' name='title' value="{{  }}">
-        <input type="date" name="date" value="{{  }}">
-        <input id="image" type="file" name="image" value="{{  }}">
+        <input type='text' name='title' value="">
+        <input type="date" name="date" value="">
+        <input id="image" type="file" name="image" value="">
     </div>
     <div class="edmondspic">
             <button type='submit' class='edmondspic-button'>投稿</buton>

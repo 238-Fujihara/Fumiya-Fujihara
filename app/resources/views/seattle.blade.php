@@ -61,29 +61,35 @@
     <button type='button'>新規投稿⊕</button>
     </a></div>
     <div class="searching">
-        <select name="region">
-            <option name="edmonds">Edmonds</option>
-            <option namea="seattle">Seattle</option>
-        </select>
             <div class="date">
-                <form action="{{ url('/edmonds.post') }}" method="GET">
-                    <input type="date" name="from" placeholder="from_date" value="">
+            <form action="{{ route('seattle.post') }}" method="GET">
+                    @csrf
+                    <input type="date" name="from" placeholder="from_date" value="{{ $fromdate }}">
                         <span class="mx-3 text-grey">~</span>
-                    <input type="date" name="until" placeholder="until_date" value=""><br>
+                    <input type="date" name="until" placeholder="until_date" value="{{ $untildate }}"><br>
+                </div>
+                    <div>
+                    <input type="text" name="keyword" placeholder="キーワード検索" value = "">
+                    </div>
             </div>
-            <input type=>
-    </div>
-
-            <div class="searchinginformation">
-                    <button type="submit">検索</button>
-            </div>
+                    <div class="searchinginformation">
+                        <button type="submit">検索</button>
+                    </div>
                 </form>
-
     <div class="seattlepictures">
-        @foreach($seaposts as $seapost)
-            <a href="{{ route('seattlePost.show', $seapost->id) }}"><img src="{{ asset($seapost->image) }}">
-            </a>
-        @endforeach                 
+        <div class="seattledetail">
+            <div class="picture">
+            <tr>
+            @foreach($seaposts as $seapost)
+            <div class="date">
+                <h4>{{ $seapost['date'] }}</h4>
+                <a href="{{ route('seattlePost.show', $seapost->id) }}"><img src="{{ asset($seapost->image) }}"></a>
+            </div>
+            @endforeach
+            </tr>
+            </div>              
+            <h4></h4>
+        </div> 
     </div>
     
 
