@@ -59,11 +59,11 @@
         <img src="{{ asset($edpost->image) }}">
     </div>
     <div class="edit">
-    <form action="{{ route('edmondsPost.edit', ['edmondsPost' => $edpost->id]) }}" method="POST">
+    <a href="{{ route('edit.edmonds') }}" method="POST">
         @csrf
         @method('edit')
             <input type="submit" value="編集" class="btn btn-danger">
-    </form>
+    </a>
     </div>
     <div class="delete">
     <form action="{{ route('edmondsPost.destroy', ['edmondsPost' => $edpost->id]) }}" method="POST">

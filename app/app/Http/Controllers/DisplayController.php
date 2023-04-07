@@ -92,7 +92,10 @@ class DisplayController extends Controller
 
     public function MyPage(Request $request){
 
-        $edmondspost = DB::table('Edmonds_Posts')->where('user_id',  Auth::id())->get();
+        // $edmondspost = DB::table('Edmonds_Posts')->where('user_id',  Auth::id())->get();
+
+        $edmondspost = $this->edmondspost->getimages();
+
         
         return view('mypage',[
             'edposts' => $edmondspost,
@@ -137,6 +140,11 @@ class DisplayController extends Controller
     public function userlist(){
 
         return view('user_list');
+    }
+
+    public function PasswordReset(){
+
+        return view('passwordreset');
     }
 
 

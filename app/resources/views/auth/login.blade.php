@@ -41,7 +41,7 @@
   <input type="password" name="password" class="login-password" required="true" placeholder="Password" />
   <input type="submit" name="Login" value="Login" class="login-submit" />
 </form>
-<a href="#" class="login-forgot-pass">forgot password?</a><br>
+<a href="{{ url('password.reset') }}" class="login-forgot-pass">forgot password?</a><br>
 <h5 class="notmember">If you are not member</h5><br>
 <a class="register" href="{{ route('register') }}">
             <button type='submit' class='register-button'>会員登録</buton>

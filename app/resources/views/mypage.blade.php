@@ -83,7 +83,7 @@
         </div>
         <div class="myposts">
         @foreach($edposts as $edpost)
-            <a href="{{ route('edpicsdetail.show', $edpost->id) }}"><img src="{{ asset($edpost->image) }}">
+            <a href="{{ route('edmondsPost.show', $edpost->id) }}"><img src="{{ asset($edpost->image) }}">
             </a>
         @endforeach                 
     </div>

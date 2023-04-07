@@ -80,15 +80,35 @@ class RegistrationController extends Controller
                 
         return redirect('/seattle/post');
     }
+    public function EditEdmondsForm(){
 
-    public function softdeleteEdmondsForm(Request $request){
-
-        // $softdeletespend = Spending::find($spending);
-
-        $spending->del_flg = 1;
-
-        $spending->save();
-
-        return redirect('/');
+        return view('edmonds_edit');
     }
+    public function EditEdmonds(Request $request){
+
+        $edmondspost = New EdmondsPost;
+
+        $edall = $edmondspost->where('del_flg', 0)->where('user_id', Auth::id());
+
+
+        $from = $request['from'];
+        $until = $request['until'];
+
+        $fromdate = $request->input('from');
+        $untildate = $request->input('until');
+
+        $edall = $this->edmondspost->getimages();
+
+        if($from && $until){
+            $edall = $edall->whereBetween('date', [$from, $until]);
+        }
+        
+        return view('edmonds_edit',[
+            'edposts' => $edall,
+            'fromdate' => $fromdate,
+            'untildate' => $untildate,
+        ]);
+
+    }
+
 }
