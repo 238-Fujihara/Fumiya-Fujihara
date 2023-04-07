@@ -62,7 +62,7 @@ class EdmondsPostController extends Controller
      */
     public function edit(EdmondsPost $edmondsPost)
     {
-        //
+        /
     }
 
     /**
