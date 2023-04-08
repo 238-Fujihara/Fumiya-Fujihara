@@ -21,9 +21,16 @@ class DisplayController extends Controller
 
 
     public function index(){
+        // $role = Auth::user()->toArray();
+        // if($role['role'] == 100){
+        //     return view('user.admin');
+        // }else{
+        //     return view('mainpage');
+        // }
+    return view('mainpage');
 
-        return view('mainpage');
     }
+
 
     public function EdmondsPost(Request $request){
 
@@ -88,6 +95,17 @@ class DisplayController extends Controller
             'fromdate' => $fromdate,
             'untildate' => $untildate,
         ]);
+    }
+    public function EdPicsDetail(Request $request){
+
+        $edmondspost = New EdmondsPost;
+
+        $edall = $edmondspost->where('del_flg', 0)->where('user_id', Auth::id());
+
+        return view('edpicsdetail',[
+            'edposts' => $edall,
+        ]);
+
     }
 
     public function MyPage(Request $request){

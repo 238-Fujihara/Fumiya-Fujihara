@@ -16,7 +16,7 @@ class UserController extends Controller
     {
         $per_page = 3; // １ページごとの表示件数
         $users = \App\User::paginate($per_page);
-        return view('user.index')->with('users', $users);
+        return view('admin.index')->with('users', $users);
     }
 
     /**

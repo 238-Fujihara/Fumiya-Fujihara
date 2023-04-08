@@ -44,11 +44,11 @@
                 </script>
                 @else
                 <a class="login" href="{{ route('login') }}">
-                <button type='button' class='login-button'>ログイン</buton>
+                <button type='submit' class='login-button'>ログイン</buton>
                 </a>
                 
                 <a class="register" href="{{ route('register') }}">
-                <button type='button' class='register-button'>会員登録</buton>
+                <button type='submit' class='register-button'>会員登録</buton>
                 </a>
                 @endif
         </div>

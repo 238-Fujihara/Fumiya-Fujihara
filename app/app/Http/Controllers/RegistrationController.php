@@ -12,7 +12,14 @@ use Illuminate\Support\Facades\Auth;
 
 
 class RegistrationController extends Controller
-{
+
+{    public $edmondspost;
+    public $seattlepost;
+    public function __construct(EdmondsPost $edmondspost, SeattlePost $seattlepost){
+        $this->edmondspost = $edmondspost;
+        $this->seattlepost = $seattlepost;
+    }
+
     public function createEdmondsForm(){
 
         // $params = Type::where('category', '0')->where('user_id', Auth::id())->get();
@@ -81,34 +88,12 @@ class RegistrationController extends Controller
         return redirect('/seattle/post');
     }
     public function EditEdmondsForm(){
+        dd(1);
+
 
         return view('edmonds_edit');
     }
-    public function EditEdmonds(Request $request){
 
-        $edmondspost = New EdmondsPost;
-
-        $edall = $edmondspost->where('del_flg', 0)->where('user_id', Auth::id());
-
-
-        $from = $request['from'];
-        $until = $request['until'];
-
-        $fromdate = $request->input('from');
-        $untildate = $request->input('until');
-
-        $edall = $this->edmondspost->getimages();
-
-        if($from && $until){
-            $edall = $edall->whereBetween('date', [$from, $until]);
-        }
-        
-        return view('edmonds_edit',[
-            'edposts' => $edall,
-            'fromdate' => $fromdate,
-            'untildate' => $untildate,
-        ]);
-
-    }
+    
 
 }

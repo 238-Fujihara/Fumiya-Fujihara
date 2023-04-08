@@ -45,11 +45,11 @@
             </script>
             @else
             <a class="login" href="{{ route('login') }}">
-            <button type='button' class='login-button'>ログイン</buton>
+            <button type='submit' class='login-button'>ログイン</button>
             </a>
             
             <a class="register" href="{{ route('register') }}">
-            <button type='button' class='register-button'>会員登録</buton>
+            <button type='submit' class='register-button'>会員登録</button>
             </a>
             @endif
     </div>
@@ -82,12 +82,14 @@
             <tr>
             @foreach($seaposts as $seapost)
             <div class="date">
+                <h3>"{{ $seapost['title'] }}"</h3>
                 <h4>{{ $seapost['date'] }}</h4>
                 <a href="{{ route('seattlePost.show', $seapost->id) }}"><img src="{{ asset($seapost->image) }}"></a>
             </div>
             @endforeach
             </tr>
             </div>              
+            
             <h4></h4>
         </div> 
     </div>

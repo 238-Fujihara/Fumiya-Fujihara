@@ -53,26 +53,25 @@
                 @endif
         </div>
     </header>
-    <h1>Edmonds</h1>
-    <form action="{{ route('edmondsPost.update',$edposts->id) }}" method="POST" enctype="multipart/form-data">
+    <h1>Seattle</h1>
+    <form action="{{ route('seattlePost.update',$seaposts->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('patch')
-    <div class="selectpictures">
+    <div class="editpictures">
         <div class="seatitle">
-            <input type='text' name='title' value="{{ $edposts['title'] }}">
+            <input type='text' name='title' value="{{ $seaposts['title'] }}">
         </div>
         <div class="seadate">
-            <input type='date' name='date' value="{{ $edposts['date'] }}">
+            <input type='date' name='date' value="{{ $seaposts['date'] }}">
         </div>
         <div class="seapics">
-            <img src="{{ asset('/storage/images/' . $edposts['image']) }}">
+            <img src="{{ asset('/storage/images/' . $seaposts['image']) }}">
         </div>
     </div>
-    <div class="ededit">
-            <button type='submit' class='edmondspic-button'>編集完了</button>
+    <div class="seaedit">
+            <button type='submit' class='seattlepic-button'>編集完了</buton>
     </div>
     </form>
-
 
 
 

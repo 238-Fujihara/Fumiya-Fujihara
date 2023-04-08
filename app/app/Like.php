@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Like extends Model
 {
     public function users(){
-        return $this->hasMany('App\users');
+        return $this->belongsTo('App\users');
 }   
     public function posts(){
-        return $this->hasMany('App\posts');
+        return $this->belongsTo('App\posts');
 }
 }

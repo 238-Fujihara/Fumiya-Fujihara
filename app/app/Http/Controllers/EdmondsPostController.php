@@ -4,17 +4,23 @@ namespace App\Http\Controllers;
 
 use App\EdmondsPost;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class EdmondsPostController extends Controller
-{
+{    public $edmondspost;
+    public function __construct(EdmondsPost $edmondspost){
+        $this->edmondspost = $edmondspost;
+    }
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        
+    
     }
 
     /**
@@ -42,7 +48,6 @@ class EdmondsPostController extends Controller
      * Display the specified resource.
      *
      * @param  \App\EdmondsPost  $edmondsPost
-     * @return \Illuminate\Http\Response
      */
     public function show(EdmondsPost $edmondsPost)
     {
@@ -58,11 +63,14 @@ class EdmondsPostController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\EdmondsPost  $edmondsPost
-     * @return \Illuminate\Http\Response
      */
     public function edit(EdmondsPost $edmondsPost)
     {
-        
+            
+        return view('edmonds_edit',[
+            'edposts' => $edmondsPost,
+        ]);
+
     }
 
     /**
@@ -70,11 +78,16 @@ class EdmondsPostController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\EdmondsPost  $edmondsPost
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, EdmondsPost $edmondsPost)
+    public function update(Request $request, $id)
     {
-        //
+        $edmondsPost = EdmondsPost::find($id);
+
+        $edmondsPost->title = $request->input('title');
+        $edmondsPost->date = $request->input('date');
+        $edmondsPost->save();
+        
+        return redirect()->route('edmonds.post');
     }
 
     /**
@@ -85,7 +98,6 @@ class EdmondsPostController extends Controller
      */
     public function destroy(EdmondsPost $edmondsPost)
     {
-        // dd($edmondsPost);
         $edmondsPost->delete();
 
         return redirect()->route('edmonds.post');

@@ -45,7 +45,7 @@
             </script>
             @else
             <a class="login" href="{{ route('login') }}">
-            <button type='button' class='login-button'>ログイン</buton>
+            <button type='submit' class='login-button'>ログイン</buton>
             </a>
             
             <a class="register" href="{{ route('register') }}">
@@ -55,22 +55,19 @@
     </div>
 </header>
 <body>
-    <div class="seapicsdetail">
+<div class="seapicsdetail">
         <img src="{{ asset($seapost->image) }}">
-    </a>
     </div>
-    <div class="delete">
+    <div class="editbutton">
+    <a href="{{ route('seattlePost.edit',$seapost->id) }}">
+    <input type="submit" value="編集" class="btn btn-primary">
+    </a>
+    <div class="deletebutton">
     <form action="{{ route('seattlePost.destroy', ['seattlePost' => $seapost->id]) }}" method="POST">
         @csrf
         @method('delete')
-            <input type="submit" value="削除" class="btn btn-danger" onclick='return confirm("削除しますか？");'>
-    </form>    
-    <form action="{{ route('seattlePost.destroy', ['seattlePost' => $seapost->id]) }}" method="POST">
-        @csrf
-        @method('delete')
-            <input type="submit" value="編集" class="btn btn-danger">
+            <input type="submit" value="削除" class="btn btn-danger">
     </form>
-
-    
+    </div>
 </body>
 </html>

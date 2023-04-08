@@ -59,11 +59,13 @@ class SeattlePostController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\SeattlePost  $seattlePost
-     * @return \Illuminate\Http\Response
      */
     public function edit(SeattlePost $seattlePost)
     {
-        //
+        return view('seattle_edit',[
+            'seaposts' => $seattlePost,
+        ]);
+
     }
 
     /**
@@ -73,9 +75,16 @@ class SeattlePostController extends Controller
      * @param  \App\SeattlePost  $seattlePost
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SeattlePost $seattlePost)
+    public function update(Request $request, $id)
     {
-        //
+        $seattlePost = SeattlePost::find($id);
+
+        $seattlePost->title = $request->input('title');
+        $seattlePost->date = $request->input('date');
+        $seattlePost->save();
+        
+        return redirect()->route('seattle.post');
+
     }
 
     /**

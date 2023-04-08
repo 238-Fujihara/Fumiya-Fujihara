@@ -13,13 +13,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
                     You are logged in!
-                    @can('admin-only')
-                            <div class="alert alert-dark" role="alert">
-                                管理者のみに表示
-                            </div>
-                        @endcan
                 </div>
             </div>
         </div>

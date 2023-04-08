@@ -4,6 +4,10 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+@can('admin-only')
+    <div class="alert alert-dark" role="alert">
+        管理者のみに表示
+    </div>
     <div id="app" class="p-5">
         <!-- 一覧表示するブロック ① -->
         <div v-if="state=='index'">
@@ -148,4 +152,5 @@
 
     </script>
 </body>
+@endcan
 </html>

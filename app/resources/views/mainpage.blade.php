@@ -28,9 +28,8 @@
 <body>
 <header class="global-header">
     <a href ="{{ ('/') }}"><h1>Seattlish</h1></a>
-    </div>
     <div class="login-register">
-    <a href="{{ route('userlist') }}">管理者ページ</a><br>
+        <a href="{{ route('userlist') }}">管理者ページ</a><br>
             @if(Auth::check())
             <span class="may-navbar-item">{{ Auth::user()->name }}</span>
             /
@@ -47,11 +46,11 @@
             </script>
             @else
             <a class="login" href="{{ route('login') }}">
-            <button type='button' class='login-button'>ログイン</buton>
+            <button type='submit' class='login-button'>ログイン</button>
             </a>
             
             <a class="register" href="{{ route('register') }}">
-            <button type='button' class='register-button'>会員登録</buton>
+            <button type='submit' class='register-button'>会員登録</button>
             </a>
             @endif
     </div>

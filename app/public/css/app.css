@@ -168,7 +168,18 @@ sub {
 sup {
   top: -0.5em;
 }
-
+.seatitle{
+  margin-bottom: 50px;
+}
+.seadate{
+  margin-bottom: 50px;
+}
+.seapics{
+  margin-bottom: 50px;
+}
+.seapicsdetail{
+  margin-top: 100px;
+}
 a {
   color: #3490dc;
   text-decoration: none;
@@ -305,8 +316,7 @@ button,
   justify-content: space-evenly;
 }
 .login-register{
-  margin-left: 1150px;
-  margin-top: 40px;
+  margin-left:850px;
 }
 .seattlepost{
   text-align: center;
@@ -334,7 +344,7 @@ p{
 }
 .selectpictures{
   text-align: center;
-  margin-top: 100px;
+  margin-top: 50px;
 }
 .edmondspic{
   text-align: center;
@@ -351,11 +361,11 @@ p{
 .delete{
   margin-top: 50px;
 }
-.edit{
-  margin-left: 300px;
-}
 .edpicsdetail{
   margin-top: 100px;
+}
+.edit{
+  margin-left: 300px;
 }
 .regionname{
   justify-content: space-evenly;
