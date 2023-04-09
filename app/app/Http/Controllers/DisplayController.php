@@ -45,29 +45,31 @@ class DisplayController extends Controller
         $fromdate = $request->input('from');
         $untildate = $request->input('until');
 
-        $edall = $this->edmondspost->getimages();
 
         if($from && $until){
             $edall = $edall->whereBetween('date', [$from, $until]);
         }
 
 
-        // dd($edall);
+        $keyword = $request->input('keyword');
 
-        // $keyword = $request->input('keyword');
+        $query = EdmondsPost::query();
 
-        // $query = EdmondsPost::query();
-        // if(!empty('$keyword')){
-        //     $query->where('title' , "%($keyword)%");
-        // }
+        if(!empty($keyword)){
+            $query->where('title' ,'LIKE', "%{$keyword}%");
+        }
 
-        // $theedmondspost = $query->get();
-        
+
+        $edall = $query->get();
+        foreach($edall as $val){
+            $val->image= '/storage/images/' . $val->image;
+        }
+   
         return view('edmonds',[
             'edposts' => $edall,
             'fromdate' => $fromdate,
             'untildate' => $untildate,
-            // compact('theedmondspost', 'keyword')
+            'keyword' => $keyword,    
         ]);
     }
 
@@ -89,11 +91,24 @@ class DisplayController extends Controller
             $seaall = $seaall->whereBetween('date', [$from, $until]);
         }
 
+        $keyword = $request->input('keyword');
+
+        $query = SeattlePost::query();
+
+        if(!empty($keyword)){
+            $query->where('title' ,'LIKE', "%{$keyword}%");
+        }
+
+        $seaall = $query->get();
+        foreach($seaall as $val){
+            $val->image= '/storage/images/' . $val->image;
+        }
 
         return view('seattle',[
             'seaposts' => $seaall,
             'fromdate' => $fromdate,
             'untildate' => $untildate,
+            'keyword' => $keyword,    
         ]);
     }
     public function EdPicsDetail(Request $request){
@@ -163,6 +178,29 @@ class DisplayController extends Controller
     public function PasswordReset(){
 
         return view('passwordreset');
+    }
+
+    public function PublicEdmonds(Request $request){
+
+        $edmondspost = New EdmondsPost;
+
+        $edpost = $edmondspost->where('del_flg', 0);
+
+        return view('publicedmonds',[
+            'edpost' => $edpost,
+        ]);
+
+    }
+    public function PublicSeattle(Request $request){
+
+        $seattlepost = New SeattlePost;
+
+        $seaall = $seattlepost->where('del_flg', 1)->where('user_id', Auth::id());
+
+        return view('edpicsdetail',[
+            'edposts' => $seaall,
+        ]);
+
     }
 
 

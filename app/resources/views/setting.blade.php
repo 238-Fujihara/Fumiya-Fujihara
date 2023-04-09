@@ -1,23 +1,107 @@
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+
+<script type="text/javascript">
+        $(document).ready(function(){
+            $('.slider').bxSlider({
+                auto: true,
+                pause: 5000,
+            });
+        });
+</script>
+</head>
+<body>
+<header class="global-header">
+    <a href ="{{ ('/') }}"><h1>Seattlish</h1></a>
+    <div class="login-register">
+        <a href="{{ route('userlist') }}">管理者ページ</a><br>
+            @if(Auth::check())
+            <span class="may-navbar-item">{{ Auth::user()->name }}</span>
+            /
+            <a href="#" id="logout" class="logout">ログアウト</a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" syle="display:none;">
+                @csrf
+            </form>
+            <a href="{{ route('my.page') }}">マイページ</a>
+            <script>
+                document.getElementById('logout').addEventListener('click', function(event){
+                event.preventDefault();
+                document.getElementById('logout-form').submit();
+                });
+            </script>
+            @else
+            <a class="login" href="{{ route('login') }}">
+            <button type='submit' class="btn btn-secondary">ログイン</button>
+            </a>
+            
+            <a class="register" href="{{ route('register') }}">
+            <button type='submit' class="btn btn-secondary">会員登録</button>
+            </a>
+            @endif
+    </div>
+</header>
+
 <x-app-layout>
-    <x-slot name="header">
-        UserSettings
-    </x-slot>
-    <x-app-contents>
-        <p>user {{ $user->email }}</p>
         <!-- ユーザ情報送信フォーム -->
-        <form action="{{ route('settings.update') }}" method="post" class="px-8 pt-6 pb-8 mb-4">
-            <!-- 今回は情報の更新でPUTを使いたいため、ここでmethodを指定 -->
-            @method('PUT')
-            @csrf
-            <div class="mb-4">
-                <label for="name" class="text-sm block">UserName</label>
-                <input type="text" name="name" id="name" value="{{ old('name') ?? $user->name }}">
+        <form action="{{ route('my.page') }}" method="get" class="px-8 pt-6 pb-8 mb-4">
+        <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('UserInfo') }}</div>
+                <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+                    <div class="list-group mb-3" style="max-width:400px; margin:auto;">
+                      <a href="{{ route('setting') }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                        <dl class="mb-0">
+                          <dt>{{ __('Name') }}</dt>
+                          <dd class="mb-0">{{ Auth::user()->name }}</dd>
+                        </dl>
+                        <div><i class="fas fa-chevron-right"></i></div>
+                      </a>
+
+                      <a href="{{ route('setting') }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                      <dl class="mb-0">
+                            <dt>{{ __('E-Mail Address') }}</dt>
+                            <dd class="mb-0">{{ Auth::user()->email }}</dd>
+                          </dl>
+                          <div><i class="fas fa-chevron-right"></i></div>
+                        </a>
+
+                      <a href="{{ url('password/reset') }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                        <dl class="mb-0">
+                          <dt>{{ __('Password') }}</dt>
+                          <dd class="mb-0">********</dd>
+                        </dl>
+                        <div><i class="fas fa-chevron-right"></i></div>
+                      </a>
+                </div>
+                <div class="list-group" style="max-width:400px; margin:auto;">
+                    <a href="{{ route('setting') }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                      <div>{{ __('Deactive') }}</div>
+                      <div><i class="fas fa-chevron-right"></i></div>
+                    </a>
+                </div>
             </div>
-            <div class="mb-4">
-                <label for="email" class="text-sm block">Email</label>
-                <input type="email" name="email" id="email" value="{{ old('email') ?? $user->email }}">
-            </div>
-            <input type="submit" value="Submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-        </form>
-    </x-app-contents>
-</x-app-layout>
+        </div>
+    </div>
+</div>
+
+</html>

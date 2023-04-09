@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UpdateUserRequest;
+use App\Http\Requests\ChangeNameRequest;
+use App\Http\Requests\ChangeEmailRequest;
+
+
 
 class SettingController extends Controller
 {
@@ -17,7 +22,7 @@ class SettingController extends Controller
      public function index()
      {
         $user = Auth::user();
-        return view('settings', compact('user')); 
+        return view('setting', compact('user')); 
      }
      public function update(UpdateUserRequest $request)
      {

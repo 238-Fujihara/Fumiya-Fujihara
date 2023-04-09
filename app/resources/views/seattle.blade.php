@@ -69,7 +69,7 @@
                     <input type="date" name="until" placeholder="until_date" value="{{ $untildate }}"><br>
                 </div>
                     <div>
-                    <input type="text" name="keyword" placeholder="キーワード検索" value = "">
+                    <input type="text" name="keyword" placeholder="キーワード検索" value = "{{ $keyword }}">
                     </div>
             </div>
                     <div class="searchinginformation">
@@ -85,6 +85,9 @@
                 <h3>"{{ $seapost['title'] }}"</h3>
                 <h4>{{ $seapost['date'] }}</h4>
                 <a href="{{ route('seattlePost.show', $seapost->id) }}"><img src="{{ asset($seapost->image) }}"></a>
+            <div>
+                <button onclick="like({{$seapost->id}})" class="btn btn-success btn-sm" type="button">いいね</button>
+            </div>
             </div>
             @endforeach
             </tr>

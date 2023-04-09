@@ -48,11 +48,11 @@
             </script>
             @else
             <a class="login" href="{{ route('login') }}">
-            <button type='submit' class='login-button'>ログイン</button>
+            <button type='submit' class="btn btn-secondary">ログイン</button>
             </a>
             
             <a class="register" href="{{ route('register') }}">
-            <button type='submit' class='register-button'>会員登録</button>
+            <button type='submit' class="btn btn-secondary">会員登録</button>
             </a>
             @endif
     </div>
@@ -73,7 +73,7 @@
                     <input type="date" name="until" placeholder="until_date" value="{{ $untildate }}"><br>
                 </div>
                     <div>
-                    <input type="text" name="keyword" placeholder="キーワード検索" value = "">
+                    <input type="text" name="keyword" placeholder="キーワード検索" value = "{{ $keyword }}">
                     </div>
             </div>
                     <div class="searchinginformation">
@@ -89,11 +89,13 @@
                         <h3>"{{ $edpost['title'] }}"</h3>
                         <h4>[{{ $edpost['date'] }}]</h4>
                         <a href="{{ route('edmondsPost.show', $edpost->id) }}"><img src="{{ asset($edpost->image) }}"></a>
+                        <div>
+                            <button onclick="like({{$edpost->id}})" class="btn btn-success btn-sm">いいね</button>
+                        </div>
                     </div>
                 @endforeach
             </tr>
             </div>              
-            <button onclick="like({{$edpost->id}})" class="btn btn-success btn-sm">いいね</button>
             <h4></h4>
         </div> 
     </div>

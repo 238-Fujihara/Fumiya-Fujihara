@@ -27,7 +27,7 @@
 </head>
 <body>
 <header class="global-header">
-    <a href ="{{ ('/') }}" class="title"><h1>Seattlish</h1></a>
+    <a href ="{{ ('/') }}"><h1>Seattlish</h1></a>
     </div>
     <div class="login-register">
             @if(Auth::check())
@@ -49,44 +49,16 @@
             </a>
             
             <a class="register" href="{{ route('register') }}">
-            <button type='button' class="btn btn-secondary'>会員登録</buton>
+            <button type='button' class="btn btn-secondary">会員登録</buton>
             </a>
             @endif
     </div>
 </header>
-        <h1>My Page</h1>
-        <div class="userinformation">
-          <div class='icon'> 
-            <img src="{{ asset('img\screen shot\IMG_0142.jpg') }}">
-            <div class= 'username'>{{ Auth::user()->name }}</div>
-          </div>
-          <div class="menu">
-            <div class="newpost">
-                <a href="{{ route('create.edmonds') }}">
-                    <button type='button' class='newpostbutton'>新規投稿⊕</button>
-                </a>
-            </div>
-            <div class="edit">
-                <a href="{{ route('setting') }}">
-                    <button type='button' class='useredit'>編集</button>
-                </a>
-            </div>
-            </div>
-        </div>
-        <div class="regionname">
-        <a class="btn btn-primary" data-toggle="collapse" href="{{ route('edmonds.post') }}" role="button" aria-expanded="false" aria-controls="collapseExample">
-            Link with href
-        </a>
-            <a href="{{ route('seattle.post') }}">
-                <button type="submit" name="myseaposts">Seattle</button>
-            </a>
-        </div>
-        <div class="myposts">
-        @foreach($edposts as $edpost)
-            <a href="{{ route('edmondsPost.show', $edpost->id) }}"><img src="{{ asset($edpost->image) }}">
-            </a>
-        @endforeach                 
+<body>
+    <div class="edpicsdetail">
+        <img src="{{ asset($edpost->image) }}">
     </div>
+    <button onclick="like({{$edpost->id}})" class="btn btn-success btn-sm">いいね</button>
 
 </body>
 </html>
