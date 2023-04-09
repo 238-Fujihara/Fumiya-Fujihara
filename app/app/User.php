@@ -2,9 +2,11 @@
 
 namespace App;
 
+use App\Notifications\PasswordResetUserNotification;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -43,9 +45,9 @@ class User extends Authenticatable
      * @param [type] $token
      * @return void
      */
-    public function sendPasswordResetNotification($token)
+    public function sendPasswordResetUserNotification($token)
     {
-        $this->notify(new PasswordResetNotification($token));
+        $this->notify(new PasswordResetUserNotification($token));
     }
 
     public function likes()

@@ -84,4 +84,14 @@ Route::group(['middleware'=> 'auth'], function() {
     // Route::get('create_income', [RegistrationController::class, 'createIncomeForm'])->name('create.income');
     // Route::post('/create_income', [RegistrationController::class, 'createIncome']);
 });
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+    // 設定関連のページのルーティング
+    Route::name('settings.')->prefix('/settings')->group(function () {
+        Route::get('/', [SettingsController::class, 'index'])->name('index');
+        Route::put('/', [SettingsController::class, 'update'])->name('update');
+    });
+});
 

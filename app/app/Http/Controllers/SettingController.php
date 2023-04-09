@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\ChangeNameRequest;
-use App\Http\Requests\ChangeEmailRequest;
-
+use App\Http\Requests\UpdateUserRequest;
 
 class SettingController extends Controller
 {
@@ -18,13 +16,13 @@ class SettingController extends Controller
  
      public function index()
      {
-         $auth = Auth::user();
-         return view('setting\index', ['auth' => $auth]);
+        $user = Auth::user();
+        return view('settings', compact('user')); 
      }
-     public function showChangeNameForm()
+     public function update(UpdateUserRequest $request)
      {
-         $auth = Auth::user();
-         return view('setting\name', ['auth' => $auth]);
+         $user = User::find(Auth::id());
+         // ...
      }
 
      public function changeName(ChangeNameRequest $request)

@@ -45,11 +45,11 @@
             </script>
             @else
             <a class="login" href="{{ route('login') }}">
-            <button type='button' class='login-button'>ログイン</buton>
+            <button type='button' class="btn btn-secondary">ログイン</buton>
             </a>
             
             <a class="register" href="{{ route('register') }}">
-            <button type='button' class='register-button'>会員登録</buton>
+            <button type='button' class="btn btn-secondary">会員登録</buton>
             </a>
             @endif
     </div>
@@ -67,16 +67,16 @@
                 </a>
             </div>
             <div class="edit">
-                <a href="{{ route('profile.edit') }}">
+                <a href="{{ route('setting') }}">
                     <button type='button' class='useredit'>編集</button>
                 </a>
             </div>
             </div>
         </div>
         <div class="regionname">
-            <a href="{{ route('edmonds.post') }}">
-                <button type="submit" name="myedposts">Edmonds</button>
-            </a>
+        <a class="btn btn-primary" data-toggle="collapse" href="{{ route('edmonds.post') }}" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Link with href
+        </a>
             <a href="{{ route('seattle.post') }}">
                 <button type="submit" name="myseaposts">Seattle</button>
             </a>

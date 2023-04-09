@@ -46,11 +46,11 @@
             </script>
             @else
             <a class="login" href="{{ route('login') }}">
-            <button type='submit' class='login-button'>ログイン</button>
+            <button type='submit' class="btn btn-secondary">ログイン</button>
             </a>
             
             <a class="register" href="{{ route('register') }}">
-            <button type='submit' class='register-button'>会員登録</button>
+            <button type='submit' class="btn btn-secondary">会員登録</button>
             </a>
             @endif
     </div>
@@ -60,6 +60,34 @@
     <div class="each-detail">
         <a class ="edmondspostdetail", href="{{ route('edmonds.post') }}">Edmonds</a><br>
         <a class ="seattlepostdetail", href="{{ route('seattle.post') }}">Seattle</a>
+    </div>
+    <div class="introduction">
+        <p>A dynamic, urban city surrounded by unmatched natural beauty—and now it's all open for you to explore.</p>
+    </div>
+<div class="seattleintroduction">
+    <div>
+    <a href="{{ route('seattle.post') }}">
+        <img src="{{ asset('/storage/images/cropped-seattle-skyline.jpg') }}">
+    </a></div>
+    <p>Seattle, the closest city on the mainland to Japan, can be reached in about nine hours from Tokyo. 
+        It is the largest city in Washington State, about half the size of Japan, 
+        and has earned the nickname "Emerald City" for its beauty. 
+        Although located at the same latitude as Southern Sakhalin, far to the north 
+        of Hokkaido, it is blessed with a mild climate 
+        where the temperature falls below zero only a few days a year thanks to the warm currents flowing 
+        through the coastal waters, and there is no snow cover or typhoons. In winter, there are many cloudy 
+        and rainy days, but in summer, thanks to the rain, the landscape is lush and beautiful.</p>
+</div>
+<div class="edmondsintroduction">
+    <p>
+    Edmonds is known for its small-town charm and maritime scenery, 
+    but did you know it's also home to world-class food and drink, 
+    lush parks, and easy hiking trails? In a city where the trees meet the sea, 
+    we have many ways for you to experience both types of views in the same day—and even on the same hike! 
+    </p>
+    <div>
+    <a href="{{ route('edmonds.post') }}">
+        <img src="{{ asset('/storage/images/R (3).jfif') }}">
     </div>
 </body>
 </html>

@@ -45,11 +45,11 @@
             </script>
             @else
             <a class="login" href="{{ route('login') }}">
-            <button type='submit' class='login-button'>ログイン</button>
+            <button type='submit' class="btn btn-secondary">ログイン</button>
             </a>
             
             <a class="register" href="{{ route('register') }}">
-            <button type='submit' class='register-button'>会員登録</button>
+            <button type='submit' class="btn btn-secondary">会員登録</button>
             </a>
             @endif
     </div>
@@ -58,7 +58,7 @@
 <h1>Seattle</h1>
   <div class="seattlepost">
     <a class="seattlepost" href="{{ route('create.seattle') }}">
-    <button type='button'>新規投稿⊕</button>
+    <button type='button' class="btn btn-secondary">新規投稿⊕</button>
     </a></div>
     <div class="searching">
             <div class="date">
@@ -73,7 +73,7 @@
                     </div>
             </div>
                     <div class="searchinginformation">
-                        <button type="submit">検索</button>
+                        <button type="submit" class="btn btn-info">検索</button>
                     </div>
                 </form>
     <div class="seattlepictures">

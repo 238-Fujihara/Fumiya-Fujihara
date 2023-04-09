@@ -61,7 +61,7 @@
     <h1>Edmonds</h1>
         <div class="seattlepost">
             <a class="edmondspost" href="{{ route('create.edmonds') }}">
-            <button type='button' class='edmondspostbutton'>新規投稿⊕</button>
+            <button type='button' class="btn btn-secondary">新規投稿⊕</button>
             </a>
         </div>
             <div class="searching">
@@ -77,7 +77,7 @@
                     </div>
             </div>
                     <div class="searchinginformation">
-                        <button type="submit">検索</button>
+                        <button type="submit" class="btn btn-info">検索</button>
                     </div>
                 </form>
     <div class="edmondspictures">

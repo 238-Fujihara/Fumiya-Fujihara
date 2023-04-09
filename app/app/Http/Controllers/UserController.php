@@ -4,19 +4,18 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $per_page = 3; // １ページごとの表示件数
-        $users = \App\User::paginate($per_page);
-        return view('admin.index')->with('users', $users);
+        $user = Auth::user();
+        return view('user.index', compact('user'));
     }
 
     /**

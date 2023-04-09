@@ -364,6 +364,59 @@ p{
 .edpicsdetail{
   margin-top: 100px;
 }
+.introduction{
+  margin-top: 60px;
+  width: 100%;
+}
+.introduction p{
+  width: 50%;
+  margin: auto;
+  margin-bottom: 50px;
+  font-size: 28px;
+  font-family: oswald;
+}
+.seattleintroduction{
+  width: 90%;
+  display: flex;
+  margin-left: 70px;
+}
+.seattleintroduction a{
+  width: 500px;
+  height:400px;
+  margin-left: 10px;
+}
+.seattleintroduction img{
+  width: 800px;
+  height:400px;
+
+}
+.seattleintroduction p{
+  width: 700px;
+  font-size: 20px;
+}
+.edmondsintroduction{
+  display: flex;
+}
+.edmondsintroduction{
+  margin-top: 50px;
+  width: 80%;
+  margin-left: 130px;
+}
+.edmonsdintroduction a{
+  width: 500px;
+  height:400px;
+  margin-left: 10px;
+}
+.edmondsintroduction img{
+  width: 800px;
+  height:400px;
+  margin-left: 10px;
+}
+.edmondsintroduction p{
+  width: 700px;
+  font-size: 22px;
+}
+
 .edit{
   margin-left: 300px;
 }
