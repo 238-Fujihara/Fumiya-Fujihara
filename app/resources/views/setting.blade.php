@@ -62,42 +62,38 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('UserInfo') }}</div>
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-                    <div class="list-group mb-3" style="max-width:400px; margin:auto;">
-                      <a href="{{ route('setting') }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                        <dl class="mb-0">
-                          <dt>{{ __('Name') }}</dt>
-                          <dd class="mb-0">{{ Auth::user()->name }}</dd>
-                        </dl>
-                        <div><i class="fas fa-chevron-right"></i></div>
-                      </a>
+                    <div class="card-body">
+                        @if (session('status'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('status') }}
+                            </div>
+                        @endif
+                        <form action="{{ route('user.update',auth()->user()) }}" method="POST" enctype="multipart/form-data">
+                            <div class="list-group mb-3" style="max-width:400px; margin:auto;">
+                                <dl class="mb-0">
+                                <dt>{{ __('Name') }}</dt>
+                                <input type='text' name='name' class="mb-0" value="{{ Auth::user()->name }}">
+                                </dl>
+                                <div><i class="fas fa-chevron-right"></i></div>
+                            <br>
+                            <dl class="mb-0">
+                                    <dt>{{ __('E-Mail Address') }}</dt>
+                                    <input type='text' name='email' class="mb-0" value="{{ Auth::user()->email }}">
+                                </dl>
+                                <div><i class="fas fa-chevron-right"></i></div>
 
-                      <a href="{{ route('setting') }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                      <dl class="mb-0">
-                            <dt>{{ __('E-Mail Address') }}</dt>
-                            <dd class="mb-0">{{ Auth::user()->email }}</dd>
-                          </dl>
-                          <div><i class="fas fa-chevron-right"></i></div>
-                        </a>
-
-                      <a href="{{ url('password/reset') }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                        <dl class="mb-0">
-                          <dt>{{ __('Password') }}</dt>
-                          <dd class="mb-0">********</dd>
-                        </dl>
-                        <div><i class="fas fa-chevron-right"></i></div>
-                      </a>
-                </div>
-                <div class="list-group" style="max-width:400px; margin:auto;">
-                    <a href="{{ route('setting') }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                      <div>{{ __('Deactive') }}</div>
-                      <div><i class="fas fa-chevron-right"></i></div>
-                    </a>
+                            <a href="{{ url('password/reset') }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                <dl class="mb-0">
+                                <dt>{{ __('Password') }}</dt>
+                                <dd class="mb-0">********</dd>
+                                </dl>
+                                <div><i class="fas fa-chevron-right"></i></div>
+                            </a>
+                            </div>
+                            <div class="list-group" style="max-width:400px; margin:auto;">
+                                <div>{{ __('Deactive') }}</div>
+                                <div><i class="fas fa-chevron-right"></i></div>
+                        </form>
                 </div>
             </div>
         </div>

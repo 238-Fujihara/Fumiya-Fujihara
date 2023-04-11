@@ -67,7 +67,7 @@
                 </a>
             </div>
             <div class="edit">
-                <a href="{{ route('setting') }}">
+                <a href="{{ route('user.show', $user->id) }}">
                     <button type='button' class='useredit'>編集</button>
                 </a>
             </div>

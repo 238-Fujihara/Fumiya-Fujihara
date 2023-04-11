@@ -7,7 +7,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
-{
+{   public $user;
+    public function __construct(User $user){
+        $this->user = $user;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -37,25 +40,20 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        // [ご注意]：バリデーションは省略してます
-
-        $user = new \App\User();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = bcrypt($request->password);
-        $result = $user->save();
-        return ['result' => $result];
     }
 
     /**
      * Display the specified resource.
      *
      * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
      */
     public function show(User $user)
     {
-        //
+        $user = User::find('id');
+
+        return view('setting',[
+            'user' => $user,
+        ]);
     }
 
     /**
@@ -76,21 +74,18 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
-    {
-        // [ご注意]：バリデーションは省略してます
+    public function update(Request $request, $id)
+    {  
+        $user = Auth::user();
 
-        $user->name = $request->name;
-        $user->email = $request->email;
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->save();
 
-        if($request->filled('password')) { // パスワード入力があるときだけ変更
+        return redirect()->route('my.page');
 
-            $user->password = bcrypt($request->password);
 
     }
-    $result = $user->save();
-        return ['result' => $result];
-}
 
     /**
      * Remove the specified resource from storage.
@@ -100,7 +95,8 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        $result = $user->delete();
-        return ['result' => $result];
+        $user->delete();
+
+        return redirect()->route('my.page');
     }
 }

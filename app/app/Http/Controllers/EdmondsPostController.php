@@ -100,6 +100,6 @@ class EdmondsPostController extends Controller
     {
         $edmondsPost->delete();
 
-        return redirect()->route('edmonds.post');
+        return redirect()->route('main.page');
 }
 }

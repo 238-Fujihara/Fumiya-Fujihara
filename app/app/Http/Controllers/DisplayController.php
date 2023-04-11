@@ -38,7 +38,6 @@ class DisplayController extends Controller
 
         $edall = $edmondspost->where('del_flg', 0)->where('user_id', Auth::id());
 
-
         $from = $request['from'];
         $until = $request['until'];
 
@@ -46,16 +45,21 @@ class DisplayController extends Controller
         $untildate = $request->input('until');
 
 
-        if($from && $until){
-            $edall = $edall->whereBetween('date', [$from, $until]);
-        }
 
 
         $keyword = $request->input('keyword');
 
         $query = EdmondsPost::query();
 
-        if(!empty($keyword)){
+        if($from && $until && !empty($keyword)){
+            $query = $query->whereBetween('date', [$from, $until]);
+            $query->where('title' ,'LIKE', "%{$keyword}%");
+            // dd($edall);
+        }
+        elseif($from && $until){
+            $edall = $edall->whereBetween('date', [$from, $until]);
+        }
+        elseif(!empty($keyword)){
             $query->where('title' ,'LIKE', "%{$keyword}%");
         }
 
@@ -85,17 +89,18 @@ class DisplayController extends Controller
         $fromdate = $request->input('from');
         $untildate = $request->input('until');
 
-        $seaall = $this->seattlepost->getimages();
-
-        if($from && $until){
-            $seaall = $seaall->whereBetween('date', [$from, $until]);
-        }
-
         $keyword = $request->input('keyword');
 
         $query = SeattlePost::query();
 
-        if(!empty($keyword)){
+        if($from && $until && !empty($keyword)){
+            $query = $query->whereBetween('date', [$from, $until]);
+            $query->where('title' ,'LIKE', "%{$keyword}%");
+        }
+        elseif($from && $until){
+            $seaall = $seaall->whereBetween('date', [$from, $until]);
+        }
+        elseif(!empty($keyword)){
             $query->where('title' ,'LIKE', "%{$keyword}%");
         }
 
@@ -125,13 +130,14 @@ class DisplayController extends Controller
 
     public function MyPage(Request $request){
 
-        // $edmondspost = DB::table('Edmonds_Posts')->where('user_id',  Auth::id())->get();
 
         $edmondspost = $this->edmondspost->getimages();
 
+        $user = Auth::user();
         
         return view('mypage',[
             'edposts' => $edmondspost,
+            'user' => $user,
         ]);
     }
 
@@ -165,11 +171,6 @@ class DisplayController extends Controller
      * @param
      * @return Redirect 一覧ページ-メッセージ（パスワード更新完了）
      */
-    public function passwordUpdate(){
-
-        return redirect('mypage');
-
-    }
     public function userlist(){
 
         return view('user_list');

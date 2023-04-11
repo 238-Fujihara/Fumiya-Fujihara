@@ -56,7 +56,12 @@
     </div>
 </header>
 <div class="detail">  
-<img class="washingtonmap" src="{{ asset('img/screen shot/2023-03-19 (3).png') }}" alt=""></div>
+    <div id="map" style="height:600px"> //追加
+            </div>
+            <script src="{{ asset('/js/result.js') }}"></script>
+            <script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=AIzaSyCtg9SJM3YpINhidD-NoE2tp_Ftwpom_Oc&callback=initMap" async defer>
+	        </script>
+    </div>
     <div class="each-detail">
         <a class ="edmondspostdetail", href="{{ route('edmonds.post') }}">Edmonds</a><br>
         <a class ="seattlepostdetail", href="{{ route('seattle.post') }}">Seattle</a>

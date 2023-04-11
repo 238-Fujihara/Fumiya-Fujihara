@@ -37,27 +37,27 @@ Route::get('/public/seattle', [DisplayController::class, 'PublicSeattle'])->name
 
 // Auth::routes();
 Route::group(['middleware' => ['auth', 'can:admin_only']], function () {
-    Route::get('admin', 'adminController@admin')->name('admin.index');
+    Route::get('/admin', 'adminController@admin')->name('admin.index');
 });
 Route::group(['middleware'=> 'auth'], function() {
-    Route::post('/like/{postId}',[LikesController::class,'store']);
-    Route::post('/unlike/{postId}',[LikesController::class,'destroy']);
+    // Route::post('/like/{postId}',[LikesController::class,'store']);
+    // Route::post('/unlike/{postId}',[LikesController::class,'destroy']);
     
-    Route::get('/setting', 'SettingController@index')->name('setting');
-    Route::get('/setting/name', 'SettingController@showChangeNameForm')->name('name.form');
-    Route::post('/setting/name', 'SettingController@changeName')->name('name.change');
-    Route::get('/setting/email', 'SettingController@showChangeEmailForm')->name('email.form');
-    Route::post('/setting/email', 'SettingController@changeEmail')->name('email.change');
-    Route::get('/deactive', 'Auth\DeactiveController@showDeactiveForm')->name('deactive.form');
-    Route::post('/deactive', 'Auth\DeactiveController@deactive')->name('deactive');
-    Route::get('/setting/deactive', 'Auth\DeactiveController@showDeactiveForm')->name('deactive.form');
-    Route::post('/setting/deactive', 'Auth\DeactiveController@deactive')->name('deactive');
+    // Route::get('/setting', 'SettingController@index')->name('setting');
+    // Route::get('/setting/name', 'SettingController@showChangeNameForm')->name('name.form');
+    // Route::post('/setting/name', 'SettingController@changeName')->name('name.change');
+    // Route::get('/setting/email', 'SettingController@showChangeEmailForm')->name('email.form');
+    // Route::post('/setting/email', 'SettingController@changeEmail')->name('email.change');
+    // Route::get('/deactive', 'Auth\DeactiveController@showDeactiveForm')->name('deactive.form');
+    // Route::post('/deactive', 'Auth\DeactiveController@deactive')->name('deactive');
+    // Route::get('/setting/deactive', 'Auth\DeactiveController@showDeactiveForm')->name('deactive.form');
+    // Route::post('/setting/deactive', 'Auth\DeactiveController@deactive')->name('deactive');
 
     Route::get('mainpage',[DisplayController::class, 'userlist'])->name('userlist');
     Route::get('/mypage', [DisplayController::class, 'MyPage'])->name('my.page');
     Route::resource('/edmondsPost', 'EdmondsPostController');
     Route::resource('/seattlePost','SeattlePostController');
-    Route::resource('user', 'UserController')->only(['index', 'store', 'update', 'destroy']);
+    Route::resource('/user', 'UserController');
 
     Route::get('/profile.edit', [DisplayController::class, 'profileedit'])->name('profile.edit');
     Route::post('/profileedit', [DisplayController::class, 'ProfileEditForm'])->name('Profile.Edit.Form');
@@ -82,9 +82,9 @@ Route::middleware(['auth'])->group(function () {
         return view('dashboard');
     })->name('dashboard');
     // 設定関連のページのルーティング
-    Route::name('settings.')->prefix('/settings')->group(function () {
-        Route::get('/', [SettingsController::class, 'index'])->name('index');
-        Route::put('/', [SettingsController::class, 'update'])->name('update');
-    });
+    // Route::name('settings.')->prefix('/settings')->group(function () {
+    //     Route::get('/', [SettingsController::class, 'index'])->name('index');
+    //     Route::put('/', [SettingsController::class, 'update'])->name('update');
+    // });
 });
 

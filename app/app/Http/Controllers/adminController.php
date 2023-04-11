@@ -23,7 +23,7 @@ class adminController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function adminindex()
+    public function index()
     {
 //roleが100だったら管理画面にretun view
 //elseでreturn view('mainpage')

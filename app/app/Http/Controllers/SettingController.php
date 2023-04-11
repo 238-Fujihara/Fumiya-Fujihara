@@ -41,12 +41,6 @@ class SettingController extends Controller
             //homeにリダイレクト
             return redirect('mypage')->route('setting')->with('status', __('Your name has been changed.'));
         }
-
-    public function showChangeEmailForm()
-        {
-         $auth = Auth::user();
-         return view('setting\email', ['auth' => $auth]);
-        }
      
      public function changeEmail(ChangeEmailRequest $request)
      {
