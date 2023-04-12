@@ -28,8 +28,10 @@
 <header class="global-header">
     <a href ="{{ ('/') }}"><h1>Seattlish</h1></a>
     <div class="login-register">
-        <a href="{{ route('userlist') }}">管理者ページ</a><br>
             @if(Auth::check())
+            @if(Auth::user()->role == 100)
+                <a href="{{ url('/admin') }}">管理者ページ</a><br>
+            @endif
             <span class="may-navbar-item">{{ Auth::user()->name }}</span>
             /
             <a href="#" id="logout" class="logout">ログアウト</a>
@@ -57,43 +59,52 @@
 
 <x-app-layout>
         <!-- ユーザ情報送信フォーム -->
-        <form action="{{ route('my.page') }}" method="get" class="px-8 pt-6 pb-8 mb-4">
-        <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('UserInfo') }}</div>
-                    <div class="card-body">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif
-                        <form action="{{ route('user.update',auth()->user()) }}" method="POST" enctype="multipart/form-data">
-                            <div class="list-group mb-3" style="max-width:400px; margin:auto;">
-                                <dl class="mb-0">
-                                <dt>{{ __('Name') }}</dt>
-                                <input type='text' name='name' class="mb-0" value="{{ Auth::user()->name }}">
-                                </dl>
-                                <div><i class="fas fa-chevron-right"></i></div>
-                            <br>
-                            <dl class="mb-0">
-                                    <dt>{{ __('E-Mail Address') }}</dt>
-                                    <input type='text' name='email' class="mb-0" value="{{ Auth::user()->email }}">
-                                </dl>
-                                <div><i class="fas fa-chevron-right"></i></div>
-
-                            <a href="{{ url('password/reset') }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                                <dl class="mb-0">
-                                <dt>{{ __('Password') }}</dt>
-                                <dd class="mb-0">********</dd>
-                                </dl>
-                                <div><i class="fas fa-chevron-right"></i></div>
-                            </a>
-                            </div>
-                            <div class="list-group" style="max-width:400px; margin:auto;">
-                                <div>{{ __('Deactive') }}</div>
-                                <div><i class="fas fa-chevron-right"></i></div>
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">{{ __('UserInfo') }}</div>
+                <div class="card-body">
+                        <form action="{{ route('user.update', Auth::id()) }}" enctype="multipart/form-data" method="POST">
+                                @csrf
+                                @method('PUT')
+                                    @if($errors->any())
+                                        <div class="alert alert-danger">
+                                    @foreach($errors->all() as $message)
+                                        <p style="color:white">{{ $message }}</p>
+                                    @endforeach
+                                        </div>
+                                    @endif
+                                    <div class="list-group mb-3" style="max-width:400px; margin:auto;">
+                                        <dl class="mb-0">
+                                            <dt>{{ __('Name') }}</dt>
+                                            <input type='text' name='name' class="mb-0" value="{{ Auth::user()->name }}">
+                                        </dl>
+                                        <div><i class="fas fa-chevron-right"></i></div>
+                                        <br>
+                                        <dl class="mb-0">
+                                            <dt>{{ __('E-Mail Address') }}</dt>
+                                            <input type='text' name='email' class="mb-0" value="{{ Auth::user()->email }}">
+                                        </dl>
+                                        <div><i class="fas fa-chevron-right"></i></div>
+                                        <br>
+                                        <dl class="mb-0">
+                                        <dt>{{ __('Password') }}</dt>
+                                        <label for="name">********</label>
+                                        </dl>
+                                        <div><i class="fas fa-chevron-right"></i></div>
+                                        <a href="{{ url('password/reset') }}">change password</a>
+                                        <br>
+                                        <div><i class="fas fa-chevron-right"></i></div>
+                                        <button type='submit' class='btn btn-primary'style="max-width:400px; margin:auto;">編集完了</button>
                         </form>
+                                        <div class="list-group" style="max-width:400px; margin:auto;">
+                                        <form action="{{ route('user.destroy',auth()->user()) }}" enctype="multipart/form-data">
+                                            @csrf
+                                            @method('delete')
+                                        <div><button class="btn btn-danger" onclick='return confirm("削除しますか？");'>{{ __('Deactive') }}</button></div>
+                                        </form>
+                                    <div>
+                            </div>
                 </div>
             </div>
         </div>

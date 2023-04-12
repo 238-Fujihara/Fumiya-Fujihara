@@ -8,6 +8,8 @@ use App\Http\Controllers\DeactiveController;
 use App\Http\Controllers\SeattlePostController;
 use App\Http\Controllers\adminController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\UserController;
+
 
 
 
@@ -27,8 +29,6 @@ Auth::routes();
 // Route::get('/',[adminController::class, 'adminindex']);
 Route::get('/',[DisplayController::class, 'index']);
 
-Route::get('/edmonds/post', [DisplayController::class, 'EdmondsPost'])->name('edmonds.post');
-Route::get('/seattle/post', [DisplayController::class, 'SeattlePost'])->name('seattle.post');
 Route::get('/public/edmonds', [DisplayController::class, 'PublicEdmonds'])->name('public.edmonds');
 Route::get('/public/seattle', [DisplayController::class, 'PublicSeattle'])->name('public.seattle');
 
@@ -36,38 +36,28 @@ Route::get('/public/seattle', [DisplayController::class, 'PublicSeattle'])->name
 
 
 // Auth::routes();
-Route::group(['middleware' => ['auth', 'can:admin_only']], function () {
-    Route::get('/admin', 'adminController@admin')->name('admin.index');
-});
+    Route::get('/admin', 'adminController@admin')->name('admin');
+    Route::get('/adminpage', 'adminController@adminpage')->name('adminpage');
+
 Route::group(['middleware'=> 'auth'], function() {
     // Route::post('/like/{postId}',[LikesController::class,'store']);
     // Route::post('/unlike/{postId}',[LikesController::class,'destroy']);
-    
-    // Route::get('/setting', 'SettingController@index')->name('setting');
-    // Route::get('/setting/name', 'SettingController@showChangeNameForm')->name('name.form');
-    // Route::post('/setting/name', 'SettingController@changeName')->name('name.change');
-    // Route::get('/setting/email', 'SettingController@showChangeEmailForm')->name('email.form');
-    // Route::post('/setting/email', 'SettingController@changeEmail')->name('email.change');
-    // Route::get('/deactive', 'Auth\DeactiveController@showDeactiveForm')->name('deactive.form');
-    // Route::post('/deactive', 'Auth\DeactiveController@deactive')->name('deactive');
-    // Route::get('/setting/deactive', 'Auth\DeactiveController@showDeactiveForm')->name('deactive.form');
-    // Route::post('/setting/deactive', 'Auth\DeactiveController@deactive')->name('deactive');
+    // Route::get('/edmonds/post', [DisplayController::class, 'EdmondsPost'])->name('edmonds.post');
+    // Route::get('/seattle/post', [DisplayController::class, 'SeattlePost'])->name('seattle.post');
+
 
     Route::get('mainpage',[DisplayController::class, 'userlist'])->name('userlist');
     Route::get('/mypage', [DisplayController::class, 'MyPage'])->name('my.page');
     Route::resource('/edmondsPost', 'EdmondsPostController');
     Route::resource('/seattlePost','SeattlePostController');
     Route::resource('/user', 'UserController');
+    Route::resource('/admin', 'ProfileController')->only(['index', 'store', 'update', 'destroy']);
 
-    Route::get('/profile.edit', [DisplayController::class, 'profileedit'])->name('profile.edit');
-    Route::post('/profileedit', [DisplayController::class, 'ProfileEditForm'])->name('Profile.Edit.Form');
 
     Route::get('create_edmonds', [RegistrationController::class, 'createEdmondsForm'])->name('create.edmonds');
     Route::post('/create_edmonds', [RegistrationController::class, 'createEdmonds'])->name('store.edmonds');
     Route::get('create_seattle', [RegistrationController::class, 'createSeattleForm'])->name('create.seattle');
     Route::post('/create_seattle', [RegistrationController::class, 'createSeattle'])->name('store.seattle');
-    Route::get('softdeleteedmonds_form/{id}',[RegistrationController::class, 'softdeleteEdmondsForm'])->name('softdelete.edmonds');
-    Route::post('/softdeleteedmonds_form/{id}',[RegistrationController::class,'softdeleteEdmonds']);  
 
     Route::get('/edit/edmondsform', [RegistrationController::class, 'EditEdmonds'])->name('edit');
     Route::get('/edit/edmonds', [RegistrationController::class, 'EditEdmondsForm'])->name('edit.edmonds');

@@ -52,7 +52,7 @@ class RegistrationController extends Controller
         // postを保存
         $edmondspost->create($inputs);
         
-        return redirect('/edmonds/post');
+        return redirect('/public/edmonds');
         
     }
     public function createSeattleForm(Request $request){
@@ -85,7 +85,7 @@ class RegistrationController extends Controller
         // postを保存
         $seattlepost->create($inputs);
                 
-        return redirect('/seattle/post');
+        return redirect('/public/seattle');
     }
     public function EditEdmondsForm(){
         dd(1);

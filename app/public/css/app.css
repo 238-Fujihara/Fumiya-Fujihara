@@ -322,7 +322,8 @@ button,
   text-align: center;
 }
 .edmondspictures{
-  width: 100%;
+  width: 80%;
+  margin: auto;
 }
 .edpostdetail{
   width:80%;
@@ -330,10 +331,13 @@ button,
 }
 .picture{
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-evenly;
 }
 .date{
   text-align: center;
+  flex-basis: 20%;
+  padding: 10px;
 }
 p{
   margin-top: 30px;
@@ -423,8 +427,6 @@ p{
 .regionname{
   justify-content: space-evenly;
   display: flex;
-  margin-top: 50px;
-  margin-bottom: 50px;
 }
 .myposts{
   width: 80%;

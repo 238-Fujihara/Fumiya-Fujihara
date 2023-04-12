@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class UserController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $per_page = 3; // １ページごとの表示件数
+        $users = \App\User::paginate($per_page);
+        return view('admin')->with('users', $users);
     }
 
     /**
@@ -36,7 +37,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = new \App\User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $result = $user->save();
+        return ['result' => $result];
     }
 
     /**
@@ -56,10 +62,9 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $User)
+    public function edit(User $user)
     {
-        return view('setting');
-
+        //
     }
 
     /**
@@ -67,28 +72,30 @@ class UserController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\User  $user
+     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, User $user)
     {
-        $user = Auth::user();
-
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->save();
 
-        return view('mypage');
+        if($request->filled('password')) { // パスワード入力があるときだけ変更
 
+            $user->password = bcrypt($request->password);
     }
+        $result = $user->save();
+        return ['result' => $result];
+}
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\User  $user
+     * @return \Illuminate\Http\Response
      */
     public function destroy(User $user)
     {
-        $user->delete();
-
-        return view('maypage');
+        $result = $user->delete();
+        return ['result' => $result];
     }
 }

@@ -31,6 +31,9 @@
     </div>
     <div class="login-register">
             @if(Auth::check())
+            @if(Auth::user()->role == 100)
+                <a href="{{ url('/admin') }}">管理者ページ</a><br>
+            @endif
             <span class="may-navbar-item">{{ Auth::user()->name }}</span>
             /
             <a href="#" id="logout" class="logout">ログアウト</a>

@@ -31,11 +31,16 @@
     </div>
     <div class="login-register">
             @if(Auth::check())
+            @if(Auth::user()->role == 100)
+                <a href="{{ url('/admin') }}">管理者ページ</a><br>
+            @endif
             <span class="may-navbar-item">{{ Auth::user()->name }}</span>
             /
             <a href="#" id="logout" class="logout">ログアウト</a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" syle="display:none;">
                 @csrf
+                <a href="{{ route('my.page') }}">マイページ</a>
+
             </form>
             <script>
                 document.getElementById('logout').addEventListener('click', function(event){
@@ -55,10 +60,61 @@
     </div>
 </header>
 <body>
-    <div class="edpicsdetail">
-        <img src="{{ asset($edpost->image) }}">
+<h1>Edmonds</h1>
+        <div class="regionname">
+            <div class="dropdown"> 
+                <button id="btnOpenMenu" class="btn btn-primary dropdown-toggle"  
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Select Region
+                </button>
+                <div class="dropdown-menu" aria-labelledby="btnOpenMenu">
+                    <a class="dropdown-item" href="{{ route('public.edmonds') }}">Edmonds</a>
+                    <a class="dropdown-item" href="{{ route('public.seattle') }}">Seattle</a>            
+                </div>
+            </div>
+        </div>
+
+        <div class="seattlepost">
+            <a class="edmondspost" href="{{ route('create.edmonds') }}">
+            <button type='button' class="btn btn-secondary">新規投稿⊕</button>
+            </a>
+        </div>
+            <div class="searching">
+                <div class="datesearching">
+                <form action="{{ route('public.edmonds') }}" method="POSt">
+                    @csrf
+                    <input type="date" name="from" placeholder="from_date" value="{{ $fromdate }}">
+                        <span class="mx-3 text-grey">~</span>
+                    <input type="date" name="until" placeholder="until_date" value="{{ $untildate }}"><br>
+                </div>
+                    <div>
+                    <input type="text" name="keyword" placeholder="キーワード検索" value = "{{ $keyword }}">
+                    </div>
+            </div>
+                    <div class="searchinginformation">
+                        <button type="submit" class="btn btn-info">検索</button>
+                    </div>
+                </form>
+                <div class="edmondspictures">
+        <div class="edmondsdetail">
+            <div class="picture">
+            <tr>
+            @foreach($edposts as $edpost)
+            <div class="date">
+                <h3>"{{ $edpost['title'] }}"</h3>
+                <h4>{{ $edpost['date'] }}</h4>
+                <img src="{{ asset($edpost->image) }}"></a>
+            </div>
+            @endforeach
+            </tr>
+            </div>              
+            
+            <h4></h4>
+        </div> 
     </div>
-    <button onclick="like({{$edpost->id}})" class="btn btn-success btn-sm">いいね</button>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 </body>
 </html>

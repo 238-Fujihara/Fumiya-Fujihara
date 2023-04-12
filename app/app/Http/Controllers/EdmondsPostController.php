@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 
 class EdmondsPostController extends Controller
-{    public $edmondspost;
+{   public $edmondspost;
     public function __construct(EdmondsPost $edmondspost){
         $this->edmondspost = $edmondspost;
     }
@@ -17,10 +17,19 @@ class EdmondsPostController extends Controller
      * Display a listing of the resource.
      *
      */
-    public function index($id)
+
+    public function index(EdmondsPost $edmondsPost)
     {
+        $edmondsPost = EdmondsPost::where('user_id', Auth::id());
+
+        $edmondsPost = $this->edmondspost->getimages();
+
+        return view('edmonds',[
+            'edposts' => $edmondsPost,
+        ]);
+
         
-    
+
     }
 
     /**
@@ -41,7 +50,7 @@ class EdmondsPostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -49,13 +58,13 @@ class EdmondsPostController extends Controller
      *
      * @param  \App\EdmondsPost  $edmondsPost
      */
-    public function show(EdmondsPost $edmondsPost)
+    public function show(EdmondsPost $edmondsPost, $id)
     {
-
+        $edmondsPost = EdmondsPost::where('user_id', $id);
         $edmondsPost->image = '/storage/images/' . $edmondsPost->image;
 
-        return view('edpicsdetail',[
-            'edpost' => $edmondsPost,
+        return view('edmonds',[
+            'edposts' => $edmondsPost,
         ]);
     }
 
@@ -87,7 +96,7 @@ class EdmondsPostController extends Controller
         $edmondsPost->date = $request->input('date');
         $edmondsPost->save();
         
-        return redirect()->route('edmonds.post');
+        return redirect()->route('edmonds_edit');
     }
 
     /**
@@ -100,6 +109,6 @@ class EdmondsPostController extends Controller
     {
         $edmondsPost->delete();
 
-        return redirect()->route('main.page');
+        return redirect()->route('my.page');
 }
 }

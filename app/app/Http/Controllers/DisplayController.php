@@ -27,55 +27,54 @@ class DisplayController extends Controller
         // }else{
         //     return view('mainpage');
         // }
-    return view('mainpage');
+        return view('mainpage');
 
     }
 
 
-    public function EdmondsPost(Request $request){
 
-        $edmondspost = New EdmondsPost;
+        // $edmondspost = New EdmondsPost;
 
-        $edall = $edmondspost->where('del_flg', 0)->where('user_id', Auth::id());
+        // $edall = $edmondspost->where('del_flg', 0)->where('user_id', Auth::id());
 
-        $from = $request['from'];
-        $until = $request['until'];
+        // $from = $request['from'];
+        // $until = $request['until'];
 
-        $fromdate = $request->input('from');
-        $untildate = $request->input('until');
-
+        // $fromdate = $request->input('from');
+        // $untildate = $request->input('until');
 
 
 
-        $keyword = $request->input('keyword');
 
-        $query = EdmondsPost::query();
+        // $keyword = $request->input('keyword');
 
-        if($from && $until && !empty($keyword)){
-            $query = $query->whereBetween('date', [$from, $until]);
-            $query->where('title' ,'LIKE', "%{$keyword}%");
-            // dd($edall);
-        }
-        elseif($from && $until){
-            $edall = $edall->whereBetween('date', [$from, $until]);
-        }
-        elseif(!empty($keyword)){
-            $query->where('title' ,'LIKE', "%{$keyword}%");
-        }
+        // $query = EdmondsPost::query();
+
+        // if($from && $until && !empty($keyword)){
+        //     $query = $query->whereBetween('date', [$from, $until]);
+        //     $query->where('title' ,'LIKE', "%{$keyword}%");
+        //     // dd($edall);
+        // }
+        // elseif($from && $until){
+        //     $edall = $edall->whereBetween('date', [$from, $until]);
+        // }
+        // elseif(!empty($keyword)){
+        //     $query->where('title' ,'LIKE', "%{$keyword}%");
+        // }
 
 
-        $edall = $query->get();
-        foreach($edall as $val){
-            $val->image= '/storage/images/' . $val->image;
-        }
+        // $edall = $query->get();
+        // foreach($edall as $val){
+        //     $val->image= '/storage/images/' . $val->image;
+        // }
    
-        return view('edmonds',[
-            'edposts' => $edall,
-            'fromdate' => $fromdate,
-            'untildate' => $untildate,
-            'keyword' => $keyword,    
-        ]);
-    }
+        // return view('edmonds',[
+        //     'edposts' => $edall,
+        //     'fromdate' => $fromdate,
+        //     'untildate' => $untildate,
+        //     'keyword' => $keyword,    
+        // ]);
+    
 
     public function SeattlePost(Request $request){
 
@@ -134,7 +133,6 @@ class DisplayController extends Controller
         $edmondspost = $this->edmondspost->getimages();
 
         $user = Auth::user();
-        
         return view('mypage',[
             'edposts' => $edmondspost,
             'user' => $user,
@@ -185,10 +183,44 @@ class DisplayController extends Controller
 
         $edmondspost = New EdmondsPost;
 
-        $edpost = $edmondspost->where('del_flg', 0);
+        $edall = $edmondspost->where('del_flg', 0)->where('user_id', Auth::id());
 
+        $from = $request['from'];
+        $until = $request['until'];
+
+        $fromdate = $request->input('from');
+        $untildate = $request->input('until');
+
+
+
+
+        $keyword = $request->input('keyword');
+
+        $edall = EdmondsPost::query();
+
+        if($from && $until && !empty($keyword)){
+            $edall = $edall->whereBetween('date', [$from, $until]);
+            $edall->where('title' ,'LIKE', "%{$keyword}%");
+            // dd($edall);
+        }
+        elseif($from && $until){
+            $edall = $edall->whereBetween('date', [$from, $until]);
+        }
+        elseif(!empty($keyword)){
+            $edall->where('title' ,'LIKE', "%{$keyword}%");
+        }
+
+
+        $edall = $edall->get();
+        foreach($edall as $val){
+            $val->image= '/storage/images/' . $val->image;
+        }
+   
         return view('publicedmonds',[
-            'edpost' => $edpost,
+            'edposts' => $edall,
+            'fromdate' => $fromdate,
+            'untildate' => $untildate,
+            'keyword' => $keyword,    
         ]);
 
     }
@@ -196,10 +228,39 @@ class DisplayController extends Controller
 
         $seattlepost = New SeattlePost;
 
-        $seaall = $seattlepost->where('del_flg', 1)->where('user_id', Auth::id());
+        $seaall = $seattlepost->where('del_flg', 0)->where('user_id', Auth::id());
 
-        return view('edpicsdetail',[
-            'edposts' => $seaall,
+        $from = $request['from'];
+        $until = $request['until'];
+
+        $fromdate = $request->input('from');
+        $untildate = $request->input('until');
+
+        $keyword = $request->input('keyword');
+
+        $seaall = SeattlePost::query();
+
+        if($from && $until && !empty($keyword)){
+            $seaall = $seaall->whereBetween('date', [$from, $until]);
+            $seaall->where('title' ,'LIKE', "%{$keyword}%");
+        }
+        elseif($from && $until){
+            $seaall = $seaall->whereBetween('date', [$from, $until]);
+        }
+        elseif(!empty($keyword)){
+            $seaall->where('title' ,'LIKE', "%{$keyword}%");
+        }
+
+        $seaall = $seaall->get();
+        foreach($seaall as $val){
+            $val->image= '/storage/images/' . $val->image;
+        }
+
+        return view('publicseattle',[
+            'seaposts' => $seaall,
+            'fromdate' => $fromdate,
+            'untildate' => $untildate,
+            'keyword' => $keyword,    
         ]);
 
     }

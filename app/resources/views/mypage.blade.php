@@ -31,6 +31,9 @@
     </div>
     <div class="login-register">
             @if(Auth::check())
+            @if(Auth::user()->role == 100)
+                <a href="{{ url('/admin') }}">管理者ページ</a><br>
+            @endif
             <span class="may-navbar-item">{{ Auth::user()->name }}</span>
             /
             <a href="#" id="logout" class="logout">ログアウト</a>
@@ -49,7 +52,7 @@
             </a>
             
             <a class="register" href="{{ route('register') }}">
-            <button type='button' class="btn btn-secondary'>会員登録</buton>
+            <button type='button' class="btn btn-secondary">会員登録</buton>
             </a>
             @endif
     </div>
@@ -61,32 +64,32 @@
             <div class= 'username'>{{ Auth::user()->name }}</div>
           </div>
           <div class="menu">
-            <div class="newpost">
-                <a href="{{ route('create.edmonds') }}">
-                    <button type='button' class='newpostbutton'>新規投稿⊕</button>
-                </a>
-            </div>
-            <div class="edit">
-                <a href="{{ route('user.show', $user->id) }}">
-                    <button type='button' class='useredit'>編集</button>
-                </a>
-            </div>
+                <div class="newpost">
+                    <a href="{{ route('create.edmonds') }}">
+                        <button type='button' class='btn btn-secondary'>新規投稿⊕</button>
+                    </a>
+                </div>
+                <div class="edit">
+                    <a href="{{ route('user.edit', Auth::id()) }}">
+                        <button type='button' class='btn btn-info'>編集</button>
+                    </a>
+                </div>
             </div>
         </div>
         <div class="regionname">
-        <a class="btn btn-primary" data-toggle="collapse" href="{{ route('edmonds.post') }}" role="button" aria-expanded="false" aria-controls="collapseExample">
-            Link with href
-        </a>
-            <a href="{{ route('seattle.post') }}">
-                <button type="submit" name="myseaposts">Seattle</button>
-            </a>
+            <div class="dropdown"> 
+                <button id="btnOpenMenu" class="btn btn-primary dropdown-toggle"  
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Select Region
+                </button>
+                <div class="dropdown-menu" aria-labelledby="btnOpenMenu">
+                    <a class="dropdown-item" href="{{ route('edmondsPost.index', Auth::id()) }}">Edmonds</a>
+                    <a class="dropdown-item" href="{{ route('seattlePost.index', Auth::id()) }}">Seattle</a>            
+                </div>
         </div>
-        <div class="myposts">
-        @foreach($edposts as $edpost)
-            <a href="{{ route('edmondsPost.show', $edpost->id) }}"><img src="{{ asset($edpost->image) }}">
-            </a>
-        @endforeach                 
-    </div>
-
+        </div>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>

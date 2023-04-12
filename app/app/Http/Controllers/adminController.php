@@ -28,4 +28,11 @@ class adminController extends Controller
 //roleが100だったら管理画面にretun view
 //elseでreturn view('mainpage')
     }
+
+    public function admin()
+    {
+        $users = Auth::user();
+        return view('admin', compact('users'));
+
+    }
 }

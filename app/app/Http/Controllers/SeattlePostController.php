@@ -4,17 +4,29 @@ namespace App\Http\Controllers;
 
 use App\SeattlePost;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class SeattlePostController extends Controller
-{
+{   public $seattlepost;
+    public function __construct(SeattlePost $seattlepost){
+        $this->seattlepost = $seattlepost;
+    }
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(SeattlePost $seattlePost)
     {
-        //
+        $seattlePost = SeattlePost::where('user_id', Auth::id());
+
+        $seattlePost = $this->seattlepost->getimages();
+
+        return view('seattle',[
+            'seaposts' => $seattlePost,
+        ]);
+
     }
 
     /**
@@ -42,17 +54,16 @@ class SeattlePostController extends Controller
      * Display the specified resource.
      *
      * @param  \App\SeattlePost  $seattlePost
-     * @return \Illuminate\Http\Response
      */
-    public function show(SeattlePost $seattlePost)
+    public function show(SeattlePost $seattlePost, $id)
     {
 
-        $seattlePost->image= '/storage/images/' . $seattlePost->image;
+        $seattlePost = SeattlePost::where('user_id', $id);
+        $seattlePost->image = '/storage/images/' . $seattlePost->image;
 
-        return view('seapicsdetail',[
-            'seapost' => $seattlePost,
+        return view('edmonds',[
+            'edposts' => $seattlePost,
         ]);
-
     }
 
     /**
@@ -83,7 +94,7 @@ class SeattlePostController extends Controller
         $seattlePost->date = $request->input('date');
         $seattlePost->save();
         
-        return redirect()->route('seattle.post');
+        return redirect()->route('seattle_edit');
 
     }
 
@@ -97,6 +108,6 @@ class SeattlePostController extends Controller
     {
         $seattlePost->delete();
 
-        return redirect()->route('seattle.post');
+        return redirect()->route('seattle_edit');
     }
 }

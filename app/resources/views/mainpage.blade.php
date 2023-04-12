@@ -27,10 +27,12 @@
 </head>
 <body>
 <header class="global-header">
-    <a href ="{{ ('/') }}"><h1>Seattlish</h1></a>
+    <a href ="{{ url('/') }}"><h1>Seattlish</h1></a>
     <div class="login-register">
-        <a href="{{ route('userlist') }}">管理者ページ</a><br>
             @if(Auth::check())
+                @if(Auth::user()->role == 100)
+                <a href="{{ url('/admin') }}">管理者ページ</a><br>
+                @endif
             <span class="may-navbar-item">{{ Auth::user()->name }}</span>
             /
             <a href="#" id="logout" class="logout">ログアウト</a>
@@ -63,15 +65,15 @@
 	        </script>
     </div>
     <div class="each-detail">
-        <a class ="edmondspostdetail", href="{{ route('edmonds.post') }}">Edmonds</a><br>
-        <a class ="seattlepostdetail", href="{{ route('seattle.post') }}">Seattle</a>
+        <a class ="edmondspostdetail", href="{{ route('public.edmonds') }}">Edmonds</a><br>
+        <a class ="seattlepostdetail", href="{{ route('public.seattle') }}">Seattle</a>
     </div>
     <div class="introduction">
         <p>A dynamic, urban city surrounded by unmatched natural beauty—and now it's all open for you to explore.</p>
     </div>
 <div class="seattleintroduction">
     <div>
-    <a href="{{ route('seattle.post') }}">
+    <a href="{{ route('public.seattle') }}">
         <img src="{{ asset('/storage/images/cropped-seattle-skyline.jpg') }}">
     </a></div>
     <p>Seattle, the closest city on the mainland to Japan, can be reached in about nine hours from Tokyo. 
@@ -91,7 +93,7 @@
     we have many ways for you to experience both types of views in the same day—and even on the same hike! 
     </p>
     <div>
-    <a href="{{ route('edmonds.post') }}">
+    <a href="{{ route('public.edmonds') }}">
         <img src="{{ asset('/storage/images/R (3).jfif') }}">
     </div>
 </body>

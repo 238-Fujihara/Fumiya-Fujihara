@@ -30,6 +30,9 @@
         <a href ="{{ ('/') }}"><h1>Seattlish</h1></a>
         <div class="login-register">
                 @if(Auth::check())
+                @if(Auth::user()->role == 100)
+                <a href="{{ url('/admin') }}">管理者ページ</a><br>
+                @endif
                 <span class="may-navbar-item">{{ Auth::user()->name }}</span>
                 /
                 <a href="#" id="logout" class="logout">ログアウト</a>
@@ -72,6 +75,12 @@
             <button type='submit' class='seattlepic-button'>編集完了</buton>
     </div>
     </form>
+    <form action="{{ route('seattlePost.destroy', $seaposts->id) }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        @method('delete')
+        <button type='submit' class='btn btn-danger'>削除</button>
+    </form>
+
 
 
 

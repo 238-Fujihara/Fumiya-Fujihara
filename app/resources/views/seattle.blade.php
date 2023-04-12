@@ -30,6 +30,9 @@
     <a href ="{{ ('/') }}"><h1>Seattlish</h1></a>
     <div class="login-register">
             @if(Auth::check())
+            @if(Auth::user()->role == 100)
+                <a href="{{ url('/admin') }}">管理者ページ</a><br>
+            @endif
             <span class="may-navbar-item">{{ Auth::user()->name }}</span>
             /
             <a href="#" id="logout" class="logout">ログアウト</a>
@@ -60,22 +63,6 @@
     <a class="seattlepost" href="{{ route('create.seattle') }}">
     <button type='button' class="btn btn-secondary">新規投稿⊕</button>
     </a></div>
-    <div class="searching">
-            <div class="date">
-            <form action="{{ route('seattle.post') }}" method="GET">
-                    @csrf
-                    <input type="date" name="from" placeholder="from_date" value="{{ $fromdate }}">
-                        <span class="mx-3 text-grey">~</span>
-                    <input type="date" name="until" placeholder="until_date" value="{{ $untildate }}"><br>
-                </div>
-                    <div>
-                    <input type="text" name="keyword" placeholder="キーワード検索" value = "{{ $keyword }}">
-                    </div>
-            </div>
-                    <div class="searchinginformation">
-                        <button type="submit" class="btn btn-info">検索</button>
-                    </div>
-                </form>
     <div class="seattlepictures">
         <div class="seattledetail">
             <div class="picture">
@@ -84,10 +71,7 @@
             <div class="date">
                 <h3>"{{ $seapost['title'] }}"</h3>
                 <h4>{{ $seapost['date'] }}</h4>
-                <a href="{{ route('seattlePost.show', $seapost->id) }}"><img src="{{ asset($seapost->image) }}"></a>
-            <div>
-                <button onclick="like({{$seapost->id}})" class="btn btn-success btn-sm" type="button">いいね</button>
-            </div>
+                <a href="{{ route('seattlePost.edit', $seapost->id) }}"><img src="{{ asset($seapost->image) }}"></a>
             </div>
             @endforeach
             </tr>
