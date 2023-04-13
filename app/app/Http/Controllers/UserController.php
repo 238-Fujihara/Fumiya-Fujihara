@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Validator;
 
 class UserController extends Controller
 {
@@ -70,6 +71,17 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        $validator = Validator::make($request->all(), [
+            'name'  => 'required|string',
+            'email' => 'required'
+        ]);
+        if ($validator->fails()) {
+            return redirect()->back()
+            ->withInput()
+            ->withErrors($validator);
+        }
+
+
         $user = Auth::user();
 
         $user->name = $request->name;

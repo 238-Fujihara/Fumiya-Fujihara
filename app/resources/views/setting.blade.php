@@ -67,13 +67,15 @@
                         <form action="{{ route('user.update', Auth::id()) }}" enctype="multipart/form-data" method="POST">
                                 @csrf
                                 @method('PUT')
-                                    @if($errors->any())
-                                        <div class="alert alert-danger">
-                                    @foreach($errors->all() as $message)
-                                        <p style="color:white">{{ $message }}</p>
-                                    @endforeach
-                                        </div>
-                                    @endif
+                                @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
                                     <div class="list-group mb-3" style="max-width:400px; margin:auto;">
                                         <dl class="mb-0">
                                             <dt>{{ __('Name') }}</dt>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\EdmondsPost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Validator;
 
 
 class EdmondsPostController extends Controller
@@ -90,6 +91,16 @@ class EdmondsPostController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validator = Validator::make($request->all(), [
+            'title'  => 'required|string',
+            'date' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+            ->withInput()
+            ->withErrors($validator);
+        }
         $edmondsPost = EdmondsPost::find($id);
 
         $edmondsPost->title = $request->input('title');

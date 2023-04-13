@@ -81,7 +81,7 @@
         </div>
             <div class="searching">
                 <div class="datesearching">
-                <form action="{{ route('public.edmonds') }}" method="POSt">
+                <form action="{{ route('public.edmonds') }}" method="GET">
                     @csrf
                     <input type="date" name="from" placeholder="from_date" value="{{ $fromdate }}">
                         <span class="mx-3 text-grey">~</span>
@@ -104,6 +104,7 @@
                 <h3>"{{ $edpost['title'] }}"</h3>
                 <h4>{{ $edpost['date'] }}</h4>
                 <img src="{{ asset($edpost->image) }}"></a>
+                <div class="badbutton"><input type="submit" value="BAD" class="btn btn-secondary" onclick='return confirm("Do not like this?");'></button></div>
             </div>
             @endforeach
             </tr>

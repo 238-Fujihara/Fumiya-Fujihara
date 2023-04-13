@@ -79,7 +79,7 @@
     </a></div>
     <div class="searching">
         <div class="datesearching">
-            <form action="{{ route('public.seattle') }}" method="POST">
+            <form action="{{ route('public.seattle') }}" method="GET">
                     @csrf
                     <input type="date" name="from" placeholder="from_date" value="{{ $fromdate }}">
                         <span class="mx-3 text-grey">~</span>

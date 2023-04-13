@@ -61,6 +61,15 @@
         @csrf
         @method('patch')
         <div class="selectpictures">
+                @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
             <div class="seatitle">
                 <input type='text' name='title' value="{{ $edposts['title'] }}">
             </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\SeattlePost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Validator;
 
 
 class SeattlePostController extends Controller
@@ -61,8 +62,8 @@ class SeattlePostController extends Controller
         $seattlePost = SeattlePost::where('user_id', $id);
         $seattlePost->image = '/storage/images/' . $seattlePost->image;
 
-        return view('edmonds',[
-            'edposts' => $seattlePost,
+        return view('seattle',[
+            'seaposts' => $seattlePost,
         ]);
     }
 
@@ -84,10 +85,20 @@ class SeattlePostController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\SeattlePost  $seattlePost
-     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
+        $validator = Validator::make($request->all(), [
+            'title'  => 'required|string',
+            'date' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+            ->withInput()
+            ->withErrors($validator);
+        }
+
         $seattlePost = SeattlePost::find($id);
 
         $seattlePost->title = $request->input('title');

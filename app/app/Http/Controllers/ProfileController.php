@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Validator;
 
 class ProfileController extends Controller
 {
@@ -72,7 +73,6 @@ class ProfileController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, User $user)
     {
@@ -85,6 +85,8 @@ class ProfileController extends Controller
     }
         $result = $user->save();
         return ['result' => $result];
+
+        return view('admin');
 }
 
     /**
@@ -97,5 +99,7 @@ class ProfileController extends Controller
     {
         $result = $user->delete();
         return ['result' => $result];
+
+        return view('admin');
     }
 }

@@ -35,7 +35,8 @@ class RegistrationController extends Controller
 
         // バリデーションルール
         $inputs=request()->validate([
-            'title'=>'required|max:255',
+            'title'=>'required|max:10',
+            'date' =>'required',
             'image'=>'required|image'
         ]);
                 
@@ -69,6 +70,7 @@ class RegistrationController extends Controller
         // バリデーションルール
         $inputs=request()->validate([
             'title'=>'required|max:255',
+            'date' =>'required',
             'image'=>'required|image'
         ]);
                         

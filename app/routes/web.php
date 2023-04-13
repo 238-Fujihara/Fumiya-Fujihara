@@ -36,9 +36,10 @@ Route::get('/public/seattle', [DisplayController::class, 'PublicSeattle'])->name
 
 
 // Auth::routes();
-    Route::get('/admin', 'adminController@admin')->name('admin');
+Route::group(['middleware' => ['can:admin_only']], function () {
     Route::get('/adminpage', 'adminController@adminpage')->name('adminpage');
-
+    Route::resource('/admin', 'ProfileController')->only(['index', 'store', 'update', 'destroy']);
+});
 Route::group(['middleware'=> 'auth'], function() {
     // Route::post('/like/{postId}',[LikesController::class,'store']);
     // Route::post('/unlike/{postId}',[LikesController::class,'destroy']);
@@ -51,7 +52,6 @@ Route::group(['middleware'=> 'auth'], function() {
     Route::resource('/edmondsPost', 'EdmondsPostController');
     Route::resource('/seattlePost','SeattlePostController');
     Route::resource('/user', 'UserController');
-    Route::resource('/admin', 'ProfileController')->only(['index', 'store', 'update', 'destroy']);
 
 
     Route::get('create_edmonds', [RegistrationController::class, 'createEdmondsForm'])->name('create.edmonds');

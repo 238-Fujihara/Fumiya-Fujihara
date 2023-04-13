@@ -60,6 +60,16 @@
     <form action="{{ route('store.seattle') }}" method='POST' enctype="multipart/form-data">
         @csrf
     <div class="selectpictures">
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
         <input type='text' name='title'>
         <input type="date" name="date">
         <input id="image" type="file" name="image">
