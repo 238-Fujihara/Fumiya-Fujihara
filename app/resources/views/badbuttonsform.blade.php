@@ -1,4 +1,3 @@
-<html>
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -27,52 +26,46 @@
 
 </head>
 <body>
-    <header class="global-header">
-        <a href ="{{ ('/') }}"><h1>Seattlish</h1></a>
-        <div class="login-register">
-                @if(Auth::check())
-                <span class="may-navbar-item">{{ Auth::user()->name }}</span>
-                /
-                <a href="#" id="logout" class="logout">ログアウト</a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" syle="display:none;">
-                    @csrf
-                </form>
-                <script>
-                    document.getElementById('logout').addEventListener('click', function(event){
-                    event.preventDefault();
-                    document.getElementById('logout-form').submit();
-                    });
-                </script>
-                @else
-                <a class="login" href="{{ route('login') }}">
-                <button type='button' class='login-button'>ログイン</buton>
-                </a>
-                
-                <a class="register" href="{{ route('register') }}">
-                <button type='button' class='register-button'>会員登録</buton>
-                </a>
+<header class="global-header">
+    <a href ="{{ url('/') }}"><h1>Seattlish</h1></a>
+    <div class="login-register">
+            @if(Auth::check())
+                @if(Auth::user()->role == 100)
+                <a href="{{ url('/admin') }}">管理者ページ</a><br>
                 @endif
-        </div>
-    </header>
-
-<head>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
-</head>
+            <span class="may-navbar-item">{{ Auth::user()->name }}</span>
+            /
+            <a href="#" id="logout" class="logout">ログアウト</a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" syle="display:none;">
+                @csrf
+            </form>
+            <a href="{{ route('my.page') }}">マイページ</a>
+            <script>
+                document.getElementById('logout').addEventListener('click', function(event){
+                event.preventDefault();
+                document.getElementById('logout-form').submit();
+                });
+            </script>
+            @else
+            <a class="login" href="{{ route('login') }}">
+            <button type='submit' class="btn btn-secondary">ログイン</button>
+            </a>
+            
+            <a class="register" href="{{ route('register') }}">
+            <button type='submit' class="btn btn-secondary">会員登録</button>
+            </a>
+            @endif
+    </div>
+</header>
 <body>
-    <div id="app" class="p-5">
+<div id="app" class="p-5">
         <!-- 一覧表示するブロック ① -->
         <div v-if="state=='index'">
-            <div class="mb-3">
-                <button type="button" class="btn btn-success" @click="changeState('create')">追加</button>
-            </div>
-            <div class="badbuttons">
-                <a href="{{ route('badbuttons.index') }}">Violation Report</a>
-            </div>
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>名前</th>
-                        <th>E-Mail</th>
+                        <th>User Name</th>
+                        <th>Post</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -81,14 +74,12 @@
                         <td v-text="user.name"></td>
                         <td v-text="user.email"></td>
                         <td class="text-right">
-                            <button class="btn btn-warning" type="button" @click="changeState('edit', user)">変更</button>
-                            <button class="btn btn-danger" type="button" @click="onDelete(user)">削除</button>
+                            <button class="btn btn-warning" type="button" @click="changeState('edit', user)">確認/button>
                         </td>
                     </tr>
                 </tbody>
             </table>
             <!-- ページ移動のリンク ③ -->
-            {{ $users->links() }}
         </div>
         <!-- 追加＆変更するブロック ② -->
         <div v-if="state=='create' || state == 'edit'">
@@ -116,8 +107,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
     <script>
-
-        new Vue({
+                new Vue({
             el: '#app',
             data: {
                 state: 'index',
@@ -130,9 +120,6 @@
                 },
                 users: [
                     // ユーザーデータをJSON化 ④
-                    @foreach($users as $user)
-                    {!! $user !!},
-                    @endforeach
                 ]
             },
             methods: {

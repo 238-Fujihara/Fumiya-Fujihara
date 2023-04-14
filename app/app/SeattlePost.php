@@ -17,6 +17,9 @@ class SeattlePost extends Model
     public function User(){
         return $this->belongsTo('App\users');
 }
+public function badbuttons(){
+  return $this->hasMany('App\Badbutton');
+}
     protected $fillable = [
     'image','title','user_id', 'date',
 ];

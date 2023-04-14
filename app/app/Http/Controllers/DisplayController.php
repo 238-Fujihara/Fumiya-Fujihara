@@ -215,12 +215,16 @@ class DisplayController extends Controller
         foreach($edall as $val){
             $val->image= '/storage/images/' . $val->image;
         }
+
+        $badbutton = EdmondsPost::where('badbutton');
+
    
         return view('publicedmonds',[
             'edposts' => $edall,
             'fromdate' => $fromdate,
             'untildate' => $untildate,
-            'keyword' => $keyword,    
+            'keyword' => $keyword,  
+            'badbutton' => $badbutton,   
         ]);
 
     }
@@ -255,6 +259,8 @@ class DisplayController extends Controller
         foreach($seaall as $val){
             $val->image= '/storage/images/' . $val->image;
         }
+
+        // $badbutton = ;
 
         return view('publicseattle',[
             'seaposts' => $seaall,

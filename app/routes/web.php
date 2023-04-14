@@ -9,6 +9,9 @@ use App\Http\Controllers\SeattlePostController;
 use App\Http\Controllers\adminController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\BadbuttonController;
+use App\Http\Controllers\ViolationController;
+
 
 
 
@@ -31,7 +34,7 @@ Route::get('/',[DisplayController::class, 'index']);
 
 Route::get('/public/edmonds', [DisplayController::class, 'PublicEdmonds'])->name('public.edmonds');
 Route::get('/public/seattle', [DisplayController::class, 'PublicSeattle'])->name('public.seattle');
-
+Route::post('/violationform', [ViolationController::class, 'violation'])->name('violation');
 
 
 
@@ -39,10 +42,10 @@ Route::get('/public/seattle', [DisplayController::class, 'PublicSeattle'])->name
 Route::group(['middleware' => ['can:admin_only']], function () {
     Route::get('/adminpage', 'adminController@adminpage')->name('adminpage');
     Route::resource('/admin', 'ProfileController')->only(['index', 'store', 'update', 'destroy']);
+    Route::resource('/badbuttons', 'BadbuttonController');
+    Route::get('/violationform', [ViolationController::class, 'violation'])->name('violation');
 });
 Route::group(['middleware'=> 'auth'], function() {
-    // Route::post('/like/{postId}',[LikesController::class,'store']);
-    // Route::post('/unlike/{postId}',[LikesController::class,'destroy']);
     // Route::get('/edmonds/post', [DisplayController::class, 'EdmondsPost'])->name('edmonds.post');
     // Route::get('/seattle/post', [DisplayController::class, 'SeattlePost'])->name('seattle.post');
 
@@ -61,11 +64,6 @@ Route::group(['middleware'=> 'auth'], function() {
 
     Route::get('/edit/edmondsform', [RegistrationController::class, 'EditEdmonds'])->name('edit');
     Route::get('/edit/edmonds', [RegistrationController::class, 'EditEdmondsForm'])->name('edit.edmonds');
-
-    // Route::group(['middleware' => ['auth', 'can:admin_only']], function () {
-    //     Route::get('account', 'AccountController@index')->name('account.index');
-    // });
-
 });
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
