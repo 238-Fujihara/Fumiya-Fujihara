@@ -333,6 +333,20 @@ button,
   width: 80%;
   margin: auto;
 }
+.vios{
+  width: 80%;
+  margin: auto;
+
+}
+.vio{
+  margin-top: 50px;
+}
+.viodetail{
+  display: flex;
+  text-align: center;
+  justify-content: space-evenly;
+
+}
 .edpostdetail{
   width:80%;
   margin-left: 155px;
@@ -5973,6 +5987,7 @@ a.badge-dark.focus {
 }
 
 .list-group-item:last-child {
+  width: 40%;
   border-bottom-right-radius: inherit;
   border-bottom-left-radius: inherit;
 }

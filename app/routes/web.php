@@ -34,7 +34,12 @@ Route::get('/',[DisplayController::class, 'index']);
 
 Route::get('/public/edmonds', [DisplayController::class, 'PublicEdmonds'])->name('public.edmonds');
 Route::get('/public/seattle', [DisplayController::class, 'PublicSeattle'])->name('public.seattle');
-Route::post('/violationform', [ViolationController::class, 'violation'])->name('violation');
+Route::get('/edviolationform/{id}', [ViolationController::class, 'edviolationform'])->name('edviolation');
+Route::post('/edviolation', [ViolationController::class, 'edviolation'])->name('store.edviolation');
+Route::get('/seaviolationform/{id}', [ViolationController::class, 'seaviolationform'])->name('seaviolation');
+Route::post('/seaviolation', [ViolationController::class, 'seaviolation'])->name('store.seaviolation');;
+
+
 
 
 
@@ -43,7 +48,7 @@ Route::group(['middleware' => ['can:admin_only']], function () {
     Route::get('/adminpage', 'adminController@adminpage')->name('adminpage');
     Route::resource('/admin', 'ProfileController')->only(['index', 'store', 'update', 'destroy']);
     Route::resource('/badbuttons', 'BadbuttonController');
-    Route::get('/violationform', [ViolationController::class, 'violation'])->name('violation');
+    // Route::get('/violationform', [ViolationController::class, 'violation'])->name('violation');
 });
 Route::group(['middleware'=> 'auth'], function() {
     // Route::get('/edmonds/post', [DisplayController::class, 'EdmondsPost'])->name('edmonds.post');

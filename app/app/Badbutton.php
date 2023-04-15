@@ -15,5 +15,7 @@ class Badbutton extends Model
     public function SeattlePost(){
         return $this->belongsTo('App\SeattlePost');
     }
-
+    protected $fillable = [
+        'reason','edmondspost_id','seattlepost_id','user_id'
+    ];
 }

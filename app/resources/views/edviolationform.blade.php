@@ -58,21 +58,24 @@
     </div>
 </header>
 <body>
-    <div class="vios">
-        <div class="vio">
-            <tr>
-                @foreach($badbuttons as $badbutton)
-                        <div class="viodetail">
-                            <li class="list-group-item">
-                                {{ $badbutton['user_id'] }}
-                                {{ $badbutton['reason'] }}
-                                <a href="{{ route('edmonds_edit') }}">確認</a>
-                            </li>
-                        </div>
-                @endforeach
-            </tr>
-        </div>
+<div class="card text-center">
+    <div class="card-header">
+        Violation Form
     </div>
+    <form action="{{ route('store.edviolation') }}" method="POSt" enctype="multipart/form-data">
+        @csrf
+        <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+        <input type="hidden" name="edmondspost_id" value="{{$id}}">
+        <input type="hidden" name="seattlepost_id" value= 0 >
+        <div class="card-body">
+            <h5 class="card-title">Name</h5>
+            <input type='text' name='name' rows="50" cols="50" value=""></input><br><br>
+            <h5 class="card-title">Why is this inappropriate??</h5>
+            <input type='text' name='reason' rows="50" cols="50" value=""></input>
+        </div>
+        <button type="submit" class="btn btn-primary">Send</button>
+        </div>
+    </form>
 </div>
 </body>
 </html>

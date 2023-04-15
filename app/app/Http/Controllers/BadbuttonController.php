@@ -5,20 +5,18 @@ namespace App\Http\Controllers;
 use App\Badbutton;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
-
+use App\EdmondsPost;
 class BadbuttonController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      */
-    public function index(Badbutton  $badbutton)
+    public function index(Badbutton  $badbuttons)
     {
-        $badbutton = Badbutton::where('user_id', Auth::id());
-
+        $badbuttons = Badbutton::get();
         return view('badbuttonsform',[
-            'badbutton' => $badbutton,
+            'badbuttons' => $badbuttons,
         ]);
     }
 
@@ -29,7 +27,7 @@ class BadbuttonController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -51,7 +49,11 @@ class BadbuttonController extends Controller
      */
     public function show(Badbutton $badbutton)
     {
-        //
+        $edmondspost = New EdmondsPost;
+
+        $edv = $edmondspost->find('id');
+
+        return redirect()->route('edmonds_edit');
     }
 
     /**

@@ -104,7 +104,7 @@
                 <h3>"{{ $edpost['title'] }}"</h3>
                 <h4>{{ $edpost['date'] }}</h4>
                 <img src="{{ asset($edpost->image) }}"></a>
-                <a href="{{ route('violation') }}">
+                <a href="{{ route('edviolation', $edpost->id) }}">
                     <div class="badbutton"><input type="submit" value="BAD" class="btn btn-secondary" onclick='return confirm("Do not like this?");'></button></div>
                 </a>
             </div>

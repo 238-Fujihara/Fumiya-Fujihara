@@ -102,7 +102,9 @@
                 <h3>"{{ $seapost['title'] }}"</h3>
                 <h4>{{ $seapost['date'] }}</h4>
                 <img src="{{ asset($seapost->image) }}"></a>
-                <div class="badbutton"><input type="submit" value="BAD" class="btn btn-secondary" onclick='return confirm("Do not like this?");'></button></div>
+                <a href="{{ route('seaviolation',$seapost->id) }}">
+                    <div class="badbutton"><input type="submit" value="BAD" class="btn btn-secondary" onclick='return confirm("Do not like this?");'></button></div>
+                </a>
             </div>
             @endforeach
             </tr>

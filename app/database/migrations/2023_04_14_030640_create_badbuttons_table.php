@@ -15,7 +15,7 @@ class CreateBadbuttonsTable extends Migration
     {
         Schema::create('badbuttons', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->tinyinteger('user_id');
+            $table->integer('user_id');
             $table->tinyinteger('edmondspost_id');
             $table->tinyinteger('seattlepost_id');
             $table->timestamps();
