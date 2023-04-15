@@ -6,6 +6,8 @@ use App\Badbutton;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\EdmondsPost;
+use App\SeattlePost;
+
 class BadbuttonController extends Controller
 {
     /**
@@ -49,12 +51,9 @@ class BadbuttonController extends Controller
      */
     public function show(Badbutton $badbutton)
     {
-        $edmondspost = New EdmondsPost;
-
-        $edv = $edmondspost->find('id');
-
-        return redirect()->route('edmonds_edit');
+        return view('picsdetail')->with(compact('badbutton'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -74,9 +73,27 @@ class BadbuttonController extends Controller
      * @param  \App\Badbutton  $badbutton
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Badbutton $badbutton)
+    public function update(Request $request, $id)
     {
-        //
+        if($request->has('EdmondsPost')){
+            $edmondspost = EdmondsPost::find($id);
+            $edmondspost->del_flg = 1;
+            $edmondspost->save();
+            $badbutton = Badbutton::where('edmondspost_id', $id)->get();
+            foreach($badbutton as $val){
+                $val->delete();
+            }
+        }elseif($request->has('SeattlePost')){
+            $seattlepost = SeattlePost::find($id);
+            $seattlepost->del_flg = 1;
+            $seattlepost->save();
+            $badbutton = Badbutton::where('seattlepost_id', $id)->get();
+            foreach($badbutton as $val){
+                $val->delete();
+            }
+        }
+
+        return redirect('/badbuttons');
     }
 
     /**
@@ -87,6 +104,6 @@ class BadbuttonController extends Controller
      */
     public function destroy(Badbutton $badbutton)
     {
-        //
+        
     }
 }

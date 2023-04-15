@@ -34,10 +34,6 @@ Route::get('/',[DisplayController::class, 'index']);
 
 Route::get('/public/edmonds', [DisplayController::class, 'PublicEdmonds'])->name('public.edmonds');
 Route::get('/public/seattle', [DisplayController::class, 'PublicSeattle'])->name('public.seattle');
-Route::get('/edviolationform/{id}', [ViolationController::class, 'edviolationform'])->name('edviolation');
-Route::post('/edviolation', [ViolationController::class, 'edviolation'])->name('store.edviolation');
-Route::get('/seaviolationform/{id}', [ViolationController::class, 'seaviolationform'])->name('seaviolation');
-Route::post('/seaviolation', [ViolationController::class, 'seaviolation'])->name('store.seaviolation');;
 
 
 
@@ -53,6 +49,10 @@ Route::group(['middleware' => ['can:admin_only']], function () {
 Route::group(['middleware'=> 'auth'], function() {
     // Route::get('/edmonds/post', [DisplayController::class, 'EdmondsPost'])->name('edmonds.post');
     // Route::get('/seattle/post', [DisplayController::class, 'SeattlePost'])->name('seattle.post');
+    Route::get('/edviolationform/{id}', [ViolationController::class, 'edviolationform'])->name('edviolation');
+    Route::post('/edviolation', [ViolationController::class, 'edviolation'])->name('store.edviolation');
+    Route::get('/seaviolationform/{id}', [ViolationController::class, 'seaviolationform'])->name('seaviolation');
+    Route::post('/seaviolation', [ViolationController::class, 'seaviolation'])->name('store.seaviolation');
 
 
     Route::get('mainpage',[DisplayController::class, 'userlist'])->name('userlist');
@@ -74,10 +74,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-    // 設定関連のページのルーティング
-    // Route::name('settings.')->prefix('/settings')->group(function () {
-    //     Route::get('/', [SettingsController::class, 'index'])->name('index');
-    //     Route::put('/', [SettingsController::class, 'update'])->name('update');
-    // });
 });
 

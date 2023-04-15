@@ -64,12 +64,10 @@
     </div>
     <form action="{{ route('store.edviolation') }}" method="POSt" enctype="multipart/form-data">
         @csrf
-        <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+        <input type="hidden" name="name" value="{{ Auth::user()->name }}">
+        <input type="hidden" name="user_id" value="{{ Auth::user() }}">
         <input type="hidden" name="edmondspost_id" value="{{$id}}">
-        <input type="hidden" name="seattlepost_id" value= 0 >
         <div class="card-body">
-            <h5 class="card-title">Name</h5>
-            <input type='text' name='name' rows="50" cols="50" value=""></input><br><br>
             <h5 class="card-title">Why is this inappropriate??</h5>
             <input type='text' name='reason' rows="50" cols="50" value=""></input>
         </div>

@@ -58,20 +58,30 @@
     </div>
 </header>
 <body>
-    <div class="edpicsdetail">
-        <img src="{{ asset($edpost->image) }}">
-    </div>
-    <div class="editbutton">
-    <a href="{{ route('edmondsPost.edit',$edpost->id) }}">
-    <input type="submit" value="編集" class="btn btn-primary">
-    </a>
-    </div>
-    <div class="deletebutton">
-    <form action="{{ route('edmondsPost.destroy', ['edmondsPost' => $edpost->id]) }}" method="POST">
-        @csrf
-        @method('delete')
-            <input type="submit" value="削除" class="btn btn-danger" onclick='return confirm("削除しますか？");'>
-    </form>
-    </div>
+    @if(isset($badbutton->EdmondsPost))
+        <div>{{ $badbutton->EdmondsPost->title }}</div>
+            <div class="edpicsdetail">
+                <img src="{{ asset('/storage/images/' . $badbutton->EdmondsPost->image) }}">
+            </div>
+        <div class="deletebutton">
+            <form action="{{ route('badbuttons.update', $badbutton->EdmondsPost->id) }}" method="POST">
+                @csrf
+                @method('PUT')
+                    <input type="submit" name="EdmondsPost" value="削除" class="btn btn-danger" onclick='return confirm("削除しますか？");'>
+            </form>
+        </div>
+    @elseif(isset($badbutton->SeattlePost))
+        <div>{{ $badbutton->SeattlePost->title }}</div>
+            <div class="edpicsdetail">
+                <img src="{{ asset('/storage/images/' . $badbutton->SeattlePost->image) }}">
+            </div>
+        <div class="deletebutton">
+            <form action="{{ route('badbuttons.update', $badbutton->SeattlePost->id) }}" method="POST">
+                @csrf
+                @method('PUT')
+                    <input type="submit" name="SeattlePost"value="削除" class="btn btn-danger" onclick='return confirm("削除しますか？");'>
+            </form>
+        </div>
+    @endif
 </body>
 </html>

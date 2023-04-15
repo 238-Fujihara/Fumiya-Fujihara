@@ -96,8 +96,4 @@ class User extends Authenticatable
     public function posts(){
         return $this->hasMany('App\posts');
     }
-    public function comments(){
-        return $this->belongsto('App\comments');
-    }
-
 }

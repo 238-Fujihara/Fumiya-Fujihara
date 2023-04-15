@@ -64,9 +64,9 @@
                 @foreach($badbuttons as $badbutton)
                         <div class="viodetail">
                             <li class="list-group-item">
-                                {{ $badbutton['user_id'] }}
+                                {{ $badbutton['name'] }}
                                 {{ $badbutton['reason'] }}
-                                <a href="{{ route('edmonds_edit') }}">確認</a>
+                                <a href="{{ route('badbuttons.show', $badbutton['id']) }}">確認</a>
                             </li>
                         </div>
                 @endforeach

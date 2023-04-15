@@ -10,12 +10,12 @@ class Badbutton extends Model
         return $this->belongsTo('App\User');
     }
     public function EdmondsPost(){
-        return $this->belongsTo('App\EdmondsPost');
+        return $this->belongsTo('App\EdmondsPost','edmondspost_id');
     }
     public function SeattlePost(){
-        return $this->belongsTo('App\SeattlePost');
+        return $this->belongsTo('App\SeattlePost', 'seattlepost_id');
     }
     protected $fillable = [
-        'reason','edmondspost_id','seattlepost_id','user_id'
+        'reason','edmondspost_id','seattlepost_id','user_id', 'name',
     ];
 }

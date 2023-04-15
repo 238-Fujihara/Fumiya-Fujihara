@@ -29,17 +29,10 @@ class ViolationController extends Controller
         // $inputs=request()->validate([
         //     'reason' =>'required|max:200',
         // ]);
-                
-        // // 画像ファイルの保存場所指定
-        // if($edmondsPost['image']){
-        //     $filename=request()->file('image')->store('public/images');
-        //     $inputs['image']=basename($filename);
-        // }
-
+        $inputs['name']=$request->name;
         $inputs['user_id']=(int)$request->user_id;
         $inputs['reason']=$request->reason;
         $inputs['edmondspost_id']=(int)$request->edmondspost_id; 
-        $inputs['seattlepost_id']=(int)$request->seattlespost_id;
 
 
                 
@@ -67,16 +60,10 @@ class ViolationController extends Controller
         //     'reason' =>'required|max:200',
         // ]);
                 
-        // // 画像ファイルの保存場所指定
-        // if($edmondsPost['image']){
-        //     $filename=request()->file('image')->store('public/images');
-        //     $inputs['image']=basename($filename);
-        // }
-
+        $inputs['name']=$request->name;
         $inputs['user_id']=(int)$request->user_id;
         $inputs['reason']=$request->reason;
-        $inputs['edmondspost_id']=(int)$request->edmondspost_id; 
-        $inputs['seattlepost_id']=(int)$request->seattlespost_id;
+        $inputs['seattlepost_id']=(int)$request->seattlepost_id; 
 
 
                 
@@ -84,22 +71,5 @@ class ViolationController extends Controller
         $badbuttons->create($inputs);
         
         return redirect('/public/seattle');
-        
-    }
-
-
-    public function violationedit(Request $request)
-    {
-        return view('violationedits',[
-            'edposts' => $edmondsPost,
-        ]);
-    }
-    // public function violationconfirm(Badbutton $badbutton){
-
-    //     $badbutton = New Badbutton;
-
-    //     $badbutton->
-
-    //     // return redirect();
-    
+    }    
 }
