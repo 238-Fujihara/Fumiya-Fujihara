@@ -89,13 +89,4 @@ class RegistrationController extends Controller
                 
         return redirect('/public/seattle');
     }
-    public function EditEdmondsForm(){
-        dd(1);
-
-
-        return view('edmonds_edit');
-    }
-
-    
-
 }

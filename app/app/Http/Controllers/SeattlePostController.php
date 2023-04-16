@@ -105,7 +105,7 @@ class SeattlePostController extends Controller
         $seattlePost->date = $request->input('date');
         $seattlePost->save();
         
-        return redirect()->route('seattle_edit');
+        return redirect('/seattlePost');
 
     }
 
@@ -113,12 +113,11 @@ class SeattlePostController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\SeattlePost  $seattlePost
-     * @return \Illuminate\Http\Response
      */
     public function destroy(SeattlePost $seattlePost)
     {
         $seattlePost->delete();
 
-        return redirect()->route('seattle_edit');
+        return redirect('/seattlePost');
     }
 }
