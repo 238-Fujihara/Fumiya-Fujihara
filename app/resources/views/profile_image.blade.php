@@ -53,31 +53,8 @@
                 @endif
         </div>
     </header>
-    <h1>Edmonds</h1>
-    <div class="title">
-        <h2 class="title">What's your favorite??</h2>
-    </div>
-    <form action="{{ route('store.edmonds') }}" method='POST' enctype="multipart/form-data">
-        @csrf
-        <div class="selectpictures">
-        @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-        @endif
-            <input type='text' name='title' value="">
-            <input type="date" name="date" value="">
-            <input id="image" type="file" name="image" value="">
-        </div>
-        <div class="edmondspic">
-                <button type='submit' class='edmondspic-button'>投稿</buton>
-        </div>
+    <form action="{{ route('store.profile') }}" method='POST' enctype="multipart/form-data">
+        <input id="image" type="file" name="image" value=""></input>
     </form>
-
-
-
+</body>
 </html>

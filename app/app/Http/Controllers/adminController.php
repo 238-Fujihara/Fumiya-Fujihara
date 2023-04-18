@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\EdmondsPost;
+use App\SeattlePost;
+use App\Badbutton;
+
+
 
 
 class adminController extends Controller
@@ -23,10 +28,19 @@ class adminController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Badbutton $badbuttons)
     {
-//roleが100だったら管理画面にretun view
-//elseでreturn view('mainpage')
+        // if($badbuttons->has('EdmondsPost')){
+        //     $vioedmondspost = EdmondsPost::count('edmondspost_id');
+        // }elseif($badbuttons->has('SeattlePost')){
+        //     $vioseattlepost = SeattlePost::count('seattlepost_id');
+        // }
+
+        // return view('admin', [
+        //     'vioedmondspost'=> $vioedmondspost,
+        //     'vioseattlepost'=> $vioseattlepost,
+        // ]);
+
     }
 
     public function admin()

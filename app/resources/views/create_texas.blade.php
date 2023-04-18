@@ -23,6 +23,9 @@
             });
         });
 </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js" type="text/javascript"></script>
 
 </head>
 <body>
@@ -53,11 +56,11 @@
                 @endif
         </div>
     </header>
-    <h1>Edmonds</h1>
+    <h1>Texas</h1>
     <div class="title">
         <h2 class="title">What's your favorite??</h2>
     </div>
-    <form action="{{ route('store.edmonds') }}" method='POST' enctype="multipart/form-data">
+    <form action="{{ route('store.texas') }}" method='POST' enctype="multipart/form-data">
         @csrf
         <div class="selectpictures">
         @if ($errors->any())

@@ -23,6 +23,9 @@
             });
         });
 </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js" type="text/javascript"></script>
 
 </head>
 <body>
@@ -69,7 +72,11 @@
                 </button>
                 <div class="dropdown-menu" aria-labelledby="btnOpenMenu">
                     <a class="dropdown-item" href="{{ route('public.edmonds') }}">Edmonds</a>
-                    <a class="dropdown-item" href="{{ route('public.seattle') }}">Seattle</a>            
+                    <a class="dropdown-item" href="{{ route('public.seattle') }}">Seattle</a>    
+                    <a class="dropdown-item" href="{{ route('public.newyork') }}">New York</a>            
+                    <a class="dropdown-item" href="{{ route('public.la') }}">Los Angeles</a>            
+                    <a class="dropdown-item" href="{{ route('public.texas') }}">Texas</a>            
+        
                 </div>
             </div>
         </div>
@@ -103,7 +110,7 @@
             <div class="date">
                 <h3>"{{ $edpost['title'] }}"</h3>
                 <h4>{{ $edpost['date'] }}</h4>
-                <img src="{{ asset($edpost->image) }}"></a>
+                <a href="{{ asset($edpost->image) }}" data-lightbox="group"><img src="{{ asset($edpost->image) }}" width="100"></a>
                 <a href="{{ route('edviolation', $edpost->id) }}">
                     <div class="badbutton"><input type="submit" value="BAD" class="btn btn-secondary" onclick='return confirm("Do not like this?");'></button></div>
                 </a>

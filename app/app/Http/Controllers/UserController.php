@@ -101,6 +101,6 @@ class UserController extends Controller
     {
         $user->delete();
 
-        return view('maypage');
+        return view('mypage');
     }
 }

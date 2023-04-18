@@ -57,40 +57,23 @@
             @endif
     </div>
 </header>
-<div class="detail">  
-    <div id="map" style="height:600px">
-            </div>
-            <script src="{{ asset('/js/result.js') }}"></script>
-            <script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=AIzaSyCtg9SJM3YpINhidD-NoE2tp_Ftwpom_Oc&callback=initMap" async defer>
-	        </script>
+<body>
+<div class="card text-center">
+    <div class="card-header">
+        Violation Form
     </div>
-    <div class="introduction">
-        <p>A dynamic, urban city surrounded by unmatched natural beauty—and now it's all open for you to explore.</p>
-    </div>
-<div class="seattleintroduction">
-    <div>
-    <a href="{{ route('public.seattle') }}">
-        <img src="{{ asset('/storage/images/cropped-seattle-skyline.jpg') }}">
-    </a></div>
-    <p>Seattle, the closest city on the mainland to Japan, can be reached in about nine hours from Tokyo. 
-        It is the largest city in Washington State, about half the size of Japan, 
-        and has earned the nickname "Emerald City" for its beauty. 
-        Although located at the same latitude as Southern Sakhalin, far to the north 
-        of Hokkaido, it is blessed with a mild climate 
-        where the temperature falls below zero only a few days a year thanks to the warm currents flowing 
-        through the coastal waters, and there is no snow cover or typhoons. In winter, there are many cloudy 
-        and rainy days, but in summer, thanks to the rain, the landscape is lush and beautiful.</p>
+    <form action="{{ route('store.newyorkviolation') }}" method="POSt" enctype="multipart/form-data">
+        @csrf
+        <input type="hidden" name="name" value="{{ Auth::user()->name }}">
+        <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+        <input type="hidden" name="seattlepost_id" value= "{{$id}}" >
+        <div class="card-body">
+            <h5 class="card-title">Why is this inappropriate??</h5>
+            <input type='text' name='reason' rows="50" cols="50" value=""></input>
+        </div>
+        <button type="submit" class="btn btn-primary">Send</button>
+        </div>
+    </form>
 </div>
-<div class="edmondsintroduction">
-    <p>
-    Edmonds is known for its small-town charm and maritime scenery, 
-    but did you know it's also home to world-class food and drink, 
-    lush parks, and easy hiking trails? In a city where the trees meet the sea, 
-    we have many ways for you to experience both types of views in the same day—and even on the same hike! 
-    </p>
-    <div>
-    <a href="{{ route('public.edmonds') }}">
-        <img src="{{ asset('/storage/images/R (3).jfif') }}">
-    </div>
 </body>
 </html>

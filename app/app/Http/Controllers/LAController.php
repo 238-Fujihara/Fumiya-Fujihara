@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\EdmondsPost;
+use App\LAPost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 
 
-class EdmondsPostController extends Controller
-{   public $edmondspost;
-    public function __construct(EdmondsPost $edmondspost){
-        $this->edmondspost = $edmondspost;
+class LAController extends Controller
+{   public $lapost;
+    public function __construct(LAPost $lapost){
+        $this->lapost = $lapost;
     }
 
     /**
@@ -19,14 +19,14 @@ class EdmondsPostController extends Controller
      *
      */
 
-    public function index(EdmondsPost $edmondsPost)
+    public function index(LAPost $edmondsPost)
     {
-        $edmondsPost = EdmondsPost::where('user_id', Auth::id());
+        $laPost = LAPost::where('user_id', Auth::id());
 
-        $edmondsPost = $this->edmondspost->getimages();
+        $laPost = $this->lapost->getimages();
 
-        return view('edmonds',[
-            'edposts' => $edmondsPost,
+        return view('la',[
+            'laposts' => $laPost,
         ]);
 
         
@@ -57,28 +57,28 @@ class EdmondsPostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\EdmondsPost  $edmondsPost
+     * @param  \App\LAPost  $laPost
      */
-    public function show(EdmondsPost $edmondsPost, $id)
+    public function show(LAPost $laPost, $id)
     {
-        $edmondsPost = EdmondsPost::where('user_id', $id);
-        $edmondsPost->image = '/storage/images/' . $edmondsPost->image;
+        $laPost = LAPost::where('user_id', $id);
+        $laPost->image = '/storage/images/' . $laPost->image;
 
-        return view('edmonds',[
-            'edposts' => $edmondsPost,
+        return view('la',[
+            'laposts' => $laPost,
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\EdmondsPost  $edmondsPost
+     * @param  \App\LAPost  $laPost
      */
-    public function edit(EdmondsPost $edmondsPost)
+    public function edit(LAPost $laPost)
     {
             
-        return view('edmonds_edit',[
-            'edposts' => $edmondsPost,
+        return view('la_edit',[
+            'laposts' => $laPost,
         ]);
 
     }
@@ -87,7 +87,7 @@ class EdmondsPostController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\EdmondsPost  $edmondsPost
+     * @param  \App\LAPost  $laPost
      */
     public function update(Request $request, $id)
     {
@@ -101,11 +101,11 @@ class EdmondsPostController extends Controller
             ->withInput()
             ->withErrors($validator);
         }
-        $edmondsPost = EdmondsPost::find($id);
+        $laPost = LAPost::find($id);
 
-        $edmondsPost->title = $request->input('title');
-        $edmondsPost->date = $request->input('date');
-        $edmondsPost->save();
+        $laPost->title = $request->input('title');
+        $laPost->date = $request->input('date');
+        $laPost->save();
         
         return redirect()->route('my.page');
     }
@@ -113,12 +113,12 @@ class EdmondsPostController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\EdmondsPost  $edmondsPost
+     * @param  \App\LAPost  $laPost
      * @return \Illuminate\Http\Response
      */
-    public function destroy(EdmondsPost $edmondsPost)
+    public function destroy(LAPost $laPost)
     {
-        $edmondsPost->delete();
+        $laPost->delete();
 
         return redirect()->route('my.page');
 }

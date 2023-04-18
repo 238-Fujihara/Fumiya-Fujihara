@@ -2,34 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use App\EdmondsPost;
+use App\NewYorkPost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 
 
-class EdmondsPostController extends Controller
-{   public $edmondspost;
-    public function __construct(EdmondsPost $edmondspost){
-        $this->edmondspost = $edmondspost;
-    }
+class NewYorkController extends Controller
 
+{   public $newyorkpost;
+    public function __construct(NewYorkPost $newyorkpost){
+        $this->newyorkpost = $newyorkpost;
+    }
     /**
      * Display a listing of the resource.
      *
      */
-
-    public function index(EdmondsPost $edmondsPost)
+    public function index()
     {
-        $edmondsPost = EdmondsPost::where('user_id', Auth::id());
+        $newyorkpost = NewYorkPost::where('user_id', Auth::id());
 
-        $edmondsPost = $this->edmondspost->getimages();
+        $newyorkpost = $this->newyorkpost->getimages();
 
-        return view('edmonds',[
-            'edposts' => $edmondsPost,
+        return view('newyork',[
+            'nyposts' =>  $newyorkpost,
         ]);
-
-        
 
     }
 
@@ -51,34 +48,34 @@ class EdmondsPostController extends Controller
      */
     public function store(Request $request)
     {
-        
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\EdmondsPost  $edmondsPost
+     * @param  \App\NewYorkPost  $newYorkPost
      */
-    public function show(EdmondsPost $edmondsPost, $id)
+    public function show(NewYorkPost $newYorkPost, $id)
     {
-        $edmondsPost = EdmondsPost::where('user_id', $id);
-        $edmondsPost->image = '/storage/images/' . $edmondsPost->image;
+        $nyPost = NewYorkPost::where('user_id', $id);
+        $nyPost->image = '/storage/images/' . $nyPost->image;
 
-        return view('edmonds',[
-            'edposts' => $edmondsPost,
+        return view('newyork',[
+            'nyposts' => $nyPost,
         ]);
+
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\EdmondsPost  $edmondsPost
+     * @param  \App\NewYorkPost  $newYorkPost
      */
-    public function edit(EdmondsPost $edmondsPost)
+    public function edit(NewYorkPost $newYorkPost)
     {
-            
-        return view('edmonds_edit',[
-            'edposts' => $edmondsPost,
+        return view('newyork_edit',[
+            'nyposts' =>  $newYorkPost,
         ]);
 
     }
@@ -87,9 +84,9 @@ class EdmondsPostController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\EdmondsPost  $edmondsPost
+     * @param  \App\NewYorkPost  $newYorkPost
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,  $id)
     {
         $validator = Validator::make($request->all(), [
             'title'  => 'required|string',
@@ -101,25 +98,27 @@ class EdmondsPostController extends Controller
             ->withInput()
             ->withErrors($validator);
         }
-        $edmondsPost = EdmondsPost::find($id);
+        $newYorkPost = NewYorkPost::find($id);
 
-        $edmondsPost->title = $request->input('title');
-        $edmondsPost->date = $request->input('date');
-        $edmondsPost->save();
+        $newYorkPost->title = $request->input('title');
+        $newYorkPost->date = $request->input('date');
+        $newYorkPost->save();
         
         return redirect()->route('my.page');
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\EdmondsPost  $edmondsPost
+     * @param  \App\NewYorkPost  $newYorkPost
      * @return \Illuminate\Http\Response
      */
-    public function destroy(EdmondsPost $edmondsPost)
+    public function destroy(NewYorkPost $newYorkPost)
     {
-        $edmondsPost->delete();
+        $newYorkPost->delete();
 
         return redirect()->route('my.page');
-}
+
+    }
 }

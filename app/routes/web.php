@@ -31,6 +31,12 @@ Auth::routes();
 Route::get('/',[DisplayController::class, 'index']);
 Route::get('/public/edmonds', [DisplayController::class, 'PublicEdmonds'])->name('public.edmonds');
 Route::get('/public/seattle', [DisplayController::class, 'PublicSeattle'])->name('public.seattle');
+Route::get('/public/newyork', [DisplayController::class, 'PublicNewYork'])->name('public.newyork');
+Route::get('/public/la', [DisplayController::class, 'PublicLA'])->name('public.la');
+Route::get('/public/texas', [DisplayController::class, 'PublicTexas'])->name('public.texas');
+Route::get('/public/colorado', [DisplayController::class, 'Publiccolorado'])->name('public.colorado');
+
+
 
 Route::group(['middleware' => ['can:admin_only']], function () {
     Route::get('/adminpage', 'adminController@adminpage')->name('adminpage');
@@ -42,6 +48,13 @@ Route::group(['middleware'=> 'auth'], function() {
     Route::post('/edviolation', [ViolationController::class, 'edviolation'])->name('store.edviolation');
     Route::get('/seaviolationform/{id}', [ViolationController::class, 'seaviolationform'])->name('seaviolation');
     Route::post('/seaviolation', [ViolationController::class, 'seaviolation'])->name('store.seaviolation');
+    Route::get('/texasviolationform/{id}', [ViolationController::class, 'texasviolationform'])->name('texasviolation');
+    Route::post('/texasviolation', [ViolationController::class, 'texasviolation'])->name('store.texasviolation');
+    Route::get('/laviolationform/{id}', [ViolationController::class, 'laviolationform'])->name('laviolation');
+    Route::post('/laviolation', [ViolationController::class, 'laviolation'])->name('store.laviolation');
+    Route::get('/newyorkviolationform/{id}', [ViolationController::class, 'newyorkviolationform'])->name('newyorkviolation');
+    Route::post('/newyorkviolation', [ViolationController::class, 'newyorkviolation'])->name('store.newyorkviolation');
+
 
 
     Route::get('mainpage',[DisplayController::class, 'userlist'])->name('userlist');
@@ -49,11 +62,27 @@ Route::group(['middleware'=> 'auth'], function() {
     Route::resource('/edmondsPost', 'EdmondsPostController');
     Route::resource('/seattlePost','SeattlePostController');
     Route::resource('/user', 'UserController');
+    Route::resource('/newyorkPost','NewYorkController');
+    Route::resource('/laPost','LAController');
+    Route::resource('/texasPost','TexasController');
+    Route::resource('/coloradoPost','ColoradoController');
+
 
 
     Route::get('create_edmonds', [RegistrationController::class, 'createEdmondsForm'])->name('create.edmonds');
     Route::post('/create_edmonds', [RegistrationController::class, 'createEdmonds'])->name('store.edmonds');
     Route::get('create_seattle', [RegistrationController::class, 'createSeattleForm'])->name('create.seattle');
     Route::post('/create_seattle', [RegistrationController::class, 'createSeattle'])->name('store.seattle');
+    Route::get('create_newyork', [RegistrationController::class, 'createNYForm'])->name('create.newyork');
+    Route::post('/create_newyork', [RegistrationController::class, 'createNY'])->name('store.newyork');
+    Route::get('create_la', [RegistrationController::class, 'createLAForm'])->name('create.la');
+    Route::post('/create_la', [RegistrationController::class, 'createLA'])->name('store.la');
+    Route::get('create_texas', [RegistrationController::class, 'createTexasForm'])->name('create.texas');
+    Route::post('/create_texas', [RegistrationController::class, 'createTexas'])->name('store.texas');
+    Route::get('create_colorado', [RegistrationController::class, 'createColoradoForm'])->name('create.colorado');
+    Route::post('/create_colorado', [RegistrationController::class, 'createColorado'])->name('store.colorado');
+
+
+    Route::post('/mypage', [RegistrationController::class, 'CreateProfile'])->name('store.profile');
 });
 

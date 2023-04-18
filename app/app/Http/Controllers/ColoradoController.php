@@ -2,34 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\EdmondsPost;
+use App\ColoradoPost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 
 
-class EdmondsPostController extends Controller
-{   public $edmondspost;
-    public function __construct(EdmondsPost $edmondspost){
-        $this->edmondspost = $edmondspost;
+class ColoradoController extends Controller
+{   public $coloradopost;
+    public function __construct(ColoradoPost $coloradopost){
+        $this->coloradopost = $coloradopost;
     }
-
     /**
      * Display a listing of the resource.
      *
      */
-
-    public function index(EdmondsPost $edmondsPost)
+    public function index()
     {
-        $edmondsPost = EdmondsPost::where('user_id', Auth::id());
+        $coloradoPost = ColoradoPost::where('user_id', Auth::id());
 
-        $edmondsPost = $this->edmondspost->getimages();
+        $coloradoPost = $this->coloradopost->getimages();
 
-        return view('edmonds',[
-            'edposts' => $edmondsPost,
+        return view('colorado',[
+            'coloradoposts' => $coloradoPost,
         ]);
-
-        
 
     }
 
@@ -51,34 +47,34 @@ class EdmondsPostController extends Controller
      */
     public function store(Request $request)
     {
-        
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\EdmondsPost  $edmondsPost
+     * @param  \App\ColoradoPost  $coloradoPost
      */
-    public function show(EdmondsPost $edmondsPost, $id)
+    public function show(ColoradoPost $coloradoPost, $id)
     {
-        $edmondsPost = EdmondsPost::where('user_id', $id);
-        $edmondsPost->image = '/storage/images/' . $edmondsPost->image;
+        $coloradoPost = ColoradoPost::where('user_id', $id);
+        $coloradoPost->image = '/storage/images/' . $coloradoPost->image;
 
-        return view('edmonds',[
-            'edposts' => $edmondsPost,
+        return view('colorado',[
+            'coloradoposts' => $coloradoPost,
         ]);
+
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\EdmondsPost  $edmondsPost
+     * @param  \App\ColoradoPost  $coloradoPost
      */
-    public function edit(EdmondsPost $edmondsPost)
+    public function edit(ColoradoPost $coloradoPost)
     {
-            
-        return view('edmonds_edit',[
-            'edposts' => $edmondsPost,
+        return view('colorado_edit',[
+            'coloradoposts' => $coloradoPost,
         ]);
 
     }
@@ -87,7 +83,7 @@ class EdmondsPostController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\EdmondsPost  $edmondsPost
+     * @param  \App\ColoradoPost  $coloradoPost
      */
     public function update(Request $request, $id)
     {
@@ -101,25 +97,28 @@ class EdmondsPostController extends Controller
             ->withInput()
             ->withErrors($validator);
         }
-        $edmondsPost = EdmondsPost::find($id);
+        $coloradoPost = ColoradoPost::find($id);
 
-        $edmondsPost->title = $request->input('title');
-        $edmondsPost->date = $request->input('date');
-        $edmondsPost->save();
+        $coloradoPost->title = $request->input('title');
+        $coloradoPost->date = $request->input('date');
+        $coloradoPost->save();
         
         return redirect()->route('my.page');
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\EdmondsPost  $edmondsPost
+     * @param  \App\ColoradoPost  $coloradoPost
      * @return \Illuminate\Http\Response
      */
-    public function destroy(EdmondsPost $edmondsPost)
+    public function destroy(ColoradoPost $coloradoPost)
     {
-        $edmondsPost->delete();
+        $coloradoPost->delete();
 
         return redirect()->route('my.page');
 }
+
+    
 }

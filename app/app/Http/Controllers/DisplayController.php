@@ -5,6 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\EdmondsPost;
 use App\SeattlePost;
+use App\NewYorkPost;
+use App\LAPost;
+use App\TexasPost;
+use App\ColoradoPost;
+
+
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -14,9 +20,17 @@ class DisplayController extends Controller
 {
     public $edmondspost;
     public $seattlepost;
-    public function __construct(EdmondsPost $edmondspost, SeattlePost $seattlepost){
+    public $newyorkpost;
+    public $lapost;
+    public $texaspost;
+
+    public function __construct(EdmondsPost $edmondspost, SeattlePost $seattlepost, NewYorkPost $newyorkpost, LAPost $lapost, TexasPost $texaspost){
         $this->edmondspost = $edmondspost;
         $this->seattlepost = $seattlepost;
+        $this->newyorkpost = $newyorkpost;
+        $this->lapost = $lapost;
+        $this->texaspost = $texaspost;
+
     }
 
 
@@ -30,51 +44,6 @@ class DisplayController extends Controller
         return view('mainpage');
 
     }
-
-
-
-        // $edmondspost = New EdmondsPost;
-
-        // $edall = $edmondspost->where('del_flg', 0)->where('user_id', Auth::id());
-
-        // $from = $request['from'];
-        // $until = $request['until'];
-
-        // $fromdate = $request->input('from');
-        // $untildate = $request->input('until');
-
-
-
-
-        // $keyword = $request->input('keyword');
-
-        // $query = EdmondsPost::query();
-
-        // if($from && $until && !empty($keyword)){
-        //     $query = $query->whereBetween('date', [$from, $until]);
-        //     $query->where('title' ,'LIKE', "%{$keyword}%");
-        //     // dd($edall);
-        // }
-        // elseif($from && $until){
-        //     $edall = $edall->whereBetween('date', [$from, $until]);
-        // }
-        // elseif(!empty($keyword)){
-        //     $query->where('title' ,'LIKE', "%{$keyword}%");
-        // }
-
-
-        // $edall = $query->get();
-        // foreach($edall as $val){
-        //     $val->image= '/storage/images/' . $val->image;
-        // }
-   
-        // return view('edmonds',[
-        //     'edposts' => $edall,
-        //     'fromdate' => $fromdate,
-        //     'untildate' => $untildate,
-        //     'keyword' => $keyword,    
-        // ]);
-    
 
     public function SeattlePost(Request $request){
 
@@ -270,6 +239,198 @@ class DisplayController extends Controller
         ]);
 
     }
+    public function PublicNewYork(Request $request){
+
+        $newyorkpost = New NewYorkPost;
+
+        $nyall = $newyorkpost->where('del_flg', 0)->where('user_id', Auth::id());
+
+        $from = $request['from'];
+        $until = $request['until'];
+
+        $fromdate = $request->input('from');
+        $untildate = $request->input('until');
+
+
+
+
+        $keyword = $request->input('keyword');
+
+        $nyall = NewYorkPost::query();
+
+        if($from && $until && !empty($keyword)){
+            $nyall = $nyall->whereBetween('date', [$from, $until]);
+            $nyall->where('title' ,'LIKE', "%{$keyword}%");
+        }
+        elseif($from && $until){
+            $nyall = $nyall->whereBetween('date', [$from, $until]);
+        }
+        elseif(!empty($keyword)){
+            $nyall->where('title' ,'LIKE', "%{$keyword}%");
+        }
+
+
+        $nyall = $nyall->get();
+        foreach($nyall as $val){
+            $val->image= '/storage/images/' . $val->image;
+        }
+
+        $badbutton = EdmondsPost::where('badbutton');
+
+   
+        return view('publicnewyork',[
+            'nyposts' => $nyall,
+            'fromdate' => $fromdate,
+            'untildate' => $untildate,
+            'keyword' => $keyword,  
+            'badbutton' => $badbutton,   
+        ]);
+    }
+    public function PublicLA(Request $request){
+
+        $lapost = New LAPost;
+
+        $lapost = $lapost->where('del_flg', 0)->where('user_id', Auth::id());
+
+        $from = $request['from'];
+        $until = $request['until'];
+
+        $fromdate = $request->input('from');
+        $untildate = $request->input('until');
+
+
+
+
+        $keyword = $request->input('keyword');
+
+        $lapost =LAPost::query();
+
+        if($from && $until && !empty($keyword)){
+            $lapost = $lapost->whereBetween('date', [$from, $until]);
+            $lapost->where('title' ,'LIKE', "%{$keyword}%");
+        }
+        elseif($from && $until){
+            $lapost = $lapost->whereBetween('date', [$from, $until]);
+        }
+        elseif(!empty($keyword)){
+            $lapost->where('title' ,'LIKE', "%{$keyword}%");
+        }
+
+
+        $lapost =$lapost->get();
+        foreach($lapost as $val){
+            $val->image= '/storage/images/' . $val->image;
+        }
+
+        $badbutton = LAPost::where('badbutton');
+
+   
+        return view('publicla',[
+            'laposts' => $lapost,
+            'fromdate' => $fromdate,
+            'untildate' => $untildate,
+            'keyword' => $keyword,  
+            'badbutton' => $badbutton,   
+        ]);
+    }
+    public function PublicTexas(Request $request){
+
+        $texaspost = New TexasPost;
+
+        $texaspost = $texaspost->where('del_flg', 0)->where('user_id', Auth::id());
+
+        $from = $request['from'];
+        $until = $request['until'];
+
+        $fromdate = $request->input('from');
+        $untildate = $request->input('until');
+
+
+
+
+        $keyword = $request->input('keyword');
+
+        $texaspost =TexasPost::query();
+
+        if($from && $until && !empty($keyword)){
+            $texaspost = $texaspost->whereBetween('date', [$from, $until]);
+            $texaspost->where('title' ,'LIKE', "%{$keyword}%");
+        }
+        elseif($from && $until){
+            $texaspost = $texaspost->whereBetween('date', [$from, $until]);
+        }
+        elseif(!empty($keyword)){
+            $texaspost->where('title' ,'LIKE', "%{$keyword}%");
+        }
+
+
+        $texaspost =$texaspost->get();
+        foreach($texaspost as $val){
+            $val->image= '/storage/images/' . $val->image;
+        }
+
+        $badbutton = TexasPost::where('badbutton');
+
+   
+        return view('publictexas',[
+            'texasposts' => $texaspost,
+            'fromdate' => $fromdate,
+            'untildate' => $untildate,
+            'keyword' => $keyword,  
+            'badbutton' => $badbutton,   
+        ]);
+    }
+    public function PublicColorado(Request $request){
+
+        $coloradopost = New ColoradoPost;
+
+        $coloradopost = $coloradopost->where('del_flg', 0)->where('user_id', Auth::id());
+
+        $from = $request['from'];
+        $until = $request['until'];
+
+        $fromdate = $request->input('from');
+        $untildate = $request->input('until');
+
+
+
+
+        $keyword = $request->input('keyword');
+
+        $coloradopost = ColoradoPost::query();
+
+        if($from && $until && !empty($keyword)){
+            $coloradopost = $coloradopost->whereBetween('date', [$from, $until]);
+            $coloradopost->where('title' ,'LIKE', "%{$keyword}%");
+        }
+        elseif($from && $until){
+            $coloradopost = $coloradopost->whereBetween('date', [$from, $until]);
+        }
+        elseif(!empty($keyword)){
+            $coloradopost->where('title' ,'LIKE', "%{$keyword}%");
+        }
+
+
+        $coloradopost = $coloradopost->get();
+        foreach($coloradopost as $val){
+            $val->image= '/storage/images/' . $val->image;
+        }
+
+        $badbutton = ColoradoPost::where('badbutton');
+
+   
+        return view('publiccolorado',[
+            'coloradoposts' => $coloradopost,
+            'fromdate' => $fromdate,
+            'untildate' => $untildate,
+            'keyword' => $keyword,  
+            'badbutton' => $badbutton,   
+        ]);
+    }
+
+
+
+
 
 
 }

@@ -71,5 +71,95 @@ class ViolationController extends Controller
         $badbuttons->create($inputs);
         
         return redirect('/public/seattle');
-    }    
+    }   
+    public function laviolationform($id){
+
+
+        return view('laviolationform',[
+            "id" => $id,
+        ]);
+    }
+    public function laviolation(Request $request){
+
+        $badbuttons = New Badbutton;
+        $inputs=[];
+
+        // // バリデーションルール
+        // $inputs=request()->validate([
+        //     'reason' =>'required|max:200',
+        // ]);
+        $inputs['name']=$request->name;
+        $inputs['user_id']=(int)$request->user_id;
+        $inputs['reason']=$request->reason;
+        $inputs['edmondspost_id']=(int)$request->edmondspost_id; 
+
+
+                
+        // postを保存
+        $badbuttons->create($inputs);
+        
+        return redirect('/public/la');
+        
+    }
+    public function newyorkviolationform($id){
+
+
+        return view('newyorkviolationform',[
+            "id" => $id,
+        ]);
+    }
+    public function newyorkviolation(Request $request){
+
+        $badbuttons = New Badbutton;
+        $inputs=[];
+
+        // // バリデーションルール
+        // $inputs=request()->validate([
+        //     'reason' =>'required|max:200',
+        // ]);
+        $inputs['name']=$request->name;
+        $inputs['user_id']=(int)$request->user_id;
+        $inputs['reason']=$request->reason;
+        $inputs['edmondspost_id']=(int)$request->edmondspost_id; 
+
+
+                
+        // postを保存
+        $badbuttons->create($inputs);
+        
+        return redirect('/public/newyork');
+        
+    }
+    public function texasviolationform($id){
+
+
+        return view('texasviolationform',[
+            "id" => $id,
+        ]);
+    }
+    public function texasviolation(Request $request){
+
+        $badbuttons = New Badbutton;
+        $inputs=[];
+
+        // // バリデーションルール
+        // $inputs=request()->validate([
+        //     'reason' =>'required|max:200',
+        // ]);
+        $inputs['name']=$request->name;
+        $inputs['user_id']=(int)$request->user_id;
+        $inputs['reason']=$request->reason;
+        $inputs['edmondspost_id']=(int)$request->edmondspost_id; 
+
+
+                
+        // postを保存
+        $badbuttons->create($inputs);
+        
+        return redirect('/public/texas');
+        
+    }
+
+
+ 
 }

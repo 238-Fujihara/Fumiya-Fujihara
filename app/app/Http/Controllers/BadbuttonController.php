@@ -17,8 +17,17 @@ class BadbuttonController extends Controller
     public function index(Badbutton  $badbuttons)
     {
         $badbuttons = Badbutton::get();
+
+        // if($badbuttons->has('EdmondsPost')){
+        //     $vioedmondspost = EdmondsPost::count('edmondspost_id');
+        // }elseif($badbuttons->has('SeattlePost')){
+        //     $vioseattlepost = SeattlePost::count('seattlepost_id');
+        // }
+
         return view('badbuttonsform',[
             'badbuttons' => $badbuttons,
+            // 'vioedmondspost' => $vioedmondspost,
+            // 'vioseattlepost'=> $vioseattlepost,
         ]);
     }
 
@@ -71,7 +80,6 @@ class BadbuttonController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Badbutton  $badbutton
-     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {

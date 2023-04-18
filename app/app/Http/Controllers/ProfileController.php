@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Validator;
+use App\Badbutton;
+use App\EdmondsPost;
+use App\SeattlePost;
 
 class ProfileController extends Controller
 {
@@ -34,7 +37,6 @@ class ProfileController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -50,11 +52,20 @@ class ProfileController extends Controller
      * Display the specified resource.
      *
      * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
      */
     public function show(User $user)
     {
-        //
+        // if($badbuttons->has('EdmondsPost')){
+        //     $vioedmondspost = EdmondsPost::count('edmondspost_id');
+        // }elseif($badbuttons->has('SeattlePost')){
+        //     $vioseattlepost = SeattlePost::count('seattlepost_id');
+        // }
+
+        // return view('admin', [
+        //     'vioedmondspost'=> $vioedmondspost,
+        //     'vioseattlepost'=> $vioseattlepost,
+        // ]);
+
     }
 
     /**
@@ -87,7 +98,7 @@ class ProfileController extends Controller
         return ['result' => $result];
 
         return view('admin');
-}
+    }
 
     /**
      * Remove the specified resource from storage.

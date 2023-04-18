@@ -8,12 +8,6 @@ use Illuminate\Support\Facades\Auth;
 
 class SeattlePost extends Model
 {
-    public function likes(){
-        return $this->belongsto('App\likes');
-}   
-    public function comments(){
-        return $this->belongsto('App\comments');
-}
     public function User(){
         return $this->belongsTo('App\users');
 }

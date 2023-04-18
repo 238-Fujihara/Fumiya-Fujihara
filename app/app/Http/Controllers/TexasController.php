@@ -2,34 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use App\EdmondsPost;
+use App\TexasPost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 
 
-class EdmondsPostController extends Controller
-{   public $edmondspost;
-    public function __construct(EdmondsPost $edmondspost){
-        $this->edmondspost = $edmondspost;
+class TexasController extends Controller
+{   public $texaspost;
+    public function __construct(TexasPost $texaspost){
+        $this->texaspost = $texaspost;
     }
-
     /**
      * Display a listing of the resource.
      *
      */
-
-    public function index(EdmondsPost $edmondsPost)
+    public function index()
     {
-        $edmondsPost = EdmondsPost::where('user_id', Auth::id());
+        $texaspost = TexasPost::where('user_id', Auth::id());
 
-        $edmondsPost = $this->edmondspost->getimages();
+        $texaspost = $this->texaspost->getimages();
 
-        return view('edmonds',[
-            'edposts' => $edmondsPost,
+        return view('texas',[
+            'texasposts' =>  $texaspost,
         ]);
 
-        
 
     }
 
@@ -51,34 +48,34 @@ class EdmondsPostController extends Controller
      */
     public function store(Request $request)
     {
-        
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\EdmondsPost  $edmondsPost
+     * @param  \App\TexasPost  $texasPost
      */
-    public function show(EdmondsPost $edmondsPost, $id)
+    public function show(TexasPost $texasPost, $id)
     {
-        $edmondsPost = EdmondsPost::where('user_id', $id);
-        $edmondsPost->image = '/storage/images/' . $edmondsPost->image;
+        $texasPost = TexasPost::where('user_id', $id);
+        $texasPost->image = '/storage/images/' . $texasPost->image;
 
-        return view('edmonds',[
-            'edposts' => $edmondsPost,
+        return view('texas',[
+            'texasposts' => $texasPost,
         ]);
+
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\EdmondsPost  $edmondsPost
+     * @param  \App\TexasPost  $texasPost
      */
-    public function edit(EdmondsPost $edmondsPost)
+    public function edit(TexasPost $texasPost)
     {
-            
-        return view('edmonds_edit',[
-            'edposts' => $edmondsPost,
+        return view('texas_edit',[
+            'texasposts' =>  $texasPost,
         ]);
 
     }
@@ -87,7 +84,7 @@ class EdmondsPostController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\EdmondsPost  $edmondsPost
+     * @param  \App\TexasPost  $texasPost
      */
     public function update(Request $request, $id)
     {
@@ -101,25 +98,27 @@ class EdmondsPostController extends Controller
             ->withInput()
             ->withErrors($validator);
         }
-        $edmondsPost = EdmondsPost::find($id);
+        $texasPost = TexasPost::find($id);
 
-        $edmondsPost->title = $request->input('title');
-        $edmondsPost->date = $request->input('date');
-        $edmondsPost->save();
+        $texasPost->title = $request->input('title');
+        $texasPost->date = $request->input('date');
+        $texasPost->save();
         
         return redirect()->route('my.page');
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\EdmondsPost  $edmondsPost
+     * @param  \App\TexasPost  $texasPost
      * @return \Illuminate\Http\Response
      */
-    public function destroy(EdmondsPost $edmondsPost)
+    public function destroy(TexasPost $texasPost)
     {
-        $edmondsPost->delete();
+        $texasPost->delete();
 
         return redirect()->route('my.page');
-}
+
+    }
 }

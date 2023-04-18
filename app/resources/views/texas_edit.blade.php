@@ -30,6 +30,9 @@
         <a href ="{{ ('/') }}"><h1>Seattlish</h1></a>
         <div class="login-register">
                 @if(Auth::check())
+                    @if(Auth::user()->role == 100)
+                <a href="{{ url('/admin') }}">管理者ページ</a><br>
+                @endif
                 <span class="may-navbar-item">{{ Auth::user()->name }}</span>
                 /
                 <a href="#" id="logout" class="logout">ログアウト</a>
@@ -44,39 +47,49 @@
                 </script>
                 @else
                 <a class="login" href="{{ route('login') }}">
-                <button type='submit' class='login-button'>ログイン</buton>
+                <button type='button' class='login-button'>ログイン</buton>
                 </a>
                 
                 <a class="register" href="{{ route('register') }}">
-                <button type='submit' class='register-button'>会員登録</buton>
+                <button type='button' class='register-button'>会員登録</buton>
                 </a>
                 @endif
         </div>
     </header>
     <h1>Edmonds</h1>
-    <div class="title">
-        <h2 class="title">What's your favorite??</h2>
-    </div>
-    <form action="{{ route('store.edmonds') }}" method='POST' enctype="multipart/form-data">
+    <form action="{{ route('texasPost.update',$texasposts->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
+        @method('patch')
         <div class="selectpictures">
-        @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
+                @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
         @endif
-            <input type='text' name='title' value="">
-            <input type="date" name="date" value="">
-            <input id="image" type="file" name="image" value="">
+            <div class="seatitle">
+                <input type='text' name='title' value="{{ $texasposts['title'] }}">
+            </div>
+            <div class="seadate">
+                <input type='date' name='date' value="{{ $texasposts['date'] }}">
+            </div>
+            <div class="seapics">
+                <img src="{{ asset('/storage/images/' . $texasposts['image']) }}">
+            </div>
         </div>
-        <div class="edmondspic">
-                <button type='submit' class='edmondspic-button'>投稿</buton>
+        <div class="ededit">
+            <button type='submit' class='edmondspic-button'>編集完了</button>
         </div>
     </form>
+    <form action="{{ route('texasPost.destroy', $texasposts->id) }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        @method('delete')
+        <button type='submit' class='btn btn-danger'>削除</button>
+    </form>
+
 
 
 

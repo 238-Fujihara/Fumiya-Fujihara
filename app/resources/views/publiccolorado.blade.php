@@ -63,8 +63,8 @@
     </div>
 </header>
 <body>
-<h1>Seattle</h1>
-<div class="regionname">
+<h1>Colorado</h1>
+        <div class="regionname">
             <div class="dropdown"> 
                 <button id="btnOpenMenu" class="btn btn-primary dropdown-toggle"  
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -72,46 +72,47 @@
                 </button>
                 <div class="dropdown-menu" aria-labelledby="btnOpenMenu">
                     <a class="dropdown-item" href="{{ route('public.edmonds') }}">Edmonds</a>
-                    <a class="dropdown-item" href="{{ route('public.seattle') }}">Seattle</a>  
+                    <a class="dropdown-item" href="{{ route('public.seattle') }}">Seattle</a>    
                     <a class="dropdown-item" href="{{ route('public.newyork') }}">New York</a>            
                     <a class="dropdown-item" href="{{ route('public.la') }}">Los Angeles</a>            
-                    <a class="dropdown-item" href="{{ route('public.texas') }}">Texas</a>            
+                    <a class="dropdown-item" href="{{ route('public.texas') }}">Texas</a>  
+                    <a class="dropdown-item" href="{{ route('public.colorado') }}">Colorado</a>            
           
+        
                 </div>
             </div>
         </div>
-  <div class="seattlepost">
-    <a class="seattlepost" href="{{ route('create.seattle') }}">
-    <button type='button' class="btn btn-secondary">新規投稿⊕</button>
-    </a></div>
-    <div class="searching">
-        <div class="datesearching">
-            <form action="{{ route('public.seattle') }}" method="GET">
+
+        <div class="seattlepost">
+            <a class="edmondspost" href="{{ route('create.colorado') }}">
+            <button type='button' class="btn btn-secondary">新規投稿⊕</button>
+            </a>
+        </div>
+            <div class="searching">
+                <div class="datesearching">
+                <form action="{{ route('public.colorado') }}" method="GET">
                     @csrf
                     <input type="date" name="from" placeholder="from_date" value="{{ $fromdate }}">
                         <span class="mx-3 text-grey">~</span>
                     <input type="date" name="until" placeholder="until_date" value="{{ $untildate }}"><br>
-        </div>
+                </div>
                     <div>
-                        <input type="text" name="keyword" placeholder="キーワード検索" value = "{{ $keyword }}">
+                    <input type="text" name="keyword" placeholder="キーワード検索" value = "{{ $keyword }}">
                     </div>
-    </div>
+            </div>
                     <div class="searchinginformation">
                         <button type="submit" class="btn btn-info">検索</button>
                     </div>
-            </form>
-    <div class="seattlepictures">
-        <div class="seattledetail">
+                </form>
+                <div class="edmondspictures">
+        <div class="edmondsdetail">
             <div class="picture">
             <tr>
-            @foreach($seaposts as $seapost)
+            @foreach($coloradoposts as $coloradopost)
             <div class="date">
-                <h3>"{{ $seapost['title'] }}"</h3>
-                <h4>{{ $seapost['date'] }}</h4>
-                <a href="{{ asset($seapost->image) }}" data-lightbox="group"><img src="{{ asset($seapost->image) }}" width="100"></a>
-                <a href="{{ route('seaviolation', $seapost->id) }}">
-                    <div class="badbutton"><input type="submit" value="BAD" class="btn btn-secondary" onclick='return confirm("Do not like this?");'></button></div>
-                </a>
+                <h3>"{{ $coloradopost['title'] }}"</h3>
+                <h4>{{ $coloradopost['date'] }}</h4>
+                <a href="{{ asset($coloradopost->image) }}" data-lightbox="group"><img src="{{ asset($coloradopost->image) }}" width="100"></a>
             </div>
             @endforeach
             </tr>
@@ -120,7 +121,7 @@
             <h4></h4>
         </div> 
     </div>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
