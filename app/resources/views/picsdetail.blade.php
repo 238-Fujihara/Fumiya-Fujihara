@@ -70,7 +70,7 @@
                     <input type="submit" name="EdmondsPost" value="削除" class="btn btn-danger" onclick='return confirm("削除しますか？");'>
             </form>
         </div>
-    @if(isset($badbutton->SeattlePost))
+    @elseif(isset($badbutton->SeattlePost))
         <div>{{ $badbutton->SeattlePost->title }}</div>
             <div class="edpicsdetail">
                 <img src="{{ asset('/storage/images/' . $badbutton->SeattlePost->image) }}">
@@ -82,7 +82,7 @@
                     <input type="submit" name="SeattlePost"value="削除" class="btn btn-danger" onclick='return confirm("削除しますか？");'>
             </form>
         </div>
-        @else(isset($badbutton->NewYorkPost))
+    @elseif(isset($badbutton->NewYorkPost))
         <div>{{ $badbutton->NewYorkPost->title }}</div>
             <div class="edpicsdetail">
                 <img src="{{ asset('/storage/images/' . $badbutton->NewYorkPost->image) }}">
@@ -94,7 +94,7 @@
                     <input type="submit" name="NewYorkPost" value="削除" class="btn btn-danger" onclick='return confirm("削除しますか？");'>
             </form>
         </div>
-        @if(isset($badbutton->LAPost))
+    @elseif(isset($badbutton->LAPost))
         <div>{{ $badbutton->LAPost->title }}</div>
             <div class="edpicsdetail">
                 <img src="{{ asset('/storage/images/' . $badbutton->LAPost->image) }}">
@@ -106,7 +106,7 @@
                     <input type="submit" name="LAPost" value="削除" class="btn btn-danger" onclick='return confirm("削除しますか？");'>
             </form>
         </div>
-        @else(isset($badbutton->TexasPost))
+    @else(isset($badbutton->TexasPost))
         <div>{{ $badbutton->TexasPost->title }}</div>
             <div class="edpicsdetail">
                 <img src="{{ asset('/storage/images/' . $badbutton->TexasPost->image) }}">

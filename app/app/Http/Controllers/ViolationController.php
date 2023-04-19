@@ -91,7 +91,7 @@ class ViolationController extends Controller
         $inputs['name']=$request->name;
         $inputs['user_id']=(int)$request->user_id;
         $inputs['reason']=$request->reason;
-        $inputs['edmondspost_id']=(int)$request->edmondspost_id; 
+        $inputs['lapost_id']=(int)$request->lapost_id; 
 
 
                 
@@ -120,7 +120,7 @@ class ViolationController extends Controller
         $inputs['name']=$request->name;
         $inputs['user_id']=(int)$request->user_id;
         $inputs['reason']=$request->reason;
-        $inputs['edmondspost_id']=(int)$request->edmondspost_id; 
+        $inputs['newyorkpost_id']=(int)$request->newyorkpost_id; 
 
 
                 
@@ -149,7 +149,7 @@ class ViolationController extends Controller
         $inputs['name']=$request->name;
         $inputs['user_id']=(int)$request->user_id;
         $inputs['reason']=$request->reason;
-        $inputs['edmondspost_id']=(int)$request->edmondspost_id; 
+        $inputs['texaspost_id']=(int)$request->texaspost_id; 
 
 
                 

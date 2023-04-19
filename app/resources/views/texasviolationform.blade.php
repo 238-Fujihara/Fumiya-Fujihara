@@ -66,7 +66,7 @@
         @csrf
         <input type="hidden" name="name" value="{{ Auth::user()->name }}">
         <input type="hidden" name="user_id" value="{{ Auth::user() }}">
-        <input type="hidden" name="edmondspost_id" value="{{$id}}">
+        <input type="hidden" name="texaspost_id" value="{{$id}}">
         <div class="card-body">
             <h5 class="card-title">Why is this inappropriate??</h5>
             <input type='text' name='reason' rows="50" cols="50" value=""></input>
