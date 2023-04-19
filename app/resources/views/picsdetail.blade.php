@@ -88,7 +88,7 @@
                 <img src="{{ asset('/storage/images/' . $badbutton->NewYorkPost->image) }}">
             </div>
         <div class="deletebutton">
-            <form action="{{ route('badbuttons.update', $badbutton->NewYork->id) }}" method="POST">
+            <form action="{{ route('badbuttons.update', $badbutton->NewYorkPost->id) }}" method="POST">
                 @csrf
                 @method('PUT')
                     <input type="submit" name="NewYorkPost" value="削除" class="btn btn-danger" onclick='return confirm("削除しますか？");'>

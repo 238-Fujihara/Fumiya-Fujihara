@@ -12,7 +12,7 @@ class NewYorkPostsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('newyork_posts')->insert([
+        DB::table('new_york_posts')->insert([
             'user_id'=>1,
             'title'=>"Edmonds",
             'date'=>"2023/03/18",

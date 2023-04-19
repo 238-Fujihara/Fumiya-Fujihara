@@ -19,7 +19,10 @@ class ProfileController extends Controller
     public function index()
     {
         $per_page = 3; // １ページごとの表示件数
-        $users = \App\User::paginate($per_page);
+        $users = User::paginate($per_page);
+
+
+
         return view('admin')->with('users', $users);
     }
 
@@ -104,13 +107,12 @@ class ProfileController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
      */
     public function destroy(User $user)
     {
         $result = $user->delete();
         return ['result' => $result];
 
-        return view('admin');
+        return redirect('admin');
     }
 }

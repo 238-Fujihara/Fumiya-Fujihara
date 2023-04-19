@@ -56,7 +56,7 @@
                 @endif
         </div>
     </header>
-    <h1>Edmonds</h1>
+    <h1>New York</h1>
     <form action="{{ route('newyorkPost.update',$nyposts->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('patch')

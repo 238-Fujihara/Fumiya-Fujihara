@@ -18,14 +18,14 @@ class NewYorkController extends Controller
      * Display a listing of the resource.
      *
      */
-    public function index()
+    public function index(NewYorkPost $newYorkPost)
     {
-        $newyorkpost = NewYorkPost::where('user_id', Auth::id());
+        $newYorkPost = NewYorkPost::where('user_id', Auth::id());
 
-        $newyorkpost = $this->newyorkpost->getimages();
+        $newYorkPost = $this->newyorkpost->getimages();
 
         return view('newyork',[
-            'nyposts' =>  $newyorkpost,
+            'nyposts' =>  $newYorkPost,
         ]);
 
     }
@@ -58,15 +58,14 @@ class NewYorkController extends Controller
      */
     public function show(NewYorkPost $newYorkPost, $id)
     {
-        $nyPost = NewYorkPost::where('user_id', $id);
-        $nyPost->image = '/storage/images/' . $nyPost->image;
+        $newYorkPost = NewYorkPost::where('user_id', $id);
+        $newYorkPost->image = '/storage/images/' . $newYorkPost->image;
 
         return view('newyork',[
-            'nyposts' => $nyPost,
+            'nyposts' => $newYorkPost,
         ]);
 
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -75,9 +74,8 @@ class NewYorkController extends Controller
     public function edit(NewYorkPost $newYorkPost)
     {
         return view('newyork_edit',[
-            'nyposts' =>  $newYorkPost,
+            'nyposts' => $newYorkPost,
         ]);
-
     }
 
     /**
