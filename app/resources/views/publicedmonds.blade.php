@@ -73,7 +73,7 @@
                 <div class="dropdown-menu" aria-labelledby="btnOpenMenu">
                     <a class="dropdown-item" href="{{ route('public.edmonds') }}">Edmonds</a>
                     <a class="dropdown-item" href="{{ route('public.seattle') }}">Seattle</a>    
-                    <a class="dropdown-item" href="{{ route('public.newyork') }}">New York</a>            
+                    <a class="dropdown-item" href="{{ route('public.washington') }}">Washington DC</a>            
                     <a class="dropdown-item" href="{{ route('public.la') }}">Los Angeles</a>            
                     <a class="dropdown-item" href="{{ route('public.texas') }}">Texas</a>            
         

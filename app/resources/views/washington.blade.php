@@ -23,8 +23,6 @@
             });
         });
 </script>
-<script src="like.js"></script>
-
 
 </head>
 <body>
@@ -41,7 +39,6 @@
             <form id="logout-form" action="{{ route('logout') }}" method="POST" syle="display:none;">
                 @csrf
                 <a href="{{ route('my.page') }}">マイページ</a>
-
             </form>
             <script>
                 document.getElementById('logout').addEventListener('click', function(event){
@@ -61,26 +58,31 @@
     </div>
 
 </header>
-    <h1>New York</h1>
-        <div class="seattlepost">
-            <a class="edmondspost" href="{{ route('create.newyork') }}">
-            <button type='button' class="btn btn-secondary">新規投稿⊕</button>
-            </a>
-        </div>
-    <div class="edmondspictures">
-        <div class="edpostdetail">
+<h1>Washington DC</h1>
+  <div class="seattlepost">
+    <a class="seattlepost" href="{{ route('create.washington') }}">
+    <button type='button' class="btn btn-secondary">新規投稿⊕</button>
+    </a></div>
+    <div class="seattlepictures">
+        <div class="seattledetail">
             <div class="picture">
             <tr>
-                @foreach($nyposts as $nypost)
-                    <div class="date">
-                        <h3>"{{ $nypost['title'] }}"</h3>
-                        <h4>[{{ $nypost['date'] }}]</h4>
-                        <a href="{{ route('newyorkPost.edit', $nypost->id) }}"><img src="{{ asset($nypost->image) }}"></a>
-                    </div>
-                @endforeach
+            @foreach($waposts as $wapost)
+            <div class="date">
+                <h3>"{{ $wapost['title'] }}"</h3>
+                <h4>{{ $wapost['date'] }}</h4>
+                <a href="{{ route('washingtonPost.edit', $wapost->id) }}"><img src="{{ asset($wapost->image) }}"></a>
+            </div>
+            @endforeach
             </tr>
             </div>              
-        </div>
+            
+            <h4></h4>
+        </div> 
     </div>
+    
+
+
+
 </body>
 </html>

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\EdmondsPost;
 use App\SeattlePost;
-use App\NewyorkPost;
+use App\WashingtonPost;
 use App\LAPost;
 use App\TexasPost;
 use App\ColoradoPost;
@@ -20,16 +20,16 @@ class RegistrationController extends Controller
 
 {    public $edmondspost;
     public $seattlepost;
-    public $newyorkpost;
+    public $washingtonpost;
     public $lapost;
     public $texaspost;
     public $coloradopost;
 
 
-    public function __construct(EdmondsPost $edmondspost, SeattlePost $seattlepost, NewYorkPost $newyorkpost, LAPost $lapost, TexasPost $texaspost, ColoradoPost $coloradopost){
+    public function __construct(EdmondsPost $edmondspost, SeattlePost $seattlepost, WashingtonPost $washingtonpost, LAPost $lapost, TexasPost $texaspost, ColoradoPost $coloradopost){
         $this->edmondspost = $edmondspost;
         $this->seattlepost = $seattlepost;
-        $this->newyorkpost = $newyorkpost;
+        $this->washingtonpost = $washingtonpost;
         $this->lapost = $lapost;
         $this->texaspost = $texaspost;
         $this->coloradopost = $coloradopost;
@@ -104,15 +104,15 @@ class RegistrationController extends Controller
                 
         return redirect('/public/seattle');
     }
-    public function createNYForm(){
+    public function createWAForm(){
 
-        return view('create_newyork');
+        return view('create_washington');
 
     }
-    public function createNY(Request $request){
+    public function createWA(Request $request){
 
         // 新規postを作成
-        $newyorkpost = new NewYorkPost();
+        $washingtonpost = new WashingtonPost();
         $inputs=[];
 
         // バリデーションルール
@@ -133,9 +133,9 @@ class RegistrationController extends Controller
         $inputs['date'] = $request->date;
                 
         // postを保存
-        $newyorkpost->create($inputs);
+        $washingtonpost->create($inputs);
         
-        return redirect('/public/newyork');
+        return redirect('/public/washington');
         
     }
     public function createLAForm(){

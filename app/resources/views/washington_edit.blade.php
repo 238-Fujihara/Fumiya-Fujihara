@@ -30,7 +30,7 @@
         <a href ="{{ ('/') }}"><h1>Seattlish</h1></a>
         <div class="login-register">
                 @if(Auth::check())
-                    @if(Auth::user()->role == 100)
+                @if(Auth::user()->role == 100)
                 <a href="{{ url('/admin') }}">管理者ページ</a><br>
                 @endif
                 <span class="may-navbar-item">{{ Auth::user()->name }}</span>
@@ -56,35 +56,35 @@
                 @endif
         </div>
     </header>
-    <h1>New York</h1>
-    <form action="{{ route('newyorkPost.update',$nyposts->id) }}" method="POST" enctype="multipart/form-data">
+    <h1>Seattle</h1>
+    <form action="{{ route('washingtonPost.update',$waposts->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('patch')
-        <div class="selectpictures">
-                @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-            <div class="seatitle">
-                <input type='text' name='title' value="{{ $nyposts['title'] }}">
-            </div>
-            <div class="seadate">
-                <input type='date' name='date' value="{{ $nyposts['date'] }}">
-            </div>
-            <div class="seapics">
-                <img src="{{ asset('/storage/images/' . $nyposts['image']) }}">
-            </div>
+    <div class="editpictures">
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+        <div class="seatitle">
+            <input type='text' name='title' value="{{ $waposts['title'] }}">
         </div>
-        <div class="ededit">
-            <button type='submit' class='edmondspic-button'>編集完了</button>
+        <div class="seadate">
+            <input type='date' name='date' value="{{ $waposts['date'] }}">
         </div>
+        <div class="seapics">
+            <img src="{{ asset('/storage/images/' . $waposts['image']) }}">
+        </div>
+    </div>
+    <div class="seaedit">
+            <button type='submit' class='seattlepic-button'>編集完了</buton>
+    </div>
     </form>
-    <form action="{{ route('newyorkPost.destroy', $nyposts->id) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('washingtonPost.destroy', $waposts->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('delete')
         <button type='submit' class='btn btn-danger'>削除</button>

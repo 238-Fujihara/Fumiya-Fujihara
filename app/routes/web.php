@@ -31,7 +31,7 @@ Auth::routes();
 Route::get('/',[DisplayController::class, 'index']);
 Route::get('/public/edmonds', [DisplayController::class, 'PublicEdmonds'])->name('public.edmonds');
 Route::get('/public/seattle', [DisplayController::class, 'PublicSeattle'])->name('public.seattle');
-Route::get('/public/newyork', [DisplayController::class, 'PublicNewYork'])->name('public.newyork');
+Route::get('/public/washington', [DisplayController::class, 'PublicWashington'])->name('public.washington');
 Route::get('/public/la', [DisplayController::class, 'PublicLA'])->name('public.la');
 Route::get('/public/texas', [DisplayController::class, 'PublicTexas'])->name('public.texas');
 Route::get('/public/colorado', [DisplayController::class, 'Publiccolorado'])->name('public.colorado');
@@ -62,7 +62,7 @@ Route::group(['middleware'=> 'auth'], function() {
     Route::resource('/edmondsPost', 'EdmondsPostController');
     Route::resource('/seattlePost','SeattlePostController');
     Route::resource('/user', 'UserController');
-    Route::resource('/newyorkPost','NewYorkController');
+    Route::resource('/washingtonPost','WashingtonPostController');
     Route::resource('/laPost','LAController');
     Route::resource('/texasPost','TexasController');
     Route::resource('/coloradoPost','ColoradoController');
@@ -73,8 +73,8 @@ Route::group(['middleware'=> 'auth'], function() {
     Route::post('/create_edmonds', [RegistrationController::class, 'createEdmonds'])->name('store.edmonds');
     Route::get('create_seattle', [RegistrationController::class, 'createSeattleForm'])->name('create.seattle');
     Route::post('/create_seattle', [RegistrationController::class, 'createSeattle'])->name('store.seattle');
-    Route::get('create_newyork', [RegistrationController::class, 'createNYForm'])->name('create.newyork');
-    Route::post('/create_newyork', [RegistrationController::class, 'createNY'])->name('store.newyork');
+    Route::get('create_washington', [RegistrationController::class, 'createWAForm'])->name('create.washington');
+    Route::post('/create_washington', [RegistrationController::class, 'createWA'])->name('store.washington');
     Route::get('create_la', [RegistrationController::class, 'createLAForm'])->name('create.la');
     Route::post('/create_la', [RegistrationController::class, 'createLA'])->name('store.la');
     Route::get('create_texas', [RegistrationController::class, 'createTexasForm'])->name('create.texas');

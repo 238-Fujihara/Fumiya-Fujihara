@@ -8,22 +8,30 @@ use Validator;
 use App\Badbutton;
 use App\EdmondsPost;
 use App\SeattlePost;
+use Illuminate\Support\Facades\DB;
+
 
 class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function index()
     {
         $per_page = 3; // １ページごとの表示件数
         $users = User::paginate($per_page);
 
+        $badcounts = DB::table('users')  //＄groupsは変数にいれてるだけ
+             ->leftJoin('badbuttons', 'users.id', '=', 'badbuttons.user_id')
+             ->select('users.id', DB::raw("count(badbuttons.user_id) as badcount"))
+             ->groupBy('users.id')
+             ->get();
 
-
-        return view('admin')->with('users', $users);
+        return view('admin',[
+            'users' => $users,
+         'badcounts' => $badcounts,
+        ]);
     }
 
     /**

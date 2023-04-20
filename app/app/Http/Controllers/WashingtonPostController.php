@@ -2,30 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\NewYorkPost;
+use App\WashingtonPost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 
 
-class NewYorkController extends Controller
-
-{   public $newyorkpost;
-    public function __construct(NewYorkPost $newyorkpost){
-        $this->newyorkpost = $newyorkpost;
+class WashingtonPostController extends Controller
+{
+    public $washingtonpost;
+    public function __construct(WashingtonPost $washingtonpost){
+        $this->washingtonpost = $washingtonpost;
     }
     /**
      * Display a listing of the resource.
      *
      */
-    public function index(NewYorkPost $newYorkPost)
+    public function index()
     {
-        $newYorkPost = NewYorkPost::where('user_id', Auth::id());
+        $washingtonpost = WashingtonPost::where('user_id', Auth::id());
 
-        $newYorkPost = $this->newyorkpost->getimages();
+        $washingtonpost = $this->washingtonpost->getimages();
 
-        return view('newyork',[
-            'nyposts' =>  $newYorkPost,
+        return view('washington',[
+            'waposts' =>  $washingtonpost,
         ]);
 
     }
@@ -54,35 +54,38 @@ class NewYorkController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\NewYorkPost  $newYorkPost
+     * @param  \App\WashingtonPost  $washingtonPost
      */
-    public function show(NewYorkPost $newYorkPost, $id)
+    public function show(WashingtonPost $washingtonPost, $id)
     {
-        $newYorkPost = NewYorkPost::where('user_id', $id);
-        $newYorkPost->image = '/storage/images/' . $newYorkPost->image;
+        $washingtonPost = WashingtonPost::where('user_id', $id);
+        $washingtonPost->image = '/storage/images/' . $washingtonPost->image;
 
-        return view('newyork',[
-            'nyposts' => $newYorkPost,
+        return view('washington',[
+            'waposts' => $washingtonPost,
         ]);
 
     }
+
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\NewYorkPost  $newYorkPost
+     * @param  \App\WashingtonPost  $washingtonPost
      */
-    public function edit(NewYorkPost $newYorkPost)
+    public function edit(WashingtonPost $washingtonPost)
     {
-        return view('newyork_edit',[
-            'nyposts' => $newYorkPost,
+        return view('washington_edit',[
+            'waposts' =>  $washingtonPost,
         ]);
+
+
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\NewYorkPost  $newYorkPost
+     * @param  \App\WashingtonPost  $washingtonPost
      */
     public function update(Request $request, $id)
     {
@@ -96,25 +99,26 @@ class NewYorkController extends Controller
             ->withInput()
             ->withErrors($validator);
         }
-        $newYorkPost = NewYorkPost::find($id);
+        $washingtonPost = WashingtonPost::find($id);
 
-        $newYorkPost->title = $request->input('title');
-        $newYorkPost->date = $request->input('date');
-        $newYorkPost->save();
+        $washingtonPost->title = $request->input('title');
+        $washingtonPost->date = $request->input('date');
+        $washingtonPost->save();
         
         return redirect()->route('my.page');
+
 
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\NewYorkPost  $newYorkPost
+     * @param  \App\WashingtonPost  $washingtonPost
      * @return \Illuminate\Http\Response
      */
-    public function destroy(NewYorkPost $newYorkPost)
+    public function destroy(WashingtonPost $washingtonPost)
     {
-        $newYorkPost->delete();
+        $washingtonPost->delete();
 
         return redirect()->route('my.page');
 

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Badbutton extends Model
 {
-    public function User(){
+    public function Users(){
         return $this->belongsTo('App\User');
     }
     public function EdmondsPost(){
@@ -15,8 +15,8 @@ class Badbutton extends Model
     public function SeattlePost(){
         return $this->belongsTo('App\SeattlePost', 'seattlepost_id');
     }
-    public function NewYorkPost(){
-        return $this->belongsTo('App\NewYorkPost','newyorkpost_id');
+    public function WashingtonPost(){
+        return $this->belongsTo('App\WashingtonPost','washingtonpost_id');
     }
     public function LAPost(){
         return $this->belongsTo('App\LAPost','lapost_id');

@@ -85,7 +85,7 @@
                 <div class="dropdown-menu" aria-labelledby="btnOpenMenu">
                     <a class="dropdown-item" href="{{ route('edmondsPost.index', Auth::id()) }}">Edmonds</a>
                     <a class="dropdown-item" href="{{ route('seattlePost.index', Auth::id()) }}">Seattle</a>  
-                    <a class="dropdown-item" href="{{ route('newyorkPost.index', Auth::id()) }}">New York</a>
+                    <a class="dropdown-item" href="{{ route('washingtonPost.index', Auth::id()) }}">Washington DC</a>
                     <a class="dropdown-item" href="{{ route('laPost.index', Auth::id()) }}">Los Angeles</a>
                     <a class="dropdown-item" href="{{ route('texasPost.index', Auth::id()) }}">Texas</a>
                     <a class="dropdown-item" href="{{ route('coloradoPost.index', Auth::id()) }}">Colorado</a>

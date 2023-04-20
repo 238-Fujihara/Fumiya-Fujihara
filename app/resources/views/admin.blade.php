@@ -80,7 +80,11 @@
                     <tr v-for="user in users">
                         <td v-text="user.name"></td>
                         <td v-text="user.email"></td>
-                        
+                        <td>
+                            @foreach($badcounts as $badcount)
+                                <p>違反件数:{{ $badcount->badcount }}</p>
+                            @endforeach
+                        </td>
                         <td class="text-right">
                             <button class="btn btn-warning" type="button" @click="changeState('edit', user)">変更</button>
                             <button class="btn btn-danger" type="button" @click="onDelete(user)">削除</button>

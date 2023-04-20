@@ -100,10 +100,10 @@
                                         <button type='submit' class='btn btn-primary'style="max-width:400px; margin:auto;">編集完了</button>
                         </form>
                                         <div class="list-group" style="max-width:400px; margin:auto;">
-                                        <form action="{{ route('user.destroy',auth()->user()) }}" enctype="multipart/form-data">
-                                            @csrf
-                                            @method('delete')
-                                        <div><button class="btn btn-danger" onclick='return confirm("削除しますか？");'>{{ __('Deactive') }}</button></div>
+                                            <form action="{{ route('user.destroy',auth()->user()) }}" method="POST" enctype="multipart/form-data">
+                                                @csrf
+                                                @method('delete')
+                                            <div><button class="btn btn-danger" onclick='return confirm("削除しますか？");'>{{ __('Deactive') }}</button></div>
                                         </form>
                                     <div>
                             </div>

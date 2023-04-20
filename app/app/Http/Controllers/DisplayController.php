@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\EdmondsPost;
 use App\SeattlePost;
-use App\NewYorkPost;
+use App\WashingtonPost;
 use App\LAPost;
 use App\TexasPost;
 use App\ColoradoPost;
@@ -20,14 +20,14 @@ class DisplayController extends Controller
 {
     public $edmondspost;
     public $seattlepost;
-    public $newyorkpost;
+    public $washingtonpost;
     public $lapost;
     public $texaspost;
 
-    public function __construct(EdmondsPost $edmondspost, SeattlePost $seattlepost, NewYorkPost $newyorkpost, LAPost $lapost, TexasPost $texaspost){
+    public function __construct(EdmondsPost $edmondspost, SeattlePost $seattlepost, WashingtonPost $washingtonpost, LAPost $lapost, TexasPost $texaspost){
         $this->edmondspost = $edmondspost;
         $this->seattlepost = $seattlepost;
-        $this->newyorkpost = $newyorkpost;
+        $this->washingtonpost = $washingtonpost;
         $this->lapost = $lapost;
         $this->texaspost = $texaspost;
 
@@ -35,12 +35,7 @@ class DisplayController extends Controller
 
 
     public function index(){
-        // $role = Auth::user()->toArray();
-        // if($role['role'] == 100){
-        //     return view('user.admin');
-        // }else{
-        //     return view('mainpage');
-        // }
+
         return view('mainpage');
 
     }
@@ -239,11 +234,11 @@ class DisplayController extends Controller
         ]);
 
     }
-    public function PublicNewYork(Request $request){
+    public function PublicWashington(Request $request){
 
-        $newyorkpost = New NewYorkPost;
+        $washingtonpost = New WashingtonPost;
 
-        $nyall = $newyorkpost->where('del_flg', 0)->where('user_id', Auth::id());
+        $waall = $washingtonpost->where('del_flg', 0)->where('user_id', Auth::id());
 
         $from = $request['from'];
         $until = $request['until'];
@@ -256,30 +251,30 @@ class DisplayController extends Controller
 
         $keyword = $request->input('keyword');
 
-        $nyall = NewYorkPost::query();
+        $waall = WashingtonPost::query();
 
         if($from && $until && !empty($keyword)){
-            $nyall = $nyall->whereBetween('date', [$from, $until]);
-            $nyall->where('title' ,'LIKE', "%{$keyword}%");
+            $waall =  $waall->whereBetween('date', [$from, $until]);
+            $waall->where('title' ,'LIKE', "%{$keyword}%");
         }
         elseif($from && $until){
-            $nyall = $nyall->whereBetween('date', [$from, $until]);
+            $waall = $waall->whereBetween('date', [$from, $until]);
         }
         elseif(!empty($keyword)){
-            $nyall->where('title' ,'LIKE', "%{$keyword}%");
+            $waall->where('title' ,'LIKE', "%{$keyword}%");
         }
 
 
-        $nyall = $nyall->get();
-        foreach($nyall as $val){
+        $waall =  $waall->get();
+        foreach($waall as $val){
             $val->image= '/storage/images/' . $val->image;
         }
 
-        $badbutton = EdmondsPost::where('badbutton');
+        $badbutton = WashingtonPost::where('badbutton');
 
    
-        return view('publicnewyork',[
-            'nyposts' => $nyall,
+        return view('publicwashington',[
+            'waposts' => $waall,
             'fromdate' => $fromdate,
             'untildate' => $untildate,
             'keyword' => $keyword,  

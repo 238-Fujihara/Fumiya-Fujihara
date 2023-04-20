@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNewyorkPostsTable extends Migration
+class CreateWashingtonPostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateNewyorkPostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('newyork_posts', function (Blueprint $table) {
+        Schema::create('washington_posts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('user_id');
             $table->string('title');
@@ -32,6 +32,6 @@ class CreateNewyorkPostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('newyork_posts');
+        Schema::dropIfExists('washington_posts');
     }
 }
