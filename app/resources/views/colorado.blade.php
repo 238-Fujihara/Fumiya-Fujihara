@@ -33,14 +33,17 @@
     <div class="login-register">
             @if(Auth::check())
             @if(Auth::user()->role == 100)
-                <a href="{{ url('/admin') }}">管理者ページ</a><br>
+            <div class="adpage">
+                    <a href="{{ url('/admin') }}">管理者ページ</a>
+                </div>
             @endif
-            <span class="may-navbar-item">{{ Auth::user()->name }}</span>
+            <div class="afterlogin">
+                <span class="may-navbar-item"></span>
+                <a href="{{ route('my.page') }}"><img class="iconimage"src="{{ asset( 'storage/images/' . Auth::user()->profile_image) }}"></a></span>
             /
             <a href="#" id="logout" class="logout">ログアウト</a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" syle="display:none;">
                 @csrf
-                <a href="{{ route('my.page') }}">マイページ</a>
 
             </form>
             <script>
@@ -49,6 +52,7 @@
                 document.getElementById('logout-form').submit();
                 });
             </script>
+            </div>
             @else
             <a class="login" href="{{ route('login') }}">
             <button type='submit' class="btn btn-secondary">ログイン</button>
