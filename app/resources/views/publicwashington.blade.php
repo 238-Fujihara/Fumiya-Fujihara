@@ -35,14 +35,17 @@
     <div class="login-register">
             @if(Auth::check())
             @if(Auth::user()->role == 100)
-                <a href="{{ url('/admin') }}">管理者ページ</a><br>
+            <div class="adpage">
+                    <a href="{{ url('/admin') }}">管理者ページ</a>
+                </div>
             @endif
-            <span class="may-navbar-item">{{ Auth::user()->name }}</span>
+            <div class="afterlogin">
+                <span class="may-navbar-item"></span>
+                <a href="{{ route('my.page') }}"><img class="iconimage"src="{{ asset( 'storage/images/' . Auth::user()->profile_image) }}"></a></span>
             /
             <a href="#" id="logout" class="logout">ログアウト</a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" syle="display:none;">
                 @csrf
-                <a href="{{ route('my.page') }}">マイページ</a>
 
             </form>
             <script>
@@ -51,6 +54,7 @@
                 document.getElementById('logout-form').submit();
                 });
             </script>
+            </div>
             @else
             <a class="login" href="{{ route('login') }}">
             <button type='button' class="btn btn-secondary">ログイン</buton>
@@ -71,12 +75,12 @@
                     Select Region
                 </button>
                 <div class="dropdown-menu" aria-labelledby="btnOpenMenu">
+                <a class="dropdown-item" href="{{ route('public.colorado') }}">Colorado</a>            
                     <a class="dropdown-item" href="{{ route('public.edmonds') }}">Edmonds</a>
-                    <a class="dropdown-item" href="{{ route('public.seattle') }}">Seattle</a>  
-                    <a class="dropdown-item" href="{{ route('public.washington') }}">Washington DC</a>            
                     <a class="dropdown-item" href="{{ route('public.la') }}">Los Angeles</a>            
-                    <a class="dropdown-item" href="{{ route('public.texas') }}">Texas</a>            
-          
+                    <a class="dropdown-item" href="{{ route('public.seattle') }}">Seattle</a>    
+                    <a class="dropdown-item" href="{{ route('public.texas') }}">Texas</a>
+                    <a class="dropdown-item" href="{{ route('public.washington') }}">Washington Dc</a>              
                 </div>
             </div>
         </div>
@@ -109,6 +113,9 @@
                 <h3>"{{ $wapost['title'] }}"</h3>
                 <h4>{{ $wapost['date'] }}</h4>
                 <a href="{{ asset($wapost->image) }}" data-lightbox="group"><img src="{{ asset($wapost->image) }}" width="100"></a>
+                <a href="{{ route('waviolation', $wapost->id) }}">
+                    <div class="badbutton"><input type="submit" value="BAD" class="btn btn-secondary" onclick='return confirm("Do not like this?");'></button></div>
+                </a>
             </div>
             @endforeach
             </tr>

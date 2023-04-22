@@ -86,9 +86,17 @@ class UserController extends Controller
 
         $user->name = $request->name;
         $user->email = $request->email;
+
+        if($request['profile_image']){
+            $filename=request()->file('profile_image')->store('public/images');
+            $user['profile_image']=basename($filename);
+        }
+        
         $user->save();
 
-        return view('mypage');
+        return view('mypage',[
+            "user" => $user,
+        ]);
 
     }
 

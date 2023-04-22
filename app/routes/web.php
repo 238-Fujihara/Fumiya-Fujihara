@@ -52,8 +52,8 @@ Route::group(['middleware'=> 'auth'], function() {
     Route::post('/texasviolation', [ViolationController::class, 'texasviolation'])->name('store.texasviolation');
     Route::get('/laviolationform/{id}', [ViolationController::class, 'laviolationform'])->name('laviolation');
     Route::post('/laviolation', [ViolationController::class, 'laviolation'])->name('store.laviolation');
-    Route::get('/newyorkviolationform/{id}', [ViolationController::class, 'newyorkviolationform'])->name('newyorkviolation');
-    Route::post('/newyorkviolation', [ViolationController::class, 'newyorkviolation'])->name('store.newyorkviolation');
+    Route::get('/waviolationform/{id}', [ViolationController::class, 'waviolationform'])->name('waviolation');
+    Route::post('/waviolation', [ViolationController::class, 'waviolation'])->name('store.waviolation');
 
 
 

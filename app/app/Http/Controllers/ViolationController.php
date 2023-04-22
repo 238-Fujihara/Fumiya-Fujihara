@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\EdmondsPost;
 use App\SeattlePost;
+use App\WashingtonPost;
+
 use App\Badbutton;
 use Illuminate\Support\Facades\Auth;
 
@@ -32,7 +34,7 @@ class ViolationController extends Controller
         $inputs['name']=$request->name;
         $inputs['user_id']=(int)$request->user_id;
         $inputs['reason']=$request->reason;
-        $inputs['edmondspost_id']=(int)$request->edmondspost_id; 
+        $inputs['edmondspost_id']=(int)$request->edmondspost_id;
 
 
                 
@@ -101,14 +103,16 @@ class ViolationController extends Controller
         return redirect('/public/la');
         
     }
-    public function newyorkviolationform($id){
+    public function waviolationform($id){
 
+        $post = WashingtonPost::find($id);
 
-        return view('newyorkviolationform',[
+        return view('waviolationform',[
             "id" => $id,
+            'post' => $post,
         ]);
     }
-    public function newyorkviolation(Request $request){
+    public function waviolation(Request $request){
 
         $badbuttons = New Badbutton;
         $inputs=[];
@@ -120,14 +124,14 @@ class ViolationController extends Controller
         $inputs['name']=$request->name;
         $inputs['user_id']=(int)$request->user_id;
         $inputs['reason']=$request->reason;
-        $inputs['newyorkpost_id']=(int)$request->newyorkpost_id; 
+        $inputs['washingtonpost_id']=(int)$request->washingtonpost_id; 
 
 
                 
         // postを保存
         $badbuttons->create($inputs);
         
-        return redirect('/public/newyork');
+        return redirect('/public/washington');
         
     }
     public function texasviolationform($id){

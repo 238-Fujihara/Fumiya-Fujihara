@@ -7,9 +7,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\EdmondsPost;
 use App\SeattlePost;
-use App\NewYorkPost;
+use App\ColoradoPost;
 use App\LAPost;
 use App\TexasPost;
+use App\WashingtonPost;
+
 
 
 class BadbuttonController extends Controller
@@ -95,11 +97,11 @@ class BadbuttonController extends Controller
             foreach($badbutton as $val){
                 $val->delete();
             }
-        }elseif($request->has('NewYorkPost')){
-            $newyorkpost = NewYorkPost::find($id);
-            $newyorkpost->del_flg = 1;
-            $newyorkpost->save();
-            $badbutton = Badbutton::where('newyorkpost_id', $id)->get();
+        }elseif($request->has('ColoradoPost')){
+            $coloradopost = ColoradoPost::find($id);
+            $coloradopost->del_flg = 1;
+            $coloradopost->save();
+            $badbutton = Badbutton::where('coloradopost_id', $id)->get();
             foreach($badbutton as $val){
                 $val->delete();
             }
@@ -119,10 +121,18 @@ class BadbuttonController extends Controller
             foreach($badbutton as $val){
                 $val->delete();
             }
-
+        }elseif($request->has('WashingtonPost')){
+            $washingtonpost = WashingtonPost::find($id);
+            $washingtonpost->del_flg = 1;
+            $washingtonpost->save();
+            $badbutton = Badbutton::where('washingtonpost_id', $id)->get();
+            foreach($badbutton as $val){
+                $val->delete();
+            }
+        }
         return redirect('/badbuttons');
     }
-}
+
 
     /**
      * Remove the specified resource from storage.

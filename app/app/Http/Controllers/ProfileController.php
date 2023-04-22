@@ -19,18 +19,46 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $per_page = 3; // １ページごとの表示件数
-        $users = User::paginate($per_page);
+        $users = User::paginate();
 
-        $badcounts = DB::table('users')  //＄groupsは変数にいれてるだけ
-             ->leftJoin('badbuttons', 'users.id', '=', 'badbuttons.user_id')
-             ->select('users.id', DB::raw("count(badbuttons.user_id) as badcount"))
-             ->groupBy('users.id')
-             ->get();
+        // SELECT * FROM users JOIN (select user_id, COUNT(user_id) as badcount FROM badbuttons group BY user_id) as bc on users.id = bc.user_id;
 
+        // $badcounts = DB::table('users')  //＄vadcountsは変数にいれてるだけ
+        //      ->leftJoin('badbuttons', 'users.id', '=', 'badbuttons.user_id')
+        //      ->select('users.id', DB::raw("count(badbuttons.user_id) as badcount"))
+        //      ->groupBy('users.id')
+        //      ->get();
+
+        $badcounts = DB::table('badbuttons')
+            ->select('user_id')
+            ->selectRaw('COUNT(user_id) as badcount')
+            ->groupBy('user_id')
+            ->get();
+
+        $datas = [];
+        foreach($users as $user){
+            $flg = false;
+            foreach($badcounts as $badcount){
+                if($user->id == $badcount->user_id){
+                    $data = ["name"=>$user->name, "email"=>$user->email, "badcount"=>$badcount->badcount];
+                    array_push($datas,$data);
+                    $flg = true;
+                }
+                }
+                if(!$flg){
+                    $data = ["name"=>$user->name, "email"=>$user->email, "badcount"=> 0];
+                    array_push($datas,$data);
+                }
+        }
+        // $b = json_decode((json_encode($data)));
+        // $a = array_push($users, $b);
+//         $a = collect([
+//             "name"=>$datas["name"],
+//             "email"=>$datas["email"],
+//             "badcount"=>$datas["badcount"],
+//         ]);
         return view('admin',[
-            'users' => $users,
-         'badcounts' => $badcounts,
+            'users' => $datas,
         ]);
     }
 

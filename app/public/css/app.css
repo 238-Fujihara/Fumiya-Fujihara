@@ -323,8 +323,15 @@ button,
   height:30px;
   margin-top: 10px;
 }
+.maintitle h1{
+  margin-left: 30px;
+}
 .login-register{
-  margin-left:850px;
+  margin-left:950px;
+}
+.afterlogin{
+  margin-left: 120px;
+  margin-top: 40px;
 }
 .seattlepost{
   text-align: center;
@@ -378,11 +385,20 @@ p{
   margin-bottom: 300px;
 }
 .userinformation{
+  width: 800px;
   margin-top: 70px;
-  display:flex;
+  display: flex;
+  margin-left: 360px;
 }
-.newpost{
-  margin-left: 300px;
+.adpage{
+  width: 100%;
+  margin-left: 50px;
+  margin-top: 5px;
+}
+.iconimage{
+  border-radius: 50%;
+  width: 60px;
+  height:60px;
 }
 .delete{
   margin-top: 50px;
@@ -417,7 +433,7 @@ p{
 
 }
 .seattleintroduction p{
-  width: 700px;
+  width: 800px;
   font-size: 20px;
 }
 .edmondsintroduction{
@@ -435,17 +451,78 @@ p{
 }
 .edmondsintroduction img{
   width: 800px;
-  height:400px;
+  height:450px;
   margin-left: 10px;
 }
 .edmondsintroduction p{
   width: 700px;
   font-size: 22px;
 }
-
-.edit{
-  margin-left: 300px;
+.laintroduction{
+  display: flex;
+  margin-top: 50px;
+  width: 80%;
+  margin-left: 130px;
 }
+.laintroduction p{
+width: 800px;
+font-size: 20px;
+}
+.laintroduction img{
+  width: 800px;
+  height:450px;
+  margin-left: 10px;
+}
+.texasintroduction{
+  display: flex;
+  margin-top: 50px;
+  width: 80%;
+  margin-left: 130px;
+}
+.texasintroduction p{
+width: 800px;
+font-size: 20px;
+}
+.texasintroduction img{
+  width: 800px;
+  height:450px;
+  margin-left: 10px;
+}
+.coloradointroduction{
+  display: flex;
+  margin-top: 50px;
+  width: 80%;
+  margin-left: 130px;
+}
+.coloradointroduction p{
+width: 800px;
+font-size: 20px;
+}
+.coloradointroduction img{
+  width: 800px;
+  height:450px;
+  margin-left: 10px;
+}
+.waintroduction{
+  display: flex;
+  margin-top: 50px;
+  width: 80%;
+  margin-left: 130px;
+}
+.waintroduction p{
+width: 800px;
+font-size: 20px;
+}
+.waintroduction img{
+  width: 800px;
+  height:450px;
+  margin-left: 10px;
+}
+.menu{
+  display: flex;
+  position: relative;
+}
+
 .regionname{
   justify-content: space-evenly;
   display: flex;
@@ -456,13 +533,13 @@ p{
 }
 .icon img{
   border-radius: 50%;
-  margin-left: 350px;
 }
 .username{
-  margin-left:350px;
   margin-top: 20px;
 }
-
+.menubar{
+  width:400px;
+}
 .notmember{
   margin-top: 150px;
 }
@@ -2859,6 +2936,7 @@ textarea.form-control.is-invalid {
 
 .btn:not(:disabled):not(.disabled) {
   cursor: pointer;
+  width: 120px;
 }
 
 a.btn.disabled,

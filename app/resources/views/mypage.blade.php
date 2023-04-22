@@ -32,9 +32,13 @@
     <div class="login-register">
             @if(Auth::check())
             @if(Auth::user()->role == 100)
-                <a href="{{ url('/admin') }}">管理者ページ</a><br>
+            <div class="adpage">
+                    <a href="{{ url('/admin') }}">管理者ページ</a>
+                </div>
             @endif
-            <span class="may-navbar-item">{{ Auth::user()->name }}</span>
+            <div class="afterlogin">
+                <span class="may-navbar-item"></span>
+                <a href="{{ route('my.page') }}"><img class="iconimage"src="{{ asset( 'storage/images/' . Auth::user()->profile_image) }}"></a></span>
             /
             <a href="#" id="logout" class="logout">ログアウト</a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" syle="display:none;">
@@ -46,6 +50,8 @@
                 document.getElementById('logout-form').submit();
                 });
             </script>
+            </div>
+            </div>
             @else
             <a class="login" href="{{ route('login') }}">
             <button type='button' class="btn btn-secondary">ログイン</buton>
@@ -57,25 +63,40 @@
             @endif
     </div>
 </header>
-        <h1>My Page</h1>
-        <div class="userinformation">
-          <div class='icon'> 
-            <img src="{{ asset('img\screen shot\IMG_0142.jpg') }}">
+<h1>My Page</h1>
+    <div class="userinformation">
+        <div class='icon'> 
+            <img src="{{ asset( 'storage/images/' . $user->profile_image) }}">
+            @method("PUT")
             <div class= 'username'>{{ Auth::user()->name }}</div>
-          </div>
-          <div class="menu">
+        </div>
+            <div class="menubar">
                 <div class="newpost">
-                    <a href="{{ route('create.edmonds') }}">
-                        <button type='button' class='btn btn-secondary'>新規投稿⊕</button>
-                    </a>
+                    <div class="regionname">
+                        <div class="dropdown"> 
+                            <button id="btnOpenMenu" class="btn btn-primary dropdown-toggle"  
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                New Post
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="btnOpenMenu">
+                                <a class="dropdown-item" href="{{ route('edmondsPost.index', Auth::id()) }}">Edmonds</a>
+                                <a class="dropdown-item" href="{{ route('seattlePost.index', Auth::id()) }}">Seattle</a>  
+                                <a class="dropdown-item" href="{{ route('washingtonPost.index', Auth::id()) }}">Washington DC</a>
+                                <a class="dropdown-item" href="{{ route('laPost.index', Auth::id()) }}">Los Angeles</a>
+                                <a class="dropdown-item" href="{{ route('texasPost.index', Auth::id()) }}">Texas</a>
+                                <a class="dropdown-item" href="{{ route('coloradoPost.index', Auth::id()) }}">Colorado</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="edit">
                     <a href="{{ route('user.edit', Auth::id()) }}">
-                        <button type='button' class='btn btn-info'>編集</button>
+                        <button type='button' class='btn btn-info'>Profile Edit</button>
                     </a>
                 </div>
             </div>
-        </div>
+
+    </div>
         <div class="regionname">
             <div class="dropdown"> 
                 <button id="btnOpenMenu" class="btn btn-primary dropdown-toggle"  

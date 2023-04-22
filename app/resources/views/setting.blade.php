@@ -78,6 +78,10 @@
 @endif
                                     <div class="list-group mb-3" style="max-width:400px; margin:auto;">
                                         <dl class="mb-0">
+                                            <dt>Change Profile Image</dt>
+                                        </div>
+                                        <input id="image" type="file" name="profile_image" value="{{ Auth::user()->profile_image }}"><br><br>
+                                        <dl class="mb-0">
                                             <dt>{{ __('Name') }}</dt>
                                             <input type='text' name='name' class="mb-0" value="{{ Auth::user()->name }}">
                                         </dl>
@@ -97,7 +101,7 @@
                                         <a href="{{ url('password/reset') }}">change password</a>
                                         <br>
                                         <div><i class="fas fa-chevron-right"></i></div>
-                                        <button type='submit' class='btn btn-primary'style="max-width:400px; margin:auto;">編集完了</button>
+                                        <button type='submit' class='btn btn-primary'style="max-width:400px; margin:auto;">Finish Edit</button>
                         </form>
                                         <div class="list-group" style="max-width:400px; margin:auto;">
                                             <form action="{{ route('user.destroy',auth()->user()) }}" method="POST" enctype="multipart/form-data">

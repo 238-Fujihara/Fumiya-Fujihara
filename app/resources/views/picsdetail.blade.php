@@ -82,18 +82,6 @@
                     <input type="submit" name="SeattlePost"value="削除" class="btn btn-danger" onclick='return confirm("削除しますか？");'>
             </form>
         </div>
-    @elseif(isset($badbutton->NewYorkPost))
-        <div>{{ $badbutton->NewYorkPost->title }}</div>
-            <div class="edpicsdetail">
-                <img src="{{ asset('/storage/images/' . $badbutton->NewYorkPost->image) }}">
-            </div>
-        <div class="deletebutton">
-            <form action="{{ route('badbuttons.update', $badbutton->NewYorkPost->id) }}" method="POST">
-                @csrf
-                @method('PUT')
-                    <input type="submit" name="NewYorkPost" value="削除" class="btn btn-danger" onclick='return confirm("削除しますか？");'>
-            </form>
-        </div>
     @elseif(isset($badbutton->LAPost))
         <div>{{ $badbutton->LAPost->title }}</div>
             <div class="edpicsdetail">
@@ -106,7 +94,7 @@
                     <input type="submit" name="LAPost" value="削除" class="btn btn-danger" onclick='return confirm("削除しますか？");'>
             </form>
         </div>
-    @else(isset($badbutton->TexasPost))
+    @elseif(isset($badbutton->TexasPost))
         <div>{{ $badbutton->TexasPost->title }}</div>
             <div class="edpicsdetail">
                 <img src="{{ asset('/storage/images/' . $badbutton->TexasPost->image) }}">
@@ -118,6 +106,19 @@
                     <input type="submit" name="TexasPost" value="削除" class="btn btn-danger" onclick='return confirm("削除しますか？");'>
             </form>
         </div>
+    @elseif(isset($badbutton->WashingtonPost))
+        <div>{{ $badbutton->WashingtonPost->title }}</div>
+            <div class="edpicsdetail">
+                <img src="{{ asset('/storage/images/' . $badbutton->WashingtonPost->image) }}">
+            </div>
+        <div class="deletebutton">
+            <form action="{{ route('badbuttons.update', $badbutton->WashingtonPost->id) }}" method="POST">
+                @csrf
+                @method('PUT')
+                    <input type="submit" name="WashingtonPost" value="削除" class="btn btn-danger" onclick='return confirm("削除しますか？");'>
+            </form>
+        </div>
+
 
 
 

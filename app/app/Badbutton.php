@@ -30,6 +30,6 @@ class Badbutton extends Model
 
 
     protected $fillable = [
-        'reason','edmondspost_id','seattlepost_id','user_id', 'name','newyorkpost_id','lapost_id','texaspost_id'
+        'reason','edmondspost_id','seattlepost_id','user_id', 'name','washingtonpost_id','lapost_id','texaspost_id','coloradopost_id'
     ];
 }

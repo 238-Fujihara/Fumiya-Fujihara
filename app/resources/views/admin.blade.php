@@ -31,7 +31,10 @@
         <a href ="{{ ('/') }}"><h1>Seattlish</h1></a>
         <div class="login-register">
                 @if(Auth::check())
-                <span class="may-navbar-item">{{ Auth::user()->name }}</span>
+                <span class="may-navbar-item"></span>
+                <div class="afterlogin">
+                <span class="may-navbar-item"></span>
+                <a href="{{ route('my.page') }}"><img class="iconimage"src="{{ asset( 'storage/images/' . Auth::user()->profile_image) }}"></a></span>
                 /
                 <a href="#" id="logout" class="logout">ログアウト</a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" syle="display:none;">
@@ -43,6 +46,7 @@
                     document.getElementById('logout-form').submit();
                     });
                 </script>
+                </div>
                 @else
                 <a class="login" href="{{ route('login') }}">
                 <button type='button' class='login-button'>ログイン</buton>
@@ -62,38 +66,30 @@
     <div id="app" class="p-5">
         <!-- 一覧表示するブロック ① -->
         <div v-if="state=='index'">
-            <div class="mb-3">
-                <button type="button" class="btn btn-success" @click="changeState('create')">追加</button>
-            </div>
             <div class="badbuttons">
                 <a href="{{ route('badbuttons.index') }}">Violation Report</a>
             </div>
             <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>名前</th>
-                        <th>E-Mail</th>
-                        <th></th>
-                    </tr>
-                </thead>
                 <tbody>
-                    <tr v-for="user in users">
-                        <td v-text="user.name"></td>
-                        <td v-text="user.email"></td>
-                        <td>
-                            @foreach($badcounts as $badcount)
-                                <p>違反件数:{{ $badcount->badcount }}</p>
-                            @endforeach
-                        </td>
-                        <td class="text-right">
-                            <button class="btn btn-warning" type="button" @click="changeState('edit', user)">変更</button>
-                            <button class="btn btn-danger" type="button" @click="onDelete(user)">削除</button>
-                        </td>
+                    <tr>
+                        @foreach($users as $user)
+                            <thead>
+                            <tr>
+                                <th>名前</th>
+                                <th>E-Mail</th>
+                                <th>違反件数</th>
+                            </tr>
+                            </thead>
+                                <td>{{ $user['name'] }}</td>
+                                <td>{{ $user['email'] }}</td>
+                                <td>{{ $user['badcount'] }}</td>
+                                    <td class="text-right">
+                                        <button class="btn btn-danger" type="button" @click="onDelete(user)">削除</button>
+                                    </td>
+                        @endforeach
                     </tr>
                 </tbody>
             </table>
-            <!-- ページ移動のリンク ③ -->
-            {{ $users->links() }}
         </div>
         <!-- 追加＆変更するブロック ② -->
         <div v-if="state=='create' || state == 'edit'">
@@ -130,15 +126,10 @@
                     id: -1,
                     name: '',
                     email: '',
+                    badcount: '',
                     password: '',
                     passwordConfirmation: ''
                 },
-                users: [
-                    // ユーザーデータをJSON化 ④
-                    @foreach($users as $user)
-                    {!! $user !!},
-                    @endforeach
-                ]
             },
             methods: {
                 changeState(state, value) { // 状態を変化させて表示を切り替え ⑤
@@ -149,6 +140,7 @@
                             id: -1,
                             name: '',
                             email: '',
+                            badcount: '',
                             password: '',
                             passwordConfirmation: ''
                         };

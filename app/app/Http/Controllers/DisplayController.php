@@ -36,7 +36,11 @@ class DisplayController extends Controller
 
     public function index(){
 
-        return view('mainpage');
+        $user = User::find('storage/images/' . 'profile_image');
+
+        return view('mainpage',[
+            "user" => $user,
+        ]);
 
     }
 
@@ -145,9 +149,6 @@ class DisplayController extends Controller
 
     public function PublicEdmonds(Request $request){
 
-        $edmondspost = New EdmondsPost;
-
-        $edall = $edmondspost->where('del_flg', 0)->where('user_id', Auth::id());
 
         $from = $request['from'];
         $until = $request['until'];
@@ -175,7 +176,7 @@ class DisplayController extends Controller
         }
 
 
-        $edall = $edall->get();
+        $edall = $edall->where('del_flg', 0)->get();
         foreach($edall as $val){
             $val->image= '/storage/images/' . $val->image;
         }
@@ -193,10 +194,6 @@ class DisplayController extends Controller
 
     }
     public function PublicSeattle(Request $request){
-
-        $seattlepost = New SeattlePost;
-
-        $seaall = $seattlepost->where('del_flg', 0)->where('user_id', Auth::id());
 
         $from = $request['from'];
         $until = $request['until'];
@@ -219,7 +216,7 @@ class DisplayController extends Controller
             $seaall->where('title' ,'LIKE', "%{$keyword}%");
         }
 
-        $seaall = $seaall->get();
+        $seaall = $seaall->where('del_flg', 0)->get();
         foreach($seaall as $val){
             $val->image= '/storage/images/' . $val->image;
         }
@@ -236,9 +233,6 @@ class DisplayController extends Controller
     }
     public function PublicWashington(Request $request){
 
-        $washingtonpost = New WashingtonPost;
-
-        $waall = $washingtonpost->where('del_flg', 0)->where('user_id', Auth::id());
 
         $from = $request['from'];
         $until = $request['until'];
@@ -265,7 +259,7 @@ class DisplayController extends Controller
         }
 
 
-        $waall =  $waall->get();
+        $waall =  $waall->where('del_flg', 0)->get();
         foreach($waall as $val){
             $val->image= '/storage/images/' . $val->image;
         }
@@ -283,9 +277,6 @@ class DisplayController extends Controller
     }
     public function PublicLA(Request $request){
 
-        $lapost = New LAPost;
-
-        $lapost = $lapost->where('del_flg', 0)->where('user_id', Auth::id());
 
         $from = $request['from'];
         $until = $request['until'];
@@ -312,7 +303,7 @@ class DisplayController extends Controller
         }
 
 
-        $lapost =$lapost->get();
+        $lapost =$lapost->where('del_flg', 0)->get();
         foreach($lapost as $val){
             $val->image= '/storage/images/' . $val->image;
         }
@@ -330,9 +321,7 @@ class DisplayController extends Controller
     }
     public function PublicTexas(Request $request){
 
-        $texaspost = New TexasPost;
 
-        $texaspost = $texaspost->where('del_flg', 0)->where('user_id', Auth::id());
 
         $from = $request['from'];
         $until = $request['until'];
@@ -359,7 +348,7 @@ class DisplayController extends Controller
         }
 
 
-        $texaspost =$texaspost->get();
+        $texaspost =$texaspost->where('del_flg', 0)->get();
         foreach($texaspost as $val){
             $val->image= '/storage/images/' . $val->image;
         }
