@@ -171,8 +171,9 @@ class DisplayController extends Controller
         elseif($from && $until){
             $edall = $edall->whereBetween('date', [$from, $until]);
         }
-        elseif($from && empty($until)){
+        elseif($from && empty($until) && !empty($keyword)){
             $edall = $edall->where('date',$from);
+            $edall->where('title' ,'LIKE', "%{$keyword}%");
         }
         elseif(!empty($keyword)){
             $edall->where('title' ,'LIKE', "%{$keyword}%");
@@ -215,8 +216,9 @@ class DisplayController extends Controller
         elseif($from && $until){
             $seaall = $seaall->whereBetween('date', [$from, $until]);
         }
-        elseif($from && empty($until)){
+        elseif($from && empty($until) && !empty($keyword)){
             $seaall = $seaall->where('date',$from);
+            $seaall->where('title' ,'LIKE', "%{$keyword}%");
         }
         elseif(!empty($keyword)){
             $seaall->where('title' ,'LIKE', "%{$keyword}%");
@@ -260,8 +262,9 @@ class DisplayController extends Controller
         elseif($from && $until){
             $waall = $waall->whereBetween('date', [$from, $until]);
         }
-        elseif($from && empty($until)){
+        elseif($from && empty($until) && !empty($keyword)){
             $waall = $waall->where('date',$from);
+            $waall->where('title' ,'LIKE', "%{$keyword}%");
         }
         elseif(!empty($keyword)){
             $waall->where('title' ,'LIKE', "%{$keyword}%");
@@ -307,8 +310,9 @@ class DisplayController extends Controller
         elseif($from && $until){
             $lapost = $lapost->whereBetween('date', [$from, $until]);
         }
-        elseif($from && empty($until)){
+        elseif($from && empty($until) && !empty($keyword)){
             $lapost = $lapost->where('date',$from);
+            $lapost->where('title' ,'LIKE', "%{$keyword}%");
         }
         elseif(!empty($keyword)){
             $lapost->where('title' ,'LIKE', "%{$keyword}%");
@@ -355,8 +359,9 @@ class DisplayController extends Controller
         elseif($from && $until){
             $texaspost = $texaspost->whereBetween('date', [$from, $until]);
         }
-        elseif($from && empty($until)){
+        elseif($from && empty($until) && !empty($keyword)){
             $texaspost = $texaspost->where('date',$from);
+            $texaspost->where('title' ,'LIKE', "%{$keyword}%");
         }
         elseif(!empty($keyword)){
             $texaspost->where('title' ,'LIKE', "%{$keyword}%");
@@ -405,8 +410,9 @@ class DisplayController extends Controller
         elseif($from && $until){
             $coloradopost = $coloradopost->whereBetween('date', [$from, $until]);
         }
-        elseif($from && empty($until)){
+        elseif($from && empty($until) && !empty($keyword)){
             $coloradopost = $coloradopost->where('date',$from);
+            $coloradopost->where('title' ,'LIKE', "%{$keyword}%");
         }
         elseif(!empty($keyword)){
             $coloradopost->where('title' ,'LIKE', "%{$keyword}%");
