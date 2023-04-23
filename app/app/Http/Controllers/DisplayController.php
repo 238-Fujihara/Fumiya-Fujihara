@@ -175,6 +175,9 @@ class DisplayController extends Controller
             $edall = $edall->where('date',$from);
             $edall->where('title' ,'LIKE', "%{$keyword}%");
         }
+        elseif($from && empty($until)){
+            $edall = $edall->where('date',$from);
+        }
         elseif(!empty($keyword)){
             $edall->where('title' ,'LIKE', "%{$keyword}%");
         }
@@ -219,6 +222,9 @@ class DisplayController extends Controller
         elseif($from && empty($until) && !empty($keyword)){
             $seaall = $seaall->where('date',$from);
             $seaall->where('title' ,'LIKE', "%{$keyword}%");
+        }
+        elseif($from && empty($until)){
+            $seaall = $seaall->where('date',$from);
         }
         elseif(!empty($keyword)){
             $seaall->where('title' ,'LIKE', "%{$keyword}%");
@@ -265,6 +271,9 @@ class DisplayController extends Controller
         elseif($from && empty($until) && !empty($keyword)){
             $waall = $waall->where('date',$from);
             $waall->where('title' ,'LIKE', "%{$keyword}%");
+        }
+        elseif($from && empty($until)){
+            $waall = $waall->where('date',$from);
         }
         elseif(!empty($keyword)){
             $waall->where('title' ,'LIKE', "%{$keyword}%");
@@ -314,6 +323,9 @@ class DisplayController extends Controller
             $lapost = $lapost->where('date',$from);
             $lapost->where('title' ,'LIKE', "%{$keyword}%");
         }
+        elseif($from && empty($until)){
+            $lapost = $lapost->where('date',$from);
+        }
         elseif(!empty($keyword)){
             $lapost->where('title' ,'LIKE', "%{$keyword}%");
         }
@@ -362,6 +374,9 @@ class DisplayController extends Controller
         elseif($from && empty($until) && !empty($keyword)){
             $texaspost = $texaspost->where('date',$from);
             $texaspost->where('title' ,'LIKE', "%{$keyword}%");
+        }
+        elseif($from && empty($until)){
+            $texaspost = $texaspost->where('date',$from);
         }
         elseif(!empty($keyword)){
             $texaspost->where('title' ,'LIKE', "%{$keyword}%");
@@ -413,6 +428,10 @@ class DisplayController extends Controller
         elseif($from && empty($until) && !empty($keyword)){
             $coloradopost = $coloradopost->where('date',$from);
             $coloradopost->where('title' ,'LIKE', "%{$keyword}%");
+        }
+        elseif($from && empty($until)){
+            $coloradopost = $coloradopost->where('date',$from);
+
         }
         elseif(!empty($keyword)){
             $coloradopost->where('title' ,'LIKE', "%{$keyword}%");
