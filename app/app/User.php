@@ -93,7 +93,23 @@ class User extends Authenticatable
         $this->likes()->detach($postId);
     } 
 }
-    public function posts(){
-        return $this->hasMany('App\posts');
+    public function EdmondsPost(){
+        return $this->hasMany('App\EdmondsPost','edmondspost_id');
     }
+    public function SeattlePost(){
+        return $this->hasMany('App\SeattlePost', 'seattlepost_id');
+    }
+    public function WashingtonPost(){
+        return $this->hasMany('App\WashingtonPost','washingtonpost_id');
+    }
+    public function LAPost(){
+        return $this->hasMany('App\LAPost','lapost_id');
+    }
+    public function TexasPost(){
+        return $this->hasMany('App\TexasPost','texaspost_id');
+    }
+    public function ColoradoPost(){
+        return $this->belongsTo('App\ColoradoPost','coloradopost_id');
+    }
+
 }

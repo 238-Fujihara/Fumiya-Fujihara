@@ -7,12 +7,12 @@ const center = {
 }
 
 const markers = [
-	{ lat: 47.608013, lng: -122.335167, url:"http://127.0.0.1:8000/public/seattle", name:"Seattle"},
-	{ lat: 47.810654, lng: -122.37736, url: "http://127.0.0.1:8000/public/edmonds", name:"Edmonds"},
-    { lat: 34.052235, lng:  -118.243683, url: "http://127.0.0.1:8000/public/la", name:"Los Angeles"},
-	{ lat: 38.895, lng:  -77.0366, url: "http://127.0.0.1:8000/public/washington", name:"Washington DC"},
-	{ lat: 31.000000, lng:  -100.000000, url: "http://127.0.0.1:8000/public/texas", name:"Texas"},
-    { lat: 39.113014, lng:  -105.358887, url: "http://127.0.0.1:8000/public/colorado", name:"Colorado"},
+	{ lat: 47.608013, lng: -122.335167, url:"public/seattle", name:"Seattle"},
+	{ lat: 47.810654, lng: -122.37736, url: "public/edmonds", name:"Edmonds"},
+    { lat: 34.052235, lng:  -118.243683, url: "public/la", name:"Los Angeles"},
+	{ lat: 38.895, lng:  -77.0366, url: "public/washington", name:"Washington DC"},
+	{ lat: 31.000000, lng:  -100.000000, url: "public/texas", name:"Texas"},
+    { lat: 39.113014, lng:  -105.358887, url: "public/colorado", name:"Colorado"},
  
  
 ];

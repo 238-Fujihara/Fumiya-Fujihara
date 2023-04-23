@@ -171,12 +171,15 @@ class DisplayController extends Controller
         elseif($from && $until){
             $edall = $edall->whereBetween('date', [$from, $until]);
         }
+        elseif($from && empty($until)){
+            $edall = $edall->where('date',$from);
+        }
         elseif(!empty($keyword)){
             $edall->where('title' ,'LIKE', "%{$keyword}%");
         }
 
 
-        $edall = $edall->where('del_flg', 0)->get();
+        $edall = $edall->where('del_flg', 0)->get()->sortByDesc('date');
         foreach($edall as $val){
             $val->image= '/storage/images/' . $val->image;
         }
@@ -212,11 +215,14 @@ class DisplayController extends Controller
         elseif($from && $until){
             $seaall = $seaall->whereBetween('date', [$from, $until]);
         }
+        elseif($from && empty($until)){
+            $seaall = $seaall->where('date',$from);
+        }
         elseif(!empty($keyword)){
             $seaall->where('title' ,'LIKE', "%{$keyword}%");
         }
 
-        $seaall = $seaall->where('del_flg', 0)->get();
+        $seaall = $seaall->where('del_flg', 0)->get()->sortByDesc('date');
         foreach($seaall as $val){
             $val->image= '/storage/images/' . $val->image;
         }
@@ -254,12 +260,15 @@ class DisplayController extends Controller
         elseif($from && $until){
             $waall = $waall->whereBetween('date', [$from, $until]);
         }
+        elseif($from && empty($until)){
+            $waall = $waall->where('date',$from);
+        }
         elseif(!empty($keyword)){
             $waall->where('title' ,'LIKE', "%{$keyword}%");
         }
 
 
-        $waall =  $waall->where('del_flg', 0)->get();
+        $waall =  $waall->where('del_flg', 0)->get()->sortByDesc('date');
         foreach($waall as $val){
             $val->image= '/storage/images/' . $val->image;
         }
@@ -298,12 +307,15 @@ class DisplayController extends Controller
         elseif($from && $until){
             $lapost = $lapost->whereBetween('date', [$from, $until]);
         }
+        elseif($from && empty($until)){
+            $lapost = $lapost->where('date',$from);
+        }
         elseif(!empty($keyword)){
             $lapost->where('title' ,'LIKE', "%{$keyword}%");
         }
 
 
-        $lapost =$lapost->where('del_flg', 0)->get();
+        $lapost =$lapost->where('del_flg', 0)->get()->sortByDesc('date');
         foreach($lapost as $val){
             $val->image= '/storage/images/' . $val->image;
         }
@@ -343,12 +355,15 @@ class DisplayController extends Controller
         elseif($from && $until){
             $texaspost = $texaspost->whereBetween('date', [$from, $until]);
         }
+        elseif($from && empty($until)){
+            $texaspost = $texaspost->where('date',$from);
+        }
         elseif(!empty($keyword)){
             $texaspost->where('title' ,'LIKE', "%{$keyword}%");
         }
 
 
-        $texaspost =$texaspost->where('del_flg', 0)->get();
+        $texaspost =$texaspost->where('del_flg', 0)->get()->sortByDesc('date');
         foreach($texaspost as $val){
             $val->image= '/storage/images/' . $val->image;
         }
@@ -390,12 +405,15 @@ class DisplayController extends Controller
         elseif($from && $until){
             $coloradopost = $coloradopost->whereBetween('date', [$from, $until]);
         }
+        elseif($from && empty($until)){
+            $coloradopost = $coloradopost->where('date',$from);
+        }
         elseif(!empty($keyword)){
             $coloradopost->where('title' ,'LIKE', "%{$keyword}%");
         }
 
 
-        $coloradopost = $coloradopost->get();
+        $coloradopost = $coloradopost->get()->sortByDesc('date');
         foreach($coloradopost as $val){
             $val->image= '/storage/images/' . $val->image;
         }

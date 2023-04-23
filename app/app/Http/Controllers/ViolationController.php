@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 use App\EdmondsPost;
 use App\SeattlePost;
 use App\WashingtonPost;
+use App\TexasPost;
+use App\LAPost;
+
 
 use App\Badbutton;
 use Illuminate\Support\Facades\Auth;
@@ -17,9 +20,11 @@ class ViolationController extends Controller
 {
     public function edviolationform($id){
 
+        $post = EdmondsPost::find($id);
 
         return view('edviolationform',[
             "id" => $id,
+            "post" => $post,
         ]);
     }
     public function edviolation(Request $request){
@@ -46,8 +51,11 @@ class ViolationController extends Controller
     }
     public function seaviolationform($id){
 
+        $post = SeattlePost::find($id);
+
         return view('seaviolationform',[
             "id" => $id,
+            "post" => $post,
         ]);
 
     }
@@ -76,9 +84,11 @@ class ViolationController extends Controller
     }   
     public function laviolationform($id){
 
+        $post = LAPost::find($id);
 
         return view('laviolationform',[
             "id" => $id,
+            "post" => $post,
         ]);
     }
     public function laviolation(Request $request){
@@ -136,9 +146,11 @@ class ViolationController extends Controller
     }
     public function texasviolationform($id){
 
+        $post = TexasPost::find($id);
 
         return view('texasviolationform',[
             "id" => $id,
+            "post" => $post,
         ]);
     }
     public function texasviolation(Request $request){

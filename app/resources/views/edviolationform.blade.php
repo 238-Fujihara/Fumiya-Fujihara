@@ -65,7 +65,7 @@
     <form action="{{ route('store.edviolation') }}" method="POSt" enctype="multipart/form-data">
         @csrf
         <input type="hidden" name="name" value="{{ Auth::user()->name }}">
-        <input type="hidden" name="user_id" value="{{ Auth::user() }}">
+        <input type="hidden" name="user_id" value="{{ $post->user_id }}">
         <input type="hidden" name="edmondspost_id" value="{{$id}}">
         <div class="card-body">
             <h5 class="card-title">Why is this inappropriate??</h5>
