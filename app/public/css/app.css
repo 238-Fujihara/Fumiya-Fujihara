@@ -404,7 +404,7 @@ p{
   margin-top: 50px;
 }
 .edpicsdetail{
-  margin-top: 100px;
+  margin-top: 60px;
 }
 .introduction{
   margin-top: 60px;
@@ -536,9 +536,14 @@ font-size: 20px;
 }
 .username{
   margin-top: 20px;
+  font-size:larger;
 }
 .menubar{
   width:400px;
+}
+.titlename{
+  margin-top: 70px;
+  font-size: 30px;
 }
 .notmember{
   margin-top: 150px;

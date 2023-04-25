@@ -65,7 +65,7 @@
 </header>
 <body>
     @if(isset($badbutton->EdmondsPost))
-        <div>{{ $badbutton->EdmondsPost->title }}</div>
+        <div class="titlename">{{ $badbutton->EdmondsPost->title }}</div>
             <div class="edpicsdetail">
                 <img src="{{ asset('/storage/images/' . $badbutton->EdmondsPost->image) }}">
             </div>
@@ -77,7 +77,7 @@
             </form>
         </div>
     @elseif(isset($badbutton->SeattlePost))
-        <div>{{ $badbutton->SeattlePost->title }}</div>
+        <div class="titlename">{{ $badbutton->SeattlePost->title }}</div>
             <div class="edpicsdetail">
                 <img src="{{ asset('/storage/images/' . $badbutton->SeattlePost->image) }}">
             </div>
@@ -89,7 +89,7 @@
             </form>
         </div>
     @elseif(isset($badbutton->LAPost))
-        <div>{{ $badbutton->LAPost->title }}</div>
+        <div class="titlename">{{ $badbutton->LAPost->title }}</div>
             <div class="edpicsdetail">
                 <img src="{{ asset('/storage/images/' . $badbutton->LAPost->image) }}">
             </div>
@@ -101,7 +101,7 @@
             </form>
         </div>
     @elseif(isset($badbutton->TexasPost))
-        <div>{{ $badbutton->TexasPost->title }}</div>
+        <div class="titlename">{{ $badbutton->TexasPost->title }}</div>
             <div class="edpicsdetail">
                 <img src="{{ asset('/storage/images/' . $badbutton->TexasPost->image) }}">
             </div>
@@ -113,7 +113,7 @@
             </form>
         </div>
     @elseif(isset($badbutton->WashingtonPost))
-        <div>{{ $badbutton->WashingtonPost->title }}</div>
+        <div class="titlename">{{ $badbutton->WashingtonPost->title }}</div>
             <div class="edpicsdetail">
                 <img src="{{ asset('/storage/images/' . $badbutton->WashingtonPost->image) }}">
             </div>
